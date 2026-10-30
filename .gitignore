@@ -7,3 +7,7 @@ passation/
 passagem/
 passation-*/
 passagem-*/
+
+# Test fixtures are real folders named like generated packs
+!skills/bastao/tests/fixtures/**/passation/
+!skills/bastao/tests/fixtures/**/passagem/

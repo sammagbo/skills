@@ -22,7 +22,7 @@ Préparé le {{doc_date}} par {{author}}, pour {{readers}} (direction, gestion, 
 
 ## Ce que ça ne fait pas
 
-<!-- Réponse à la question 4. Chaque ligne dit aussi pourquoi on pourrait croire le contraire : c'est cette croyance qui provoque les incidents. -->
+<!-- Réponse à la question 4. Quand la raison est connue, la ligne dit pourquoi on pourrait croire le contraire : c'est cette croyance qui provoque les incidents. Raison inconnue : garder seulement la première phrase, sans marque. -->
 
 - {{not_feature}}. On pourrait le croire, parce que {{not_feature_reason}}.
 - {{not_feature}}. On pourrait le croire, parce que {{not_feature_reason}}.

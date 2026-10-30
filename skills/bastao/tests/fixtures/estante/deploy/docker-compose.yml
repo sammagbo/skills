@@ -1,0 +1,38 @@
+name: estante
+services:
+  db:
+    image: postgres:16
+    container_name: estante-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+  app:
+    build: ..
+    container_name: estante-app
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      SECRET_KEY: ${SECRET_KEY}
+      SMTP_HOST: smtp.example.net
+      SMTP_USER: biblioteca@jacaranda.example.org
+      SMTP_PASSWORD: Tq8vR2mLx9pZ4kWc
+      PRINTER_URL: ${PRINTER_URL}
+      TZ: America/Sao_Paulo
+    depends_on: [db]
+    restart: unless-stopped
+  caddy:
+    image: caddy:2
+    container_name: estante-caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+    restart: unless-stopped
+volumes:
+  pgdata:
+  caddy_data:

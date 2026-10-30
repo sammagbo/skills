@@ -1,0 +1,97 @@
+# Bastão: respostas do desenvolvedor (30/10/2026). Nenhum segredo neste arquivo.
+# Fonte: <out>/respostas.md. Campos sem resposta: [A CONFIRMAR].
+# vault, last_restore_date, backup_offsite e backup_encrypted ficam marcados até o dono
+# (Marcia Okafor) confirmar de viva voz (regra 3), mesmo com a resposta do desenvolvedor.
+
+q0_inventory_corrections:
+  - "Incidente faltando: 06/2026, lembretes por e-mail parados uma semana; MailExemplo bloqueou a conta (cartão da escola não pago); Roberto (financeiro) pagou e voltou."
+  - "Dependência faltando: internet Provedor Exemplo, contrato com a secretaria."
+  - "Remote git: o desenvolvedor não sabe."
+
+q1:
+  owner: "Marcia Okafor, diretora pedagógica (a partir de dezembro de 2026)"
+  decision_maker: "Marcia Okafor"
+  decision_consulted_rules: "Paula Reis, coordenadora (regras da biblioteca)"
+  decision_consulted_other: "[A CONFIRMAR]"
+  decision_informed: "[A CONFIRMAR]"
+  users: "Joana Lima, bibliotecária, todo dia, manhã e tarde"
+  other_users: "[A CONFIRMAR] (o desenvolvedor não sabe)"
+
+q2:
+  tech_lead: "Denise Prado, técnica de informática da escola"
+  tech_access: "SSH no mini-PC com conta própria 'denise', criada em 09/2026"
+  vault_said_by_developer: "Bitwarden da escola, organização 'Jacaranda TI'; Marcia administradora; Denise vê a coleção 'Estante'"
+  vault: "[A CONFIRMAR] (confirmação do dono pendente)"
+  developer_access: "tem acesso ao Bitwarden hoje; será removido na saída"
+  router_access_place: "[A CONFIRMAR]"
+  registro_br_access_place: "[A CONFIRMAR]"
+  access_change_deadline: "[A CONFIRMAR]"
+
+q3:
+  daily: "nada"
+  weekly: "nada"
+  monthly: "nada"
+  semester: "Joana Lima cadastra os livros novos no começo de cada semestre e imprime as etiquetas"
+  yearly: "importação de alunos em fevereiro (quem faz: [A CONFIRMAR])"
+  server_timezone: "[A CONFIRMAR] (nunca conferido)"
+  logbook: "[A CONFIRMAR]"
+
+q4:
+  not_features:
+    - {what: "não bloqueia a saída do livro", why: "a escola acha que tem portal antifurto, mas não tem"}
+    - {what: "não manda SMS nem WhatsApp, só e-mail", why: "[A CONFIRMAR]"}
+    - {what: "não cobra multa", why: "a função existiu; a direção desativou em 2025 (a coluna continua na base)"}
+    - {what: "não se conecta sozinho ao sistema da secretaria", why: "o CSV de alunos é passado à mão"}
+
+q5:
+  incidents_confirmed: ["11/03/2025 queda de luz", "19/02/2026 importação duplicada", "08/2026 impressora"]
+  incident_added: "06/2026 lembretes parados uma semana (MailExemplo, cartão não pago)"
+  fallback_procedure: "[A CONFIRMAR] (nada combinado)"
+
+q6:
+  call_order: ["Denise Prado", "Etiquetas Exemplo (impressora)", "Provedor Exemplo (internet, contrato da secretaria)", "desenvolvedor por e-mail até 31/01/2027"]
+  tech_lead_contact: "[A CONFIRMAR]"
+  tech_lead_hours: "[A CONFIRMAR]"
+  denise_alone: "reiniciar container, olhar log, rodar backup manual, reimprimir etiqueta"
+  denise_with_owner: "atualizar versão, criar admin"
+  never_without_developer_until_2027_01_31: "mexer em migração, restaurar backup"
+  after_2027_01_31: "[A CONFIRMAR]"
+  joana_coordination_alone: "[A CONFIRMAR] (o desenvolvedor não sabe)"
+
+q7:
+  backup_location: "/home/estante/backups no próprio mini-PC"
+  backup_retention: "30 dias"
+  backup_offsite: "[A CONFIRMAR] (desenvolvedor acha que Denise às vezes copia para um HD externo, sem certeza)"
+  backup_encrypted: "[A CONFIRMAR] (desenvolvedor diz que não)"
+  last_restore_date: "[A CONFIRMAR] (desenvolvedor acha que nunca testou)"
+  last_restore_by: "[A CONFIRMAR]"
+
+q8:
+  dues:
+    - {date: "14/03/2027", item: "domínio jacaranda.example.org (registrador de domínios)", owner: "Roberto (financeiro)"}
+    - {date: "todo mês", item: "plano MailExemplo no cartão da escola", owner: "Roberto (financeiro)"}
+    - {date: "[A CONFIRMAR]", item: "bateria do nobreak APC, trocada em 2024", owner: "[A CONFIRMAR]"}
+  certificate: "automático"
+
+q9:
+  printer: "Zebra GK420t, loja Etiquetas Exemplo, telefone [A CONFIRMAR]"
+  registro_br: "Roberto (financeiro)"
+  email: "MailExemplo, cartão da escola, financeiro"
+  internet: "Provedor Exemplo, secretaria"
+  ups: "APC, bateria trocada em 2024"
+  router_pc_readers: "[A CONFIRMAR] (modelo e responsável desconhecidos)"
+
+q10:
+  languages: ["fr", "pt"]
+  languages_reason: "a mantenedora (associação franco-brasileira) pede cópia em francês"
+  readers: "Marcia Okafor, Paula Reis, Joana Lima, Denise Prado"
+  successor: "Denise Prado, técnica de informática (parte técnica); Marcia Okafor é a dona"
+  dossier_location: "Google Drive da escola, pasta 'Direcao > TI > Estante', além de passation/ e passagem/"
+  update_owner: "Denise Prado"
+  review: "todo ano em fevereiro, com a importação; Denise Prado com Marcia Okafor"
+  developer_leaves: "fim de novembro de 2026"
+  developer_availability: "por e-mail até 31/01/2027, de graça, só para dúvidas, sem mexer no servidor"
+  author_contact: "lucas.ferreira.dev@example.com"
+  author_name: "[A CONFIRMAR] (não informado)"
+  author_hours: "[A CONFIRMAR]"
+  repo_location: "[A CONFIRMAR] (o desenvolvedor não sabe)"

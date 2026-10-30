@@ -27,6 +27,7 @@ Installation :
 - Claude Code, à la main : copier `skills/bastao/` dans `.claude/skills/bastao/` (le projet) ou `~/.claude/skills/bastao/` (tous les projets).
 - Codex : `$skill-installer install https://github.com/sammagbo/skills/tree/main/skills/bastao`
 - Les marketplaces de plugins (Claude Code, Codex, Antigravity) arrivent avec la version 0.2.
+- Les vérifications passent par quatre scripts Python (bibliothèque standard, sans réseau). Pour éviter une demande d'autorisation à chaque vérification, autorisez une fois `python3 */bastao/scripts/*.py` dans votre agent.
 
 Essayer : « Prépare le dossier de passation de ce dépôt pour l'équipe informatique du client, en français et en portugais. » L'agent lit le dépôt, pose dix questions une par une, puis écrit le dossier dans `passation/`.
 
@@ -53,6 +54,7 @@ Instalação:
 - Claude Code, à mão: copiar `skills/bastao/` para `.claude/skills/bastao/` (o projeto) ou `~/.claude/skills/bastao/` (todos os projetos).
 - Codex: `$skill-installer install https://github.com/sammagbo/skills/tree/main/skills/bastao`
 - Os marketplaces de plugins (Claude Code, Codex, Antigravity) chegam com a versão 0.2.
+- As verificações passam por quatro scripts Python (biblioteca padrão, sem rede). Para evitar um pedido de permissão a cada verificação, autorize uma vez `python3 */bastao/scripts/*.py` no seu agente.
 
 Experimente: "Prepare a pasta de passagem deste repositório para a equipe de TI do cliente, em francês e em português." O agente lê o repositório, faz dez perguntas uma por vez e escreve a pasta em `passagem/`.
 
@@ -65,8 +67,8 @@ skills/
     ├── templates/fr/   six documents in French
     ├── templates/pt/   six documents in Brazilian Portuguese
     ├── references/     questions, field dictionary, plain language, writing style, secret patterns
-    ├── scripts/        inventory, secret scanner, coverage check, style check (coming)
-    └── tests/          fixtures and cases (coming)
+    ├── scripts/        inventory, secret scanner, coverage check, style check
+    └── tests/          a fictional repository, a simulated run, unit tests
 ```
 
 ## Contributing
