@@ -8,7 +8,7 @@ Préparé le {{doc_date}} par {{author}}, pour {{owner}} et {{tech_lead}} seulem
      Les noms des paramètres viennent du dépôt (fichiers d'exemple, docker-compose, scripts). Si le dépôt contient une valeur en clair, ne jamais la reproduire : l'inscrire comme point à régler dans le document 6 ("secret en clair dans le dépôt : {{param_name}}").
      Ce document est la référence pour les accès et leurs dates ; le document 2 "Comptes et accès par rôle" et le document 1 "Ce qui a une date" en sont des copies, à corriger ensemble.
      Si le développeur d'origine garde un accès après la passation, il apparaît dans l'inventaire avec une date de fin.
-     {{vault}}, {{last_restore_date}}, {{backup_offsite}} et {{backup_encrypted}} gardent la marque [À CONFIRMER] tant que le propriétaire ne les a pas confirmés de vive voix, même si le dépôt suggère une valeur.
+     {{vault}}, {{last_restore_date}}, {{backup_offsite}} et {{backup_encrypted}} gardent la marque [À CONFIRMER] tant que le propriétaire ne les a pas confirmés de vive voix, même si le dépôt suggère une valeur. Si le développeur a nommé l'endroit, l'écrire suivi de la marque : « le Bitwarden de l'école [À CONFIRMER] », jamais la marque seule.
      À l'export PDF : ce document peut passer en paysage si les tableaux sont serrés. Écrire comme une personne (references/writing-style.md). -->
 
 ## Règles de garde

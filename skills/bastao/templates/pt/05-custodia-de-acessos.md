@@ -8,7 +8,7 @@ Preparado em {{doc_date}} por {{author}}, só para {{owner}} e {{tech_lead}}. N�
      Os nomes dos parâmetros vêm do repositório (arquivos de exemplo, docker-compose, scripts). Se o repositório contiver um valor em claro, nunca reproduzi-lo: registrar como ponto a resolver no documento 6 ("segredo em claro no repositório: {{param_name}}").
      Este documento é a referência para os acessos e suas datas; o documento 2 "Contas e acessos por papel" e o documento 1 "O que tem data" são cópias dele, a corrigir juntos.
      Se o desenvolvedor de origem mantiver algum acesso depois da passagem, ele aparece no inventário com data de fim.
-     {{vault}}, {{last_restore_date}}, {{backup_offsite}} e {{backup_encrypted}} ficam com a marca [A CONFIRMAR] até o dono confirmar de viva voz, mesmo que o repositório sugira um valor.
+     {{vault}}, {{last_restore_date}}, {{backup_offsite}} e {{backup_encrypted}} ficam com a marca [A CONFIRMAR] até o dono confirmar de viva voz, mesmo que o repositório sugira um valor. Se o desenvolvedor disse o lugar, escrever o lugar seguido da marca: "o Bitwarden da escola [A CONFIRMAR]", nunca a marca sozinha.
      Na exportação em PDF: este documento pode sair em paisagem se as tabelas ficarem apertadas. Escrever como uma pessoa (references/writing-style.md). -->
 
 ## Regras de custódia

@@ -22,7 +22,7 @@ Preparado em {{doc_date}} por {{author}}, para {{readers}} (direção, administr
 
 ## O que ele não faz
 
-<!-- Resposta à pergunta 4. Cada linha diz também por que alguém poderia achar o contrário: é essa crença que provoca os incidentes. -->
+<!-- Resposta à pergunta 4. Quando o motivo é conhecido, a linha diz por que alguém poderia achar o contrário: é essa crença que provoca os incidentes. Motivo desconhecido: manter só a primeira frase, sem marca. -->
 
 - {{not_feature}}. Dá para achar que faz, porque {{not_feature_reason}}.
 - {{not_feature}}. Dá para achar que faz, porque {{not_feature_reason}}.
