@@ -1,6 +1,6 @@
 # sammagbo/skills
 
-Skills for AI coding agents (Claude Code, Codex, Antigravity, Cursor, GitHub Copilot), written by Sammy K. Magbo. The first one, Bastão, writes the handover pack a non-technical organization needs when a developer hands over a system. Instructions below are in French, then in Portuguese. Status: experimental, no release yet.
+Skills for AI coding agents (Claude Code, Codex, Antigravity, Cursor, GitHub Copilot), written by Sammy K. Magbo. The first one, Bastão, writes the handover pack a non-technical organization needs when a developer hands over a system. Instructions below are in French, then in Portuguese. Status: experimental, version 0.1.0 (see CHANGELOG.md).
 
 ## Bastão
 
@@ -29,6 +29,16 @@ Installation :
 - Les marketplaces de plugins (Claude Code, Codex, Antigravity) arrivent avec la version 0.2.
 - Les vérifications passent par quatre scripts Python (bibliothèque standard, sans réseau). Pour éviter une demande d'autorisation à chaque vérification, autorisez une fois `python3 */bastao/scripts/*.py` dans votre agent.
 
+Exemple complet, sur un dépôt fictif : `examples/estante/`. Extrait du document 4 :
+
+> **Les étiquettes ne sortent pas de l'imprimante**
+>
+> - Vérifiez d'abord, sans risque : l'imprimante Zebra est-elle allumée ? Le PC de la bibliothèque a-t-il reçu une mise à jour de Windows ?
+> - Le plus souvent, ça veut dire : l'adresse réseau de l'imprimante a changé (08/2026).
+> - Ce que vous pouvez faire vous-même : rien. Denise Prado réimprime.
+> - C'est réparé quand : une étiquette sort entière.
+> - Si ça ne suffit pas, appelez Denise Prado, puis Etiquetas Exemplo.
+
 Essayer : « Prépare le dossier de passation de ce dépôt pour l'équipe informatique du client, en français et en portugais. » L'agent lit le dépôt, pose dix questions une par une, puis écrit le dossier dans `passation/`.
 
 ### Português
@@ -56,11 +66,23 @@ Instalação:
 - Os marketplaces de plugins (Claude Code, Codex, Antigravity) chegam com a versão 0.2.
 - As verificações passam por quatro scripts Python (biblioteca padrão, sem rede). Para evitar um pedido de permissão a cada verificação, autorize uma vez `python3 */bastao/scripts/*.py` no seu agente.
 
+Exemplo completo, num repositório fictício: `examples/estante/`. Trecho do documento 4:
+
+> **As etiquetas não saem na impressora**
+>
+> - Verifique primeiro, sem risco: a impressora Zebra está ligada? O PC da biblioteca recebeu uma atualização do Windows?
+> - Na maioria das vezes, isso quer dizer: o endereço da impressora na rede mudou (08/2026).
+> - O que você pode fazer por conta própria: nada. Denise Prado reimprime.
+> - Está consertado quando: uma etiqueta sai inteira.
+> - Se não resolver, chame Denise Prado, depois a Etiquetas Exemplo.
+
 Experimente: "Prepare a pasta de passagem deste repositório para a equipe de TI do cliente, em francês e em português." O agente lê o repositório, faz dez perguntas uma por vez e escreve a pasta em `passagem/`.
 
 ## Repository layout
 
 ```
+examples/
+└── estante/        a complete pack produced on a fictional repository
 skills/
 └── bastao/
     ├── SKILL.md

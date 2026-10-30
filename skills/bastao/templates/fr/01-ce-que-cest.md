@@ -52,6 +52,8 @@ Préparé le {{doc_date}} par {{author}}, pour {{readers}} (direction, gestion, 
 
 ## Les trois choses à ne jamais faire
 
+<!-- Quand une interdiction dépend d'une personne disponible jusqu'à une date (« sans le développeur »), écrire la date : « sans Lucas Ferreira, jusqu'au 31/01/2027 ». Après cette date, la règle doit dire qui prend le relais, ou porter la marque. -->
+
 <!-- Tirées des incidents (question 5) et des dépendances (question 9). Une ligne chacune, au présent, sans adjectif. Trois est une limite de place, pas une figure de style. -->
 
 1. {{forbidden_1}}, parce que {{forbidden_1_reason}}.

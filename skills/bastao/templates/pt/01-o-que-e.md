@@ -52,6 +52,8 @@ Preparado em {{doc_date}} por {{author}}, para {{readers}} (direção, administr
 
 ## As três coisas que nunca se deve fazer
 
+<!-- Quando uma proibição depende de uma pessoa disponível até uma data ("sem o desenvolvedor"), escrever a data: "sem Lucas Ferreira, até 31/01/2027". Depois dessa data, a regra diz quem assume, ou leva a marca. -->
+
 <!-- Tiradas dos incidentes (pergunta 5) e das dependências (pergunta 9). Uma linha cada, no presente, sem adjetivo. Três é um limite de espaço, não figura de estilo. -->
 
 1. {{forbidden_1}}, porque {{forbidden_1_reason}}.
