@@ -20,10 +20,44 @@ The people who read these documents are a school secretary, a director, an IT te
 14. No announcements ("Voyons maintenant", "Dans cette section", "Vamos ver agora"), no "challenges and outlook" paragraphs, no upbeat closing line ("Bonne continuation !", "Sucesso!").
 15. No chatbot residue: "j'espère que cela vous aide", "n'hésitez pas", "espero ter ajudado", "fique à vontade".
 16. Active voice when the doer matters. Procedures in document 3 use the infinitive; document 4 uses the imperative with "vous" / "você"; document 6 is in the first person without gendered forms ("par moi-même", "sans aide", "por conta própria").
-17. Rhythm: sentences under 25 words, a short one after a long one, paragraphs of three sentences at most, one idea per line in lists.
+17. Rhythm: a short sentence after a long one, one idea per line in lists. The limits per sentence and per paragraph are rules 21 and 22.
 18. Specifics over adjectives: names, dates, numbers, screens, buttons. "Le voyant vert de la caméra de l'entrée", not "l'équipement concerné". "A luz verde da câmera da entrada", not "o equipamento em questão".
 19. Dates as DD/MM/YYYY. Times with the zone when server time and local time differ.
 20. The last pass, in your head, as the person who will receive the document: "what here sounds like a machine wrote it?" Fix those lines. Then: "would this person know what to do at 8 a.m. with people waiting at the gate?" If not, the document is not finished.
+
+## Rules adapted from ASD-STE100
+
+ASD-STE100, Simplified Technical English, is a standard of ASD, the Aerospace, Security and Defence Industries Association of Europe. It was written for aircraft maintenance manuals: procedures read under pressure by a person who must do the right thing the first time. Document 4 is read the same way. The current issue is Issue 9 (January 2025). It has two parts: 53 writing rules in nine sections, and a dictionary of about 900 approved words, whose meanings and spelling are American English. The standard is free of charge, but ASD keeps the copyright: its text may not be reproduced or adapted without permission. So the skill does not translate it. It writes its own rules for French and Portuguese below, from the ideas of some rules of the standard, and builds its own approved words. Rules 21 to 27 follow rules of the standard; rules 28 to 30 are the skill's own. The skill claims no conformance to ASD-STE100, and it is not approved by ASD or affiliated with it.
+
+21. Sentence length: 20 words at most in documents 3 and 4, which are procedures; 25 at most in the other documents. A procedure written in another document (the steps of a password change in document 5) keeps to 20 too; the checker does not see that case, you do. The checker counts the words a reader reads: no inline code; a `{{field}}`, a URL or an e-mail address counts as one word. A sentence wrapped over several lines is read whole.
+22. One topic per paragraph, three sentences at most: these documents are read in a hurry, and the six sentences of ASD-STE100 are an upper bound. A list item and a table cell are paragraphs too. In documents 3 and 4, one that holds a short procedure (the fixed rows of document 3) may have six sentences, never more. The first sentence says what the paragraph is about.
+23. One instruction per sentence. Two actions are two sentences, unless they happen at the same time. An instruction may carry its condition ("Si le voyant est éteint, appuyez sur le bouton." / "Se a luz estiver apagada, aperte o botão."), nothing else.
+24. Procedures in the imperative, active voice, present tense: "Vérifiez" / "Verifique". Document 3 keeps the infinitive of a checklist ("Vérifier" / "Verificar"). Descriptive text in the active voice and the present; the past only for an incident that happened, with its date.
+25. Articles always written: "la machine", "a máquina", never a telegraphic "machine redémarrée" / "máquina reiniciada". No chain of more than three nouns; split it with a verb ("le script de sauvegarde de la base de la bibliothèque" becomes "le script qui sauvegarde la base de la bibliothèque"). ASD-STE100 sets the same limit, three words, for an English noun group.
+26. One word for one meaning, one meaning for one word, from the approved words below. A product name is written the way the inventory found it, every time.
+27. A warning starts with the command, or with its condition and then the command, and then says what can happen: "N'éteignez pas l'onduleur. La machine s'arrêterait sans enregistrer les informations." / "Não desligue o nobreak. A máquina pararia sem gravar as informações." ASD-STE100 sets how a warning starts and that it explains the risk. Where it goes is this skill's rule: before the step it protects, as the first sentence of the list item or an item of its own, never inside the step's sentence, never after the step.
+28. No "etc.", no "e assim por diante", no "entre autres". List everything, or say how many there are.
+29. Say what to do before what not to do. A negative instruction stands alone only when no positive one exists.
+30. A pronoun ("il", "cela", "ele", "isso") only when its referent is the subject of the previous sentence. Otherwise repeat the noun.
+
+## Approved words
+
+One word per thing, in every document of a pack. A technical thing takes, the first time, the plain expression of `references/plain-language.md`; after that, the word below. The last column lists the words not to use for that thing; the same word can be right for another thing ("une application installée sur les postes" is the program people install on their computers, not the program on the machine). When you choose a word for a thing that is in no list, write it under "Words chosen" in `verification.md` and use it everywhere.
+
+| Thing | Français | Português | Not, for this thing |
+|---|---|---|---|
+| the person who keeps the system after the handover | le propriétaire | o dono | as a name for the owner: le responsable, le gestionnaire, le référent; o responsável, o gestor, o proprietário |
+| the person called for technical matters | le référent technique | a referência técnica | l'informaticien, le technicien, le prestataire; o técnico, o TI, o suporte |
+| the person who hands over | le développeur d'origine, then « le développeur » or the name | o desenvolvedor de origem, then "o desenvolvedor" or the name | le prestataire, le fournisseur, l'auteur; o prestador, o fornecedor, o autor |
+| the system | its name, the one in document 1 | its name, the one in document 1 | la solution, l'outil, la plateforme; a solução, a ferramenta, a plataforma |
+| the machine where the program runs | la machine; « le serveur » only in documents 2, 3 and 5, after its explanation | a máquina; "o servidor" only in documents 2, 3 and 5, after its explanation | l'instance, la VM, l'hôte; a instância, a VM, o host |
+| the program on that machine | le programme | o programa | l'application, le logiciel, le backend; a aplicação, o aplicativo, o software, o backend |
+| what people see and use | l'écran | a tela | l'interface, le portail, le front; a interface, o portal, o front |
+| a copy of the data | la sauvegarde; in documents 1, 4 and 6, the plain expression or the verb ("sauvegardées") | o backup; in documents 1, 4 and 6, the plain expression or the verb ("copiadas") | le backup, l'archive, la copie de sécurité; a cópia de segurança, o arquivo de backup |
+| to install a new version | installer la nouvelle version | instalar a nova versão | déployer, mettre en production; fazer o deploy, subir |
+| to start the program again | redémarrer | reiniciar | relancer, rebooter; dar um restart, resetar |
+| to check | vérifier | verificar | contrôler, s'assurer que; checar, conferir, assegurar |
+| the place where secrets are kept | its name ({{vault}}), every time | its name ({{vault}}), every time | le vault, « le coffre » alone when the place has a name; o vault, "o cofre" alone when the place has a name |
 
 ## Words the checker flags in French
 
@@ -65,4 +99,4 @@ After: "Verifique primeiro, sem risco: a luz verde da câmera da entrada está a
 
 ## What scripts/style_check.py will flag
 
-Outside code blocks: a long dash; "**" at the start of a list item; curly quotes in a Portuguese file; an emoji or a middle dot; a heading in Title Case; a word or phrase from the lists above; "non seulement" / "não só" / "não apenas"; a sentence over 35 words. Exit 1 with file, line and rule number; exit 0 otherwise. The checker flags; the agent rewrites. A flagged word that is the right word in context (a real "certificat de sécurité", a literal "pilier" in a building) stays, with a one-line note in verification.md.
+Outside code blocks and comments: a long dash; "**" at the start of a list item; curly quotes in a Portuguese file; an emoji or a middle dot; a heading in Title Case; a word or phrase from the lists above; "non seulement" / "não só" / "não apenas"; a sentence over the limit of rule 21 (20 words in documents 3 and 4, 25 in the others); a paragraph, a list item or a table cell of more than three sentences, or more than six for a list item or a table cell of documents 3 and 4 (rule 22). It reads a sentence across the lines of its paragraph or list item; it ends no sentence after "M.", "Sr.", "Dr.", "n." or "p.", nor before a lowercase word or a closing quote (« Erreur ! » quand...). `--max-words N` and `--max-sentences N` replace the limits of rules 21 and 22, for a pack written before them. Exit 1 with file, line and rule number; exit 0 otherwise. Rules 23 to 30, and rule 21 for a procedure outside documents 3 and 4, are read by the agent, not by the checker. The checker flags; the agent rewrites. A flagged word that is the right word in context (a real "certificat de sécurité", a literal "pilier" in a building) stays, with a one-line note in verification.md.

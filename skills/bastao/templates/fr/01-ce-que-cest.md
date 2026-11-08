@@ -2,8 +2,8 @@
 
 Préparé le {{doc_date}} par {{author}}, pour {{readers}} (direction, gestion, équipe informatique).
 
-<!-- Une page au maximum, environ 350 mots. Aucun terme technique sans sa traduction en langage courant (references/plain-language.md) :
-     "backend" devient "le programme qui tourne sur le serveur", "conteneur" devient "la boîte dans laquelle le programme tourne",
+<!-- Une page au maximum, environ 380 mots. Aucun terme technique sans sa traduction en langage courant (references/plain-language.md) :
+     "backend" devient "le programme qui tourne sur la machine", "conteneur" devient "la boîte dans laquelle le programme tourne",
      "API" devient "la porte par laquelle d'autres programmes lui parlent", "base de données" devient "l'endroit où les informations sont enregistrées".
      Un champ que ni le dépôt ni les réponses ne remplissent reçoit la marque [À CONFIRMER], jamais une phrase plausible.
      Écrire comme une personne : phrases courtes, verbes simples (est, a, sert à), pas de tiret long, pas de gras dans les listes (references/writing-style.md). -->

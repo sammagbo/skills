@@ -51,7 +51,7 @@ Prévenez {{owner}} dès que des personnes sont bloquées ou que des information
 
 ## Après l'incident
 
-- Notez dans {{logbook}} : la date, le symptôme, ce qui a été fait, qui a réparé, combien de temps ça a pris.
+- Notez dans {{logbook}} : la date, le symptôme, ce qui a été fait, qui a réparé, la durée.
 
 ---
 Ce document fait partie du dossier de passation ({{doc_count}} documents). Une erreur ou un oubli ? Signalez-le à {{corrections_contact}}.

@@ -20,7 +20,7 @@ Entregue em {{doc_date}} por {{author}} a {{successor}} ({{successor_title}}, {{
 - [ ] Tenho acesso aos segredos do meu papel (documento 2) sem tê-los recebido por mensagem.
 - [ ] Os acessos pessoais do desenvolvedor foram retirados ou trocados, menos os que o documento 5 deixa com ele, com data.
 - [ ] Fiz a verificação diária do documento 3 e obtive: {{expected_result}}.
-- [ ] Vi um backup recente, de {{backup_seen_date}}, e sei quem sabe restaurá-lo.
+- [ ] Vi uma cópia recente das informações, de {{backup_seen_date}}, e sei quem sabe recolocá-la no lugar.
 - [ ] Percorri em simulação, com {{author}}, um incidente do documento 4 ({{drill_incident}}), sem provocar nada, e os contatos de "Quem chamar" atenderam.
 - [ ] Conheço as três coisas que nunca se deve fazer.
 - [ ] Sei quais prazos vencem nos próximos doze meses e quem cuida deles.

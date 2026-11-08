@@ -20,7 +20,7 @@ Remis le {{doc_date}} par {{author}} à {{successor}} ({{successor_title}}, {{su
 - [ ] J'ai accès aux secrets de mon rôle (document 2) sans les avoir reçus par message.
 - [ ] Les accès personnels du développeur sont retirés ou changés, sauf ceux que le document 5 lui laisse, avec une date.
 - [ ] J'ai fait la vérification quotidienne du document 3 et obtenu : {{expected_result}}.
-- [ ] J'ai vu une sauvegarde récente, du {{backup_seen_date}}, et je sais qui sait la restaurer.
+- [ ] J'ai vu une copie récente des informations, du {{backup_seen_date}}, et je sais qui sait la remettre en place.
 - [ ] J'ai parcouru à blanc, avec {{author}}, un incident du document 4 ({{drill_incident}}), sans rien provoquer, et les contacts de « Qui appeler » ont répondu.
 - [ ] Je connais les trois choses à ne jamais faire.
 - [ ] Je sais quelles échéances tombent dans les douze prochains mois et qui s'en occupe.

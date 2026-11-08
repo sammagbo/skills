@@ -6,7 +6,9 @@ Skills for AI coding agents (Claude Code, Codex, Antigravity, Cursor, GitHub Cop
 
 ### Français
 
-Bastão écrit le dossier de passation d'un système qu'un développeur remet à une organisation qui n'a pas d'équipe technique : une école, une association, une petite entreprise. Il part du dépôt et de dix questions, et produit six documents en français et en portugais, vérifiés contre le dépôt, sans aucun secret à l'intérieur.
+Bastão écrit le dossier de passation d'un système qu'un développeur remet à une organisation qui n'a pas d'équipe technique : une école, une association, une petite entreprise. Il part du dépôt, écrit d'abord ce que le dépôt prouve, marque le reste, et laisse ses questions dans un fichier que vous remplissez quand vous avez le temps. Six documents en français et en portugais, vérifiés contre le dépôt, sans aucun secret à l'intérieur.
+
+Les règles d'écriture s'inspirent de la norme ASD-STE100 (Simplified Technical English, Issue 9), adaptées au français et au portugais : vingt mots par phrase dans les procédures, une instruction par phrase, un mot pour une chose. La skill ne revendique aucune conformité à cette norme, dont le dictionnaire n'existe qu'en anglais, et elle n'est ni approuvée par l'ASD ni liée à elle.
 
 Pour qui : le développeur qui livre ou qui part, et la personne qui garde le système après lui.
 
@@ -39,11 +41,13 @@ Exemple complet, sur un dépôt fictif : `examples/estante/`. Extrait du documen
 > - C'est réparé quand : une étiquette sort entière.
 > - Si ça ne suffit pas, appelez Denise Prado, puis Etiquetas Exemplo.
 
-Essayer : « Prépare le dossier de passation de ce dépôt pour l'équipe informatique du client, en français et en portugais. » L'agent lit le dépôt, pose dix questions une par une, puis écrit le dossier dans `passation/`.
+Essayer : « Prépare le dossier de passation de ce dépôt pour l'équipe informatique du client. » L'agent lit le dépôt, écrit le dossier dans `passation/` et laisse ses questions dans `passation/00-questions.md`. Répondez quand vous voulez ; au passage suivant, il complète le dossier. Avec le plugin (version 0.2), un hook regarde à la fin de chaque réponse de l'agent si un fichier dont le dossier dépend a changé. Si oui, il demande à l'agent de mettre le dossier à jour. Tant que le dossier n'existe pas, il ne fait rien.
 
 ### Português
 
-Bastão escreve a pasta de passagem de um sistema que um desenvolvedor entrega a uma organização sem equipe técnica: uma escola, uma associação, uma pequena empresa. Ele parte do repositório e de dez perguntas, e produz seis documentos em francês e em português, verificados contra o repositório, sem nenhum segredo dentro.
+Bastão escreve a pasta de passagem de um sistema que um desenvolvedor entrega a uma organização sem equipe técnica: uma escola, uma associação, uma pequena empresa. Ele parte do repositório, escreve primeiro o que o repositório prova, marca o resto, e deixa as perguntas num arquivo que você preenche quando tiver tempo. Seis documentos em francês e em português, verificados contra o repositório, sem nenhum segredo dentro.
+
+As regras de escrita se inspiram na norma ASD-STE100 (Simplified Technical English, Issue 9), adaptadas ao francês e ao português: vinte palavras por frase nos procedimentos, uma instrução por frase, uma palavra para cada coisa. A skill não afirma conformidade com essa norma, cujo dicionário só existe em inglês, e não é aprovada pela ASD nem ligada a ela.
 
 Para quem: o desenvolvedor que entrega ou que sai, e a pessoa que fica com o sistema depois dele.
 
@@ -76,7 +80,7 @@ Exemplo completo, num repositório fictício: `examples/estante/`. Trecho do doc
 > - Está consertado quando: uma etiqueta sai inteira.
 > - Se não resolver, chame Denise Prado, depois a Etiquetas Exemplo.
 
-Experimente: "Prepare a pasta de passagem deste repositório para a equipe de TI do cliente, em francês e em português." O agente lê o repositório, faz dez perguntas uma por vez e escreve a pasta em `passagem/`.
+Experimente: "Prepare a pasta de passagem deste repositório para a equipe de TI do cliente." O agente lê o repositório, escreve a pasta em `passagem/` e deixa as perguntas em `passagem/00-perguntas.md`. Responda quando quiser; na rodada seguinte, ele completa a pasta. Com o plugin (versão 0.2), um hook olha no fim de cada resposta do agente se um arquivo de que a pasta depende mudou. Se mudou, pede ao agente que atualize a pasta. Enquanto a pasta não existe, ele não faz nada.
 
 ## Repository layout
 
@@ -88,7 +92,7 @@ skills/
     ├── SKILL.md
     ├── templates/fr/   six documents in French
     ├── templates/pt/   six documents in Brazilian Portuguese
-    ├── references/     questions, field dictionary, plain language, writing style, secret patterns
+    ├── references/     questions, pack files, field dictionary, plain language, writing style, successor needs, secret patterns
     ├── scripts/        inventory, secret scanner, coverage check, style check
     └── tests/          a fictional repository, a simulated run, unit tests
 ```

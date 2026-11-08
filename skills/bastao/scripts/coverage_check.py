@@ -12,7 +12,11 @@ Fails (exit 1) when:
 - a {{field}} or a template comment is left;
 - document 1, 4 or 6 is over 400 words (counted on the text a reader reads:
   no code blocks, no Markdown syntax, no table separators);
-- document 4 has fewer than 3 or more than 4 symptoms;
+- document 4 has more than 4 symptoms, or fewer than 3 without a line that sends
+  the reader to the questions file (00-questions.md or 00-perguntas.md, in this
+  folder or in the --pair folder); with that line, fewer than 3 is a warning:
+  the pack is a draft; a line that names a questions file that does not exist
+  fails;
 - with --pair: headings, markers, checkboxes or table rows differ between languages.
 Prints a table per document: words, markers, status.
 """
@@ -30,6 +34,7 @@ from _common import count_markers, count_words, doc_number, iter_docs  # noqa: E
 WORD_LIMIT = 400
 FIXED_DOC4 = re.compile(r"^(avant tout|antes de tudo|qui appeler|quem chamar|après|depois|"
                         r"ce qu'il ne faut jamais|o que nunca|à ne jamais|nunca)", re.I)
+QUESTIONS_FILE = re.compile(r"00-(questions|perguntas)\.md")
 
 
 def docs_by_number(folder: Path) -> dict[int, Path]:
@@ -50,7 +55,8 @@ def shape(text: str) -> dict:
     }
 
 
-def check(inv: dict, folder: Path, problems: list, warnings: list) -> dict[int, str]:
+def check(inv: dict, folder: Path, problems: list, warnings: list,
+          other: Path | None = None) -> dict[int, str]:
     docs = docs_by_number(folder)
     texts = {n: p.read_text(encoding="utf-8") for n, p in docs.items()}
     for n in range(1, 7):
@@ -88,8 +94,14 @@ def check(inv: dict, folder: Path, problems: list, warnings: list) -> dict[int, 
     if 4 in texts:
         symptoms = [h for h in headings(texts[4]) if h.startswith("## ")
                     and not FIXED_DOC4.match(h[3:].strip())]
-        if not 3 <= len(symptoms) <= 4:
+        pointer = QUESTIONS_FILE.search(texts[4])
+        if pointer and not any((f / pointer.group(0)).is_file() for f in (folder, other) if f):
+            problems.append(f"{docs[4].name}: names {pointer.group(0)}, which is not in the pack")
+        if len(symptoms) > 4 or (len(symptoms) < 3 and not pointer):
             problems.append(f"{docs[4].name}: {len(symptoms)} symptom(s), 3 or 4 expected")
+        elif len(symptoms) < 3:
+            warnings.append(f"{docs[4].name}: {len(symptoms)} symptom(s), the others wait in the "
+                            f"questions file; the pack is a draft")
     rows = {}
     for n, t in sorted(texts.items()):
         w = count_words(t)
@@ -109,8 +121,9 @@ def main() -> int:
     a = ap.parse_args()
     inv = json.loads(Path(a.inventory).read_text(encoding="utf-8"))
     problems, warnings = [], []
-    for folder in [Path(a.folder)] + ([Path(a.pair)] if a.pair else []):
-        rows = check(inv, folder, problems, warnings)
+    first, second = Path(a.folder), Path(a.pair) if a.pair else None
+    for folder, other in [(first, second)] + ([(second, first)] if second else []):
+        rows = check(inv, folder, problems, warnings, other)
         print(f"\n{folder}\n| Document | Words | Markers | Status |\n|---|---|---|---|")
         print("\n".join(rows.values()))
     if a.pair:

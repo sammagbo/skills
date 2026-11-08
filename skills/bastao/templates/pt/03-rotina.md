@@ -51,9 +51,9 @@ Cada gesto feito e cada verificação são anotados em {{logbook}}: a data, o ge
 
 - {{event}}: {{event_procedure}} ({{event_owner}}).
 - Alguém citado na pasta chega ou sai: {{update_owner}} atualiza os documentos 2 e 5 no mesmo dia.
-- Acontece um incidente novo: {{update_owner}} acrescenta ao documento 4 e tira dele um sintoma que não acontece mais, para o documento continuar numa página.
+- Acontece um incidente novo: {{update_owner}} acrescenta o incidente ao documento 4 e tira dele um sintoma que sumiu. O documento continua numa página.
 - Instalar uma nova versão, com o acordo previsto no documento 2 ("Quem decide o quê"). Primeiro um backup: {{backup_procedure}}. Depois: {{upgrade_procedure}}. Verificar que deu certo: {{upgrade_check}}. Se não deu, voltar atrás: {{rollback_procedure}}. Se a nova versão mudou as informações gravadas, recuperá-las também a partir do backup.
-- Restaurar um backup. Atenção: isso substitui todas as informações atuais pelas do backup, e tudo o que foi digitado desde então se perde. Primeiro salvar o estado atual ({{backup_procedure}}), depois {{restore_procedure}}. Última restauração provada em {{last_restore_date}}. <!-- mesma data que o documento 5, "Backups" -->
+- Antes de restaurar um backup, salvar o estado atual ({{backup_procedure}}). A restauração substitui todas as informações atuais: o que foi digitado desde o backup restaurado se perde. Depois, restaurar: {{restore_procedure}}. Última restauração provada em {{last_restore_date}}. <!-- mesma data que o documento 5, "Backups" -->
 
 ## Os comandos para colar
 

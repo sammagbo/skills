@@ -2,8 +2,8 @@
 
 Preparado em {{doc_date}} por {{author}}, para {{readers}} (direção, administração, equipe de TI).
 
-<!-- Uma página no máximo, cerca de 350 palavras. Nenhum termo técnico sem a tradução para linguagem corrente (references/plain-language.md):
-     "backend" vira "o programa que roda no servidor", "contêiner" vira "a caixa dentro da qual o programa roda",
+<!-- Uma página no máximo, cerca de 380 palavras. Nenhum termo técnico sem a tradução para linguagem corrente (references/plain-language.md):
+     "backend" vira "o programa que roda na máquina", "contêiner" vira "a caixa dentro da qual o programa roda",
      "API" vira "a porta pela qual outros programas falam com ele", "banco de dados" vira "o lugar onde as informações ficam gravadas".
      Um campo que nem o repositório nem as respostas preenchem recebe a marca [A CONFIRMAR], nunca uma frase plausível.
      Escrever como uma pessoa: frases curtas, verbos simples (é, tem, serve para), sem travessão, sem negrito nas listas (references/writing-style.md). -->
@@ -32,7 +32,7 @@ Preparado em {{doc_date}} por {{author}}, para {{readers}} (direção, administr
 - O programa roda em {{server_location}}.
 - O acesso é por {{access_mode}} (um aplicativo instalado nos computadores, um navegador, ou os dois).
 - Para funcionar, ele precisa de {{external_dependencies}}.
-- As informações ficam gravadas em {{storage_plain}}, com cópia de segurança {{backup_frequency}}.
+- As informações ficam gravadas em {{storage_plain}} e são copiadas {{backup_frequency}}.
 
 ## Quem é responsável
 

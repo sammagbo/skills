@@ -49,8 +49,9 @@ def doc_language(path: Path) -> str:
 
 
 def iter_docs(folder: Path):
-    """The Markdown documents of a pack folder, sorted."""
-    return sorted(p for p in folder.glob("*.md") if re.match(r"0[1-6]-", p.name))
+    """The six documents of a pack folder, sorted. The questions file (00-...),
+    proposals (proposition-0N-..., proposta-0N-...) and any other file are skipped."""
+    return sorted(p for p in folder.glob("*.md") if re.fullmatch(r"0[1-6]-[a-z0-9-]+\.md", p.name))
 
 
 def doc_number(path: Path) -> int:

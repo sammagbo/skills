@@ -4,7 +4,7 @@ Regra: na primeira vez que um termo técnico aparece num documento, ele vem trad
 
 | Termo | Français | Português |
 |---|---|---|
-| backend | le programme qui tourne sur le serveur | o programa que roda no servidor |
+| backend | le programme qui tourne sur la machine | o programa que roda na máquina |
 | frontend / interface | l'écran que les gens utilisent | a tela que as pessoas usam |
 | serveur / VM | la machine, chez {{hébergeur}}, où le programme tourne | a máquina, em {{provedor}}, onde o programa roda |
 | conteneur / Docker | la boîte dans laquelle le programme tourne, qui redémarre d'un bloc | a caixa dentro da qual o programa roda, que reinicia de uma vez |

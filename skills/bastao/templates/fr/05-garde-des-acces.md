@@ -17,7 +17,7 @@ Préparé le {{doc_date}} par {{author}}, pour {{owner}} et {{tech_lead}} seulem
 2. Les secrets vivent à un seul endroit de référence : {{vault}} (un gestionnaire de mots de passe, un coffre, une enveloppe scellée).
 3. Quand une personne part, les accès qu'elle connaissait sont changés dans les {{access_change_deadline}}. La liste est dans le document 2, « Quand quelqu'un part ».
 4. Aucun secret par e-mail, par message ou dans un document partagé. Jamais dans ce dossier.
-5. Un compte partagé (« admin », « root », le compte d'un équipement) n'est utilisé que si l'outil n'offre pas de comptes individuels. Il a quand même un gardien et un suppléant, il est gardé dans {{vault}}, et il est changé à chaque départ d'une personne qui le connaissait. Dans l'inventaire, ces comptes portent la mention « (partagé) ».
+5. Un compte partagé (« admin », « root », le compte d'un équipement) n'est utilisé que s'il n'existe pas de comptes individuels. Il a quand même un gardien et un suppléant, est gardé dans {{vault}} et changé à chaque départ d'une personne qui le connaissait. Dans l'inventaire, ces comptes portent la mention « (partagé) ».
 
 ## Inventaire des accès
 
@@ -27,7 +27,7 @@ Préparé le {{doc_date}} par {{author}}, pour {{owner}} et {{tech_lead}} seulem
 |---|---|---|---|---|
 | Serveur : connexion à la machine ({{server_location}}) | {{access_use}} | {{access_holder}} | {{access_deputy}} | {{access_place}} |
 | Hébergeur : console du fournisseur (créer, arrêter, supprimer la machine) | {{access_use}} | {{access_holder}} | {{access_deputy}} | {{access_place}} |
-| Compte administrateur de l'application | {{access_use}} | {{access_holder}} | {{access_deputy}} | {{access_place}} |
+| Compte administrateur du programme | {{access_use}} | {{access_holder}} | {{access_deputy}} | {{access_place}} |
 | Base de données : accès direct aux informations | {{access_use}} | {{access_holder}} | {{access_deputy}} | {{access_place}} |
 | Équipements ({{equipment_type}}) | {{access_use}} | {{access_holder}} | {{access_deputy}} | {{access_place}} |
 | Nom de domaine et certificat | {{access_use}} | {{access_holder}} | {{access_deputy}} | {{access_place}} |
@@ -41,7 +41,7 @@ Préparé le {{doc_date}} par {{author}}, pour {{owner}} et {{tech_lead}} seulem
 |---|---|---|
 | Serveur | {{access_change_procedure}} | {{access_loss_recovery}} |
 | Hébergeur | {{access_change_procedure}} | {{access_loss_recovery}} |
-| Compte administrateur de l'application | {{access_change_procedure}} | {{access_loss_recovery}} |
+| Compte administrateur du programme | {{access_change_procedure}} | {{access_loss_recovery}} |
 | Base de données | {{access_change_procedure}} | {{access_loss_recovery}} |
 | Équipements | {{access_change_procedure}} | {{access_loss_recovery}} |
 | Nom de domaine et certificat | {{access_change_procedure}} | {{access_loss_recovery}} |

@@ -1,14 +1,14 @@
 # Bastão — dicionário de campos (`{{chave}}`)
 
-Regras: chaves em inglês, únicas por sentido, iguais nos modelos FR e PT (só o texto ao redor muda). Uma chave usada em linhas repetidas (tabela, lista) tem o mesmo sentido em cada linha. Origem: Q1…Q10 = pergunta ao desenvolvedor; repo = lido do repositório pelo inventário; fixo = constante; auto = calculado na geração; recepção = preenchido no dia da entrega. Nenhum campo recebe valor de segredo, endereço com credencial ou comando com senha.
+Regras: chaves em inglês, únicas por sentido, iguais nos modelos FR e PT (só o texto ao redor muda). Uma chave usada em linhas repetidas (tabela, lista) tem o mesmo sentido em cada linha. Origem: Q1…Q10 = resposta do usuário (o desenvolvedor que entrega) no arquivo de perguntas, com o número que a pergunta tem em `references/questions.md`; repo = lido do repositório pelo inventário; fixo = constante; auto = calculado na geração; recepção = preenchido no dia da entrega. Nenhum campo recebe valor de segredo, endereço com credencial ou comando com senha.
 
 ## Globais (vários documentos)
 
 | Chave | Significado | Origem | Docs |
 |---|---|---|---|
 | system_name | Nome do sistema | repo (README, compose) + confirmar | 1–6 |
-| doc_date | Data de geração do documento | auto | 1–6 |
-| author | Desenvolvedor que entrega (nome) | Q10 / git | 1–6 |
+| doc_date | Data da rodada que mudou o documento pela última vez | auto | 1–6 |
+| author | Desenvolvedor que entrega (nome); o autor do git só como candidato, com a marca, até a pergunta 10 | Q10 / git | 1–6 |
 | readers | Leitores do documento | Q10 | 1, 3, 4 |
 | doc_count | Número de documentos da pasta | fixo (6) | 1–6 |
 | corrections_contact | A quem avisar erros ou esquecimentos | Q10 | 1–6 |

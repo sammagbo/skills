@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 """Bastão step 1: inventory a repository, names only.
 
-Usage: inventory.py <repo_path> [--out inventory.json]
+Usage: inventory.py <repo_path> [--out inventory.json] [--skip <folder>]...
 
+The pack is never inventoried: its documents (the names of templates/fr and
+templates/pt), its questions file and its proposals are skipped wherever they
+are, and so are answers.yml, verification.md and inventory*.json in the folder
+of --out. Folders named passation or passagem, and every --skip folder (a path
+relative to the repository, the option repeated for each), are skipped whole.
 Never opens a .env file. Never records a value: for an inline value whose
 name suggests a secret, it keeps only its length and SHA-256, so the secret
 scanner can check that the value never reaches a document.
@@ -21,6 +26,13 @@ from _common import digest, is_secret_name  # noqa: E402
 
 SKIP_DIRS = {".git", "node_modules", "target", "build", "dist", ".venv", "venv",
              "__pycache__", ".idea", ".gradle", "passation", "passagem"}
+SKIP_PATHS: set[tuple[str, ...]] = set()  # repository-relative folders, filled by main()
+TEMPLATES = Path(__file__).resolve().parent.parent / "templates"
+DOC_NAMES = {p.name for p in TEMPLATES.glob("*/0[1-6]-*.md")}
+PACK_NAMES = (DOC_NAMES | {"00-questions.md", "00-perguntas.md"}
+              | {f"{prefix}-{n}" for n in DOC_NAMES for prefix in ("proposition", "proposta")})
+PACK_RECORDS = re.compile(r"answers\.ya?ml|verification\.md|inventory(\.new)?\.json")
+PACK_DIR: Path | None = None  # the folder of --out, filled by main()
 CRON_LINE = re.compile(r"^\s*([0-9*/,\-]+\s+){4}[0-9*/,\-A-Za-z]+\s+\S")
 SPRING_CRON = re.compile(r"""cron\s*=\s*["']([^"']+)["']""")
 SPRING_RATE = re.compile(r"""(fixedRate|fixedDelay)(String)?\s*=\s*["']?([^,)"']+)""")
@@ -31,8 +43,13 @@ VAR_REF = re.compile(r"\$\{?([A-Za-z_][A-Za-z0-9_]*)")
 
 def walk(repo: Path):
     for p in sorted(repo.rglob("*")):
-        if any(part in SKIP_DIRS for part in p.relative_to(repo).parts):
+        parts = p.relative_to(repo).parts
+        if any(part in SKIP_DIRS for part in parts):
             continue
+        if any(parts[:len(sp)] == sp for sp in SKIP_PATHS):
+            continue
+        if p.name in PACK_NAMES or (p.parent == PACK_DIR and PACK_RECORDS.fullmatch(p.name)):
+            continue  # the pack's own files are not the repository's
         if p.is_file():
             yield p
 
@@ -383,11 +400,22 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("repo")
     ap.add_argument("--out", default="inventory.json")
+    ap.add_argument("--skip", action="append", default=[],
+                    help="a folder of the repository to leave out; repeat the option for each")
     a = ap.parse_args()
     repo = Path(a.repo).resolve()
     if not repo.is_dir():
         print(f"not a directory: {repo}", file=sys.stderr)
         return 2
+    global PACK_DIR
+    PACK_DIR = Path(a.out).resolve().parent
+    for folder in a.skip:
+        try:
+            rel = (repo / folder).resolve().relative_to(repo).parts
+        except ValueError:
+            continue  # outside the repository
+        if rel:
+            SKIP_PATHS.add(rel)
     inv = build(repo)
     Path(a.out).write_text(json.dumps(inv, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("\n".join(summary(inv)))

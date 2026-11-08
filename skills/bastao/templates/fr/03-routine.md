@@ -50,10 +50,10 @@ Chaque geste fait et chaque vérification sont notés dans {{logbook}} : la date
 <!-- Nouvelle personne à enregistrer, départ d'une personne, changement ou panne d'équipement, nouvelle version du programme, restauration d'une sauvegarde. Les quatre dernières lignes sont fixes. -->
 
 - {{event}} : {{event_procedure}} ({{event_owner}}).
-- Une personne nommée dans le dossier arrive ou part : {{update_owner}} met à jour les documents 2 et 5 le jour même.
-- Un incident nouveau se produit : {{update_owner}} l'ajoute au document 4 et en retire un symptôme disparu, pour que le document reste sur une page.
+- Quelqu'un cité dans le dossier arrive ou part : {{update_owner}} met à jour les documents 2 et 5 le jour même.
+- Un incident nouveau se produit : {{update_owner}} l'ajoute au document 4 et en retire un symptôme disparu. Le document reste sur une page.
 - Installer une nouvelle version, avec l'accord prévu au document 2 (« Qui décide quoi »). D'abord une sauvegarde : {{backup_procedure}}. Ensuite : {{upgrade_procedure}}. Vérifier que ça a marché : {{upgrade_check}}. Si ça ne marche pas, revenir en arrière : {{rollback_procedure}}. Si la nouvelle version a modifié les informations enregistrées, les remettre aussi depuis la sauvegarde.
-- Restaurer une sauvegarde. Attention : cela remplace toutes les informations actuelles par celles de la sauvegarde, et tout ce qui a été saisi depuis est perdu. D'abord sauvegarder l'état actuel ({{backup_procedure}}), puis {{restore_procedure}}. Dernière restauration prouvée le {{last_restore_date}}. <!-- même date que le document 5, "Sauvegardes" -->
+- Avant de restaurer une sauvegarde, sauvegarder l'état actuel ({{backup_procedure}}). La restauration remplace toutes les informations actuelles : ce qui a été saisi depuis la sauvegarde restaurée est perdu. Ensuite, restaurer : {{restore_procedure}}. Dernière restauration prouvée le {{last_restore_date}}. <!-- même date que le document 5, "Sauvegardes" -->
 
 ## Les commandes à coller
 

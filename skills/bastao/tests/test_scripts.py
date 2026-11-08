@@ -54,6 +54,24 @@ class EstanteTests(unittest.TestCase):
         self.assertEqual(self.inv["git"]["authors"], ["Dev Ficticio"])
         self.assertIn("deploy/.env", self.inv["env_files_present"])
 
+    def test_inventory_skips_the_pack_but_not_its_folder(self):
+        repo = self.tmp / "repo-with-pack"
+        shutil.copytree(self.repo, repo)
+        # A French pack written into docs/, beside the repository's own documents,
+        # its Portuguese twin in handover-pt/, and an old handover to leave out.
+        for name in ("04-si-ca-casse.md", "00-questions.md", "proposition-04-si-ca-casse.md",
+                     "answers.yml", "verification.md"):
+            (repo / "docs" / name).write_text("# x\n", encoding="utf-8")
+        (repo / "handover-pt").mkdir()
+        (repo / "handover-pt" / "04-se-quebrar.md").write_text("# x\n", encoding="utf-8")
+        (repo / "docs" / "old").mkdir()
+        (repo / "docs" / "old" / "runbook.md").write_text("# x\n", encoding="utf-8")
+        out = repo / "docs" / "inventory.json"
+        self.assertEqual(run("inventory.py", repo, "--out", out, "--skip", "docs/old").returncode, 0)
+        inv = json.loads(out.read_text(encoding="utf-8"))
+        self.assertEqual(inv["deploy_docs"], ["docs/deploy.md", "docs/incidentes.md"])
+        self.assertEqual([s["name"] for s in inv["services"]], ["db", "app", "caddy"])
+
     def test_inventory_never_records_values(self):
         text = self.inv_path.read_text(encoding="utf-8") + self.inv_run.stdout
         self.assertNotIn(CANARY, text)
@@ -101,11 +119,112 @@ class EstanteTests(unittest.TestCase):
         r = run("coverage_check.py", self.inv_path, pack)
         self.assertIn("secret in clear SMTP_PASSWORD is not an open point", r.stdout)
 
+    def test_coverage_accepts_a_draft_document_4_that_points_to_the_questions_file(self):
+        pack = self.tmp / "draft"
+        shutil.copytree(PACK / "passagem", pack)
+        doc4 = pack / "04-se-quebrar.md"
+        text = doc4.read_text(encoding="utf-8")
+        start = text.index("## A impressora não imprime mais")
+        end = text.index("## As famílias não recebem mais os lembretes")
+        doc4.write_text(text[:start] + text[end:], encoding="utf-8")  # two symptoms left
+        r = run("coverage_check.py", self.inv_path, pack)
+        self.assertIn("04-se-quebrar.md: 2 symptom(s), 3 or 4 expected", r.stdout)
+        doc4.write_text(text[:start] + "Outros sintomas: pergunta 5 de 00-perguntas.md.\n\n" + text[end:],
+                        encoding="utf-8")
+        r = run("coverage_check.py", self.inv_path, pack)
+        self.assertIn("04-se-quebrar.md: names 00-perguntas.md, which is not in the pack", r.stdout)
+        (pack / "00-perguntas.md").write_text("# Perguntas\n", encoding="utf-8")
+        r = run("coverage_check.py", self.inv_path, pack)
+        self.assertNotIn("3 or 4 expected", r.stdout)
+        self.assertNotIn("not in the pack", r.stdout)
+        self.assertIn("WARNING 04-se-quebrar.md: 2 symptom(s), the others wait in the questions file", r.stdout)
+
+    def test_scripts_skip_the_questions_file_and_proposals(self):
+        pack = self.tmp / "with-proposal"
+        shutil.copytree(PACK / "passagem", pack)
+        bad = "# Estante: o que é\n\nVale ressaltar que o sistema é robusto — e “seguro”.\n"
+        for name in ("00-perguntas.md", "proposta-01-o-que-e.md", "01-o-que-e.proposta.md"):
+            (pack / name).write_text(bad, encoding="utf-8")
+        r = run("style_check.py", pack, "--max-words", "35", "--max-sentences", "99")
+        self.assertEqual(r.returncode, 0, r.stdout)
+        r = run("coverage_check.py", self.inv_path, pack)
+        self.assertIn("| 01-o-que-e.md |", r.stdout)
+        self.assertNotIn("proposta", r.stdout)
+
     # style_check.py
     def test_style_passes_the_generated_pack(self):
+        # The round 3 pack predates rules 21 and 22 (ASD-STE100): it is checked
+        # with the limits of its time (35 words, no paragraph limit) until it is regenerated.
         for lang in ("passation", "passagem"):
-            r = run("style_check.py", PACK / lang)
+            r = run("style_check.py", PACK / lang, "--max-words", "35", "--max-sentences", "99")
             self.assertEqual(r.returncode, 0, r.stdout)
+
+    def test_style_passes_the_templates(self):
+        for lang in ("fr", "pt"):
+            r = run("style_check.py", HERE.parent / "templates" / lang)
+            self.assertEqual(r.returncode, 0, r.stdout)
+
+    def test_style_flags_sentence_and_paragraph_limits(self):
+        pt = self.tmp / "ste"
+        pt.mkdir()
+        long_step = "Verifique se a luz verde da câmera da entrada está acesa e se o cabo de rede está " \
+                    "encaixado atrás do aparelho antes de chamar alguém.\n"  # 26 words
+        (pt / "04-se-quebrar.md").write_text("# Estante: se quebrar\n\n- " + long_step, encoding="utf-8")
+        (pt / "01-o-que-e.md").write_text(
+            "# Estante: o que é\n\n" + "O sistema registra quem entra. " * 7 + "\n", encoding="utf-8")
+        r = run("style_check.py", pt)
+        self.assertEqual(r.returncode, 1)
+        self.assertIn("04-se-quebrar.md:3  rule 21  sentence of 26 words, limit 20", r.stdout)
+        self.assertIn("01-o-que-e.md:3  rule 22  paragraph of 7 sentences, limit 3", r.stdout)
+        r = run("style_check.py", pt, "--max-words", "35")
+        self.assertNotIn("rule 21", r.stdout)
+        self.assertIn("rule 22", r.stdout)
+        r = run("style_check.py", pt, "--max-sentences", "7")
+        self.assertNotIn("rule 22", r.stdout)
+
+    def test_style_reads_blocks_not_lines(self):
+        d = self.tmp / "blocks"
+        d.mkdir()
+        # French: an abbreviation is not a sentence end; three sentences pass.
+        (d / "01-ce-que-cest.md").write_text(
+            "# Estante : ce que c'est\n\n"
+            "Le programme note qui entre. Le programme note qui sort. M. Silva ouvre le portail.\n",
+            encoding="utf-8")
+        # Portuguese, document 2: same with "Sr."; a paragraph wrapped over three lines is two sentences.
+        (d / "02-quem-faz-o-que.md").write_text(
+            "# Estante: quem faz o quê\n\n"
+            "O sistema registra quem entra. O Sr. Silva abre o portão. O Dr. Costa assina.\n\n"
+            "O sistema registra quem entra e\nquem sai pelo portão e pela\ncantina todos os dias.\n"
+            "Ele não tranca nenhuma porta.\n", encoding="utf-8")
+        # Document 3: a URL and an e-mail are one word each; a sentence wrapped over two lines is read whole.
+        (d / "03-rotina.md").write_text(
+            "# Estante: rotina\n\n"
+            "- Abrir https://estante.escola.exemplo.br/admin/relatorios/entradas/hoje e escrever para "
+            "suporte@escola.exemplo.br se a tela ficar branca.\n\n"
+            "Verificar se a luz verde da câmera da entrada está acesa e se o cabo de rede\n"
+            "está encaixado atrás do aparelho antes de chamar alguém.\n\n"
+            "- Um. Dois. Três. Quatro. Cinco. Seis. Sete.\n", encoding="utf-8")
+        # Document 4, French: « Erreur ! » ends no sentence; a wrapped line that starts with
+        # inline code starts a new sentence; "1)" items and an empty quote line end a block.
+        (d / "04-si-ca-casse.md").write_text(
+            "# Estante : si ça casse\n\n"
+            "Le site affiche « Erreur ! » quand on ouvre la page. Appelez Denise. Notez l'heure.\n\n"
+            "- Vérifier sur la machine de la salle des serveurs que le programme tourne.\n"
+            "  `docker compose ps` doit montrer les trois boîtes du programme avec le mot Up.\n\n"
+            "1) Ouvrir l'écran.\n2) Cliquer sur Prêts.\n3) Vérifier la date.\n4) Noter le résultat.\n\n"
+            "> Une phrase. Deux phrases.\n>\n> Trois phrases. Quatre phrases.\n", encoding="utf-8")
+        # Document 5: outside documents 3 and 4, a list item keeps to three sentences.
+        (d / "05-custodia-de-acessos.md").write_text(
+            "# Estante: custódia de acessos\n\n- Um. Dois. Três. Quatro.\n", encoding="utf-8")
+        r = run("style_check.py", d)
+        self.assertNotIn("01-ce-que-cest.md", r.stdout)
+        self.assertNotIn("02-quem-faz-o-que.md", r.stdout)
+        self.assertNotIn("04-si-ca-casse.md", r.stdout)
+        self.assertNotIn("03-rotina.md:3 ", r.stdout)
+        self.assertIn("03-rotina.md:5  rule 21  sentence of 26 words, limit 20", r.stdout)
+        self.assertIn("03-rotina.md:8  rule 22  list item of 7 sentences, limit 6", r.stdout)
+        self.assertIn("05-custodia-de-acessos.md:3  rule 22  list item of 4 sentences, limit 3", r.stdout)
+        self.assertIn("3 flag(s)", r.stdout)
 
     def test_style_flags_machine_writing(self):
         pt = self.tmp / "passagem"

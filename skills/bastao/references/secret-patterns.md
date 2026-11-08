@@ -1,6 +1,6 @@
 # O que o scanner de segredos recusa: especificação (sem código)
 
-O scanner roda sobre a pasta gerada (e opcionalmente sobre `answers.yml`) antes da entrega. Qualquer ocorrência faz a verificação falhar, com arquivo e linha. Falso positivo é aceitável; falso negativo não. O usuário pode marcar uma linha como exceção só com um comentário explícito no `verification.md`, nunca silenciosamente.
+O scanner roda sobre cada pasta do pacote, a das duas línguas quando há duas, inteira: com `answers.yml`, `verification.md`, o arquivo de perguntas e as propostas. Ele roda antes da entrega e em cada rodada seguinte. Qualquer ocorrência faz a verificação falhar, com arquivo e linha. Falso positivo é aceitável; falso negativo não. O usuário pode marcar uma linha como exceção só com um comentário explícito no `verification.md`, nunca silenciosamente.
 
 ## Recusado
 
