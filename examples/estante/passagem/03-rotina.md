@@ -1,102 +1,148 @@
 # Estante: rotina
 
-Preparado em 30/10/2026 por Lucas Ferreira, para Márcia Okafor, Paula Reis, Joana Lima e Denise Prado (quem faz o sistema funcionar no dia a dia).
+Preparado em 09/11/2026 por Lucas Ferreira, para Marcia Okafor, Paula Reis, Joana Lima e Denise Prado.
 
-Cada gesto feito e cada verificação são anotados em [A CONFIRMAR]: a data, o gesto, quem fez, o resultado. É o mesmo caderno dos incidentes (documento 4).
+Anote cada tarefa e cada verificação no caderno de registro. Lucas Ferreira não conhece nenhum caderno: o lugar é [A CONFIRMAR].
+
+Escreva a data, a tarefa, quem fez e o resultado. É o mesmo caderno dos incidentes (documento 4).
+
+A hora da máquina ESTANTE01 pode ser diferente da hora da escola. O fuso da máquina é [A CONFIRMAR]. As horas abaixo são as da máquina.
 
 ## O que acontece sozinho, e como verificar que aconteceu
 
-As horas abaixo são as do relógio do mini-PC ESTANTE01. Se esse relógio está na hora de Brasília: [A CONFIRMAR]. O programa usa America/Sao_Paulo (a hora de Brasília).
-
 | Quando | O que acontece | Como verificar | Se não aconteceu |
 |---|---|---|---|
-| 02:30, todo dia | O script backup.sh grava uma cópia das informações (backup) em /home/estante/backups, no próprio mini-PC, e apaga as cópias com mais de 30 dias | Existe um arquivo estante-AAAA-MM-DD.dump com a data do dia, e o arquivo /home/estante/backup.log não mostra erro | Denise Prado faz um backup na hora (comandos no fim) e avisa Lucas Ferreira até 31/01/2027 |
-| 07:00, de segunda a sexta | O programa app.lembretes manda um e-mail aos responsáveis de cada aluno com livro atrasado há mais de 3 dias | Não há registro próprio. O sinal é um responsável dizer que não recebeu. | Ver o sintoma "Os responsáveis não recebem os e-mails de lembrete" no documento 4 |
+| 02:30, todos os dias | A máquina copia as informações para a pasta /home/estante/backups e apaga as cópias com mais de 30 dias | Ver se existe um arquivo estante com a data de hoje (comando em "Os comandos para colar"). O registro fica em /home/estante/backup.log | Fazer a cópia agora (ver "Os comandos para colar") e avisar Denise Prado, a referência técnica |
+| 07:00, de segunda a sexta | O programa envia o e-mail de lembrete aos responsáveis dos alunos com livro atrasado há mais de 3 dias | O texto do programa não guarda registro desse envio: como verificar é [A CONFIRMAR] | Avisar Denise Prado, a referência técnica |
 
 ## Todo dia
 
-1. Verificação da manhã: abrir https://estante.jacaranda.example.org no navegador e ver a tela do Estante ([A CONFIRMAR] quem faz, decisão de Márcia Okafor; cerca de [A CONFIRMAR]).
+1. Verificar que a cópia de hoje existe: comando em "Os comandos para colar" ([A CONFIRMAR], duração [A CONFIRMAR]).
+2. Abrir o endereço https://estante.jacaranda.example.org e ver que a página abre ([A CONFIRMAR], duração [A CONFIRMAR]).
+
+Esses dois gestos são uma sugestão desta pasta. Lucas Ferreira não combinou com ninguém quem os faz [A CONFIRMAR].
 
 ## Toda semana
 
-Nenhum gesto semanal definido em 30/10/2026.
+Nenhuma tarefa semanal, segundo Lucas Ferreira.
 
 ## Todo mês
 
-1. Pagamento do e-mail MailExemplo: o plano é mensal, no cartão da escola (Roberto, do financeiro).
+1. Manter pago o plano do e-mail MailExemplo: o plano é mensal, no cartão da escola (Roberto, do financeiro). Em 06/2026 o cartão não pagou e os lembretes pararam uma semana.
 
 ## Todo ano
 
 | Quando | O quê | Quem | Prazo de preparação | Como |
 |---|---|---|---|---|
-| Fevereiro | Importar a lista dos alunos, a partir do arquivo CSV da secretaria | Denise Prado | Pedir o arquivo à secretaria antes; quem pede: [A CONFIRMAR] | O arquivo tem de estar em UTF-8. Os alunos que não estão no arquivo ficam inativos, não são apagados. Comandos no fim. |
-| Começo de cada semestre | Cadastrar os livros novos e imprimir as etiquetas | Joana Lima | nenhum | Na tela do Estante [A CONFIRMAR] |
-| Antes de 14/03/2027 | Renovar o domínio jacaranda.example.org (o endereço do site, alugado todo ano) | Roberto, do financeiro | [A CONFIRMAR] | No registrador de domínios da escola, nome [A CONFIRMAR] |
-| Fevereiro | Reler os seis documentos da pasta: nomes, contatos, datas, acessos, pontos [A CONFIRMAR] restantes | Denise Prado com Márcia Okafor | nenhum | Corrigir, redatar, redistribuir. O documento 5 só aos seus destinatários. |
+| Fevereiro | Importar a lista de alunos, vinda da secretaria em CSV (planilha em texto). O arquivo deve estar em UTF-8 (a codificação das letras com acento) | Denise Prado [A CONFIRMAR] | [A CONFIRMAR] | Ver "Os comandos para colar". Segundo o comentário do programa, os alunos ausentes da lista ficam inativos [A CONFIRMAR] |
+| No começo de cada semestre | Cadastrar os livros novos e imprimir as etiquetas | Joana Lima | [A CONFIRMAR] | [A CONFIRMAR] |
+| 14/03/2027 | Renovar o domínio jacaranda.example.org, registrado pela escola | Roberto, do financeiro, paga; quem renova [A CONFIRMAR] | [A CONFIRMAR] | No site do registrador de domínios [A CONFIRMAR] |
+| Fevereiro, junto com a importação | Reler os seis documentos da pasta: nomes, contatos, datas, acessos, pontos [A CONFIRMAR] restantes | Denise Prado, com Marcia Okafor | nenhum | Corrigir, mudar a data, redistribuir. O documento 5 só aos seus destinatários. |
 
 ## Quando for preciso
 
-- Uma etiqueta saiu errada ou não saiu: reimprimir a etiqueta, de um jeito ainda não escrito [A CONFIRMAR] (Denise Prado).
-- Uma nova conta de administrador no Estante: criar com o acordo de Márcia Okafor (Denise Prado).
 - Alguém citado na pasta chega ou sai: Denise Prado atualiza os documentos 2 e 5 no mesmo dia.
-- Acontece um incidente novo: Denise Prado acrescenta ao documento 4 e tira dele um sintoma que não acontece mais, para o documento continuar numa página.
-- Instalar uma nova versão, com o acordo previsto no documento 2 ("Quem decide o quê"). Primeiro um backup: rodar o script backup.sh (comandos no fim). Depois: seguir os passos de "Instalar uma nova versão" nos comandos no fim. Se a versão trouxer uma migração (atualização da forma como as informações são organizadas), só com Lucas Ferreira até 31/01/2027. Verificar que deu certo: abrir https://estante.jacaranda.example.org e fazer um empréstimo de teste com o livro "TESTE-0001". Se não deu, voltar atrás: o procedimento não está escrito [A CONFIRMAR]. Se a nova versão mudou as informações gravadas, recuperá-las também a partir do backup.
-- Restaurar um backup. Atenção: isso substitui todas as informações atuais pelas do backup, e tudo o que foi digitado desde então se perde. Primeiro salvar o estado atual (rodar o script backup.sh), depois chamar Lucas Ferreira: o procedimento não está escrito, e até 31/01/2027 só se faz com ele [A CONFIRMAR]. Última restauração provada em: nunca testada, segundo Lucas Ferreira [A CONFIRMAR].
+- Acontece um incidente novo: Denise Prado acrescenta o incidente ao documento 4 e tira dele um sintoma que sumiu. O documento continua numa página.
+- Instalar uma nova versão, com o acordo de Marcia Okafor (documento 2). Até janeiro de 2027, o passo 2 só depois de falar com Lucas Ferreira. Os passos estão em "Os comandos para colar". Primeiro faça uma cópia.
+- Verificar a nova versão: abrir o endereço do sistema e fazer um empréstimo de teste com o livro "TESTE-0001".
+- Voltar atrás numa nova versão: o procedimento não está escrito no texto do programa [A CONFIRMAR]. Não apague nada. Guarde a cópia feita antes. Chame Denise Prado, a referência técnica.
+- Se a nova versão mudou as informações gravadas, não continue sozinho: veja o item sobre restaurar uma cópia, logo abaixo.
+- De onde vem o código novo: Lucas Ferreira não lembra [A CONFIRMAR]. O programa não tem endereço remoto, então `git pull` (baixar a versão nova) não funciona.
+- Antes de restaurar uma cópia, salvar o estado atual: ver "Fazer a cópia agora". A restauração substitui todas as informações atuais. O que foi digitado desde a cópia restaurada se perde.
+- Restaurar uma cópia: até janeiro de 2027, só depois de falar com Lucas Ferreira. Depois dessa data: [A CONFIRMAR]. O procedimento não está escrito no texto do programa [A CONFIRMAR]. Primeiro gesto seguro: não faça nada que não possa desfazer. Faça uma cópia nova e escreva a Denise Prado, a referência técnica. Última restauração provada em [A CONFIRMAR]: Lucas Ferreira acha que nunca testou.
 
 ## Os comandos para colar
 
 Esta parte é para a referência técnica. Os demais leitores podem pular.
 
-Todos os comandos rodam no mini-PC ESTANTE01, depois de entrar nele pela conexão técnica (SSH). Se a conta "denise" tem permissão para usar o Docker e para gravar em /home/estante/backups: [A CONFIRMAR].
+Os comandos rodam na máquina ESTANTE01, na pasta /home/estante/estante. Denise Prado entra com a conta denise: `ssh denise@192.168.0.20`. A senha está no Bitwarden da escola (o programa onde as senhas ficam guardadas) [A CONFIRMAR].
+
+Se a conta denise pode rodar os comandos abaixo: [A CONFIRMAR]. O texto do programa usa a conta estante.
+
+### Verificar
 
 ```bash
-# Entrar no mini-PC pela rede da escola. (a senha está no Bitwarden da escola [A CONFIRMAR])
-ssh denise@192.168.0.20
+# Verificar que o programa está rodando. Não modifica nada.
+# Deve aparecer: as três partes estante-db, estante-app e estante-caddy, com o estado "Up" ou "running".
+cd /home/estante/estante
+docker compose -f deploy/docker-compose.yml ps
 
-# Verificar que o programa está rodando. Não modifica nada. Deve aparecer: estante-db, estante-app e estante-caddy, cada um com "Up"
-docker ps --filter name=estante
+# Ver as últimas mensagens do programa. Não modifica nada. Não deve aparecer: Error nem Traceback.
+cd /home/estante/estante
+docker compose -f deploy/docker-compose.yml logs --tail 50 app
 
-# Verificar que o Docker volta sozinho depois de uma queda de luz. Não modifica nada. Deve aparecer: enabled
+# Verificar que o Docker (o programa que cria a caixa do sistema) liga sozinho com a máquina. Não modifica nada. Deve aparecer: enabled
 systemctl is-enabled docker
 
-# Ver as últimas mensagens do programa. Não modifica nada. Não deve aparecer: Traceback
-docker logs --tail 50 estante-app
+# Verificar que a cópia de hoje existe. Não modifica nada.
+# Deve aparecer: um arquivo estante-AAAA-MM-DD.dump com a data de hoje.
+ls -l /home/estante/backups | tail -n 3
 
-# Reiniciar o programa. Só se a verificação acima não mostrar "Up". Depois, refazer a verificação.
-docker restart estante-db estante-app estante-caddy
+# Ver o registro da última cópia. Não modifica nada.
+tail -n 5 /home/estante/backup.log
 ```
 
+### Reiniciar
+
+Só reinicie se a verificação acima não mostrar "Up". Depois, refaça a verificação.
+
 ```bash
-# Fazer um backup na hora. Depois, o arquivo do dia deve aparecer na lista.
-/home/estante/estante/scripts/backup.sh
-ls -l /home/estante/backups | tail -3
+# Reiniciar o programa.
+cd /home/estante/estante
+docker compose -f deploy/docker-compose.yml restart app
 ```
 
-```bash
-# Importação anual. Primeiro verificar o formato do arquivo. Não modifica nada. Deve aparecer a palavra utf-8
-file -i alunos.csv
+### Fazer a cópia agora
 
-# Só se apareceu utf-8: importar. Deve aparecer o número de alunos lidos.
-docker exec -i estante-app python scripts/importar_alunos.py < alunos.csv
+Verifique antes com o último comando de "Verificar". Depois, rode o bloco abaixo. Deve aparecer um arquivo novo, com a data de hoje.
+
+```bash
+# Fazer a cópia agora. Cria um arquivo novo.
+cd /home/estante/estante
+sh scripts/backup.sh
 ```
 
-Instalar uma nova versão (docs/deploy.md), com o acordo de Márcia Okafor e depois de um backup:
+### Instalar uma nova versão
 
-1. Entrar na pasta do código e baixar a nova versão. A origem desse download não está confirmada [A CONFIRMAR].
-2. Aplicar as migrações novas, uma por uma, na ordem dos números (só com Lucas Ferreira até 31/01/2027).
-3. Reconstruir e religar o programa.
-4. Refazer a verificação acima.
-5. Fazer um empréstimo de teste com o livro "TESTE-0001".
+Faça a cópia antes. Cada bloco é um passo.
+
+Passo 1: o código novo precisa estar na pasta /home/estante/estante. Como ele chega é [A CONFIRMAR]: Lucas Ferreira não lembra.
+
+Passo 2: até janeiro de 2027, só depois de falar com Lucas Ferreira. Aplique cada mudança nova, na ordem dos números. Troque 00X_nome.sql pelo arquivo novo.
+
+Quais já foram aplicadas é [A CONFIRMAR]. Denise Prado ou Lucas Ferreira verificam no lugar das informações gravadas, antes da saída dele.
 
 ```bash
-# Passo 1
-cd /home/estante/estante && git pull
-
-# Passo 2, uma vez por migração nova, trocando 00X_nome.sql pelo nome do arquivo
+# Aplicar uma mudança na forma de guardar as informações (migração). Deve aparecer: nenhuma linha com ERROR.
+cd /home/estante/estante
 docker exec -i estante-db sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"' < migrations/00X_nome.sql
+```
 
-# Passo 3
+Passo 3: monte e ligue o programa de novo. Depois, faça a verificação.
+
+```bash
+# Montar e ligar o programa de novo.
+cd /home/estante/estante
 docker compose -f deploy/docker-compose.yml up -d --build
+```
+
+### Importar a lista de alunos
+
+Em fevereiro. Verifique a codificação do arquivo antes. Em 19/02/2026, um arquivo com outra gravação duplicou 212 alunos.
+
+```bash
+# Verificar o arquivo. Não modifica nada. Deve aparecer: utf-8 no fim da linha.
+file -i alunos.csv
+```
+
+Importe só se a verificação mostrou utf-8. Deve aparecer: "N alunos lidos".
+
+O texto do programa recebido só conta as linhas do arquivo. Onde está o programa que importa de verdade: [A CONFIRMAR] (pergunta 18).
+
+```bash
+# Importar a lista de alunos.
+cd /home/estante/estante
+docker exec -i estante-app python scripts/importar_alunos.py < alunos.csv
 ```
 
 ---

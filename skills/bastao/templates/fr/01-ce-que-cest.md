@@ -29,8 +29,10 @@ Préparé le {{doc_date}} par {{author}}, pour {{readers}} (direction, gestion, 
 
 ## Où ça tourne
 
+<!-- access_mode : un programme installé sur les postes, un navigateur, ou les deux. Écrire seulement ce que le dépôt ou une réponse montre. -->
+
 - Le programme tourne sur {{server_location}}.
-- On y accède par {{access_mode}} (une application installée sur les postes, un navigateur, ou les deux).
+- On y accède par {{access_mode}}.
 - Pour fonctionner, il a besoin de {{external_dependencies}}.
 - Les informations sont enregistrées dans {{storage_plain}} et sauvegardées {{backup_frequency}}.
 
@@ -38,13 +40,13 @@ Préparé le {{doc_date}} par {{author}}, pour {{readers}} (direction, gestion, 
 
 | Rôle | Nom et fonction | Ce que cette personne décide ou fait |
 |---|---|---|
-| Propriétaire du système | {{owner}} | Décide des changements et des renouvellements |
+| Propriétaire du système | {{owner}} | Décide {{owner_decides}} |
 | Référent technique | {{tech_lead}} | Première personne à appeler quand quelque chose ne va pas |
 | Développeur d'origine | {{author}} | Disponible {{developer_availability}} |
 
 ## Ce qui a une date
 
-<!-- Réponse à la question 8. S'il n'y a rien, écrire "Aucune échéance connue au {{doc_date}}". Le document 5 est la référence de ces dates. -->
+<!-- Réponse à la question 8. S'il n'y a rien, écrire "Aucune échéance connue au {{doc_date}}". Le document 5 est la référence de ces dates. Entrent ici toutes les dates qui ont une personne et une conséquence, aussi celles des documents 2, 3 et 5 : le départ du développeur, la fin de son aide, la relecture annuelle, les paiements mensuels, le domaine. Celui qui paie n'est pas celui qui s'en occupe : écrire seulement ce que la réponse dit. -->
 
 | Échéance | Quoi | Qui s'en occupe | Si c'est oublié |
 |---|---|---|---|

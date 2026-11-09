@@ -417,6 +417,7 @@ def main() -> int:
         if rel:
             SKIP_PATHS.add(rel)
     inv = build(repo)
+    Path(a.out).parent.mkdir(parents=True, exist_ok=True)  # the pack folder does not exist on a first run
     Path(a.out).write_text(json.dumps(inv, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("\n".join(summary(inv)))
     return 0

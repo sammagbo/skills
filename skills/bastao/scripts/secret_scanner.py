@@ -63,6 +63,8 @@ def looks_like_password(tok: str, known_names: set[str]) -> bool:
         return False  # constant name, or lowercase identifier
     if re.fullmatch(r"([A-Za-zÀ-ÿ]+[\-'’])+[A-Za-zÀ-ÿ]+", t):
         return False  # hyphenated words
+    if re.fullmatch(r"[a-z][a-z0-9_\-]*=[a-z0-9_.\-]+", t):
+        return False  # a lowercase setting such as charset=utf-8; a secret-named key is rule 1's
     classes = sum(bool(re.search(p, t)) for p in (r"[a-z]", r"[A-Z]", r"\d", r"[^\w]"))
     return classes >= 3
 
@@ -157,6 +159,9 @@ def main() -> int:
     ap.add_argument("--inventory")
     ap.add_argument("--repo")
     a = ap.parse_args()
+    if not Path(a.folder).is_dir():
+        print(f"not a folder: {a.folder} (give an absolute path)", file=sys.stderr)
+        return 2
     folder = Path(a.folder)
     inv = json.loads(Path(a.inventory).read_text(encoding="utf-8")) if a.inventory else None
     envd = env_digests(Path(a.repo)) if a.repo else []

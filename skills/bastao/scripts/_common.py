@@ -42,20 +42,42 @@ def contains_digest(text: str, d: dict) -> bool:
 
 
 def doc_language(path: Path) -> str:
-    stem = path.stem
+    stem = Path(base_name(path)).stem
     if stem in PT_NAMES or "passagem" in path.parts:
         return "pt"
     return "fr"
 
 
-def iter_docs(folder: Path):
-    """The six documents of a pack folder, sorted. The questions file (00-...),
-    proposals (proposition-0N-..., proposta-0N-...) and any other file are skipped."""
-    return sorted(p for p in folder.glob("*.md") if re.fullmatch(r"0[1-6]-[a-z0-9-]+\.md", p.name))
+PROPOSAL_PREFIX = re.compile(r"^(proposition|proposta)-")
+
+
+def base_name(path: Path) -> str:
+    """The document name behind a proposal: proposta-03-rotina.md gives 03-rotina.md."""
+    return PROPOSAL_PREFIX.sub("", path.name)
+
+
+def iter_docs(folder: Path, merged: bool = False):
+    """The six documents of a pack folder, sorted. The questions file (00-...) and
+    any other file are skipped. A proposal (proposition-0N-..., proposta-0N-...) is
+    not a document; with merged=True it stands in for the document it sits beside,
+    which is the pack as it will be once the user has merged."""
+    docs = {p.name: p for p in folder.glob("*.md") if re.fullmatch(r"0[1-6]-[a-z0-9-]+\.md", p.name)}
+    if merged:
+        for p in folder.glob("*.md"):
+            if PROPOSAL_PREFIX.match(p.name) and base_name(p) in docs:
+                docs[base_name(p)] = p
+    return sorted(docs.values(), key=base_name)
+
+
+def iter_proposals(folder: Path):
+    """The proposals of a pack folder: the agent's own text, written beside a document
+    that someone edited by hand."""
+    return sorted(p for p in folder.glob("*.md")
+                  if PROPOSAL_PREFIX.match(p.name) and re.fullmatch(r"0[1-6]-[a-z0-9-]+\.md", base_name(p)))
 
 
 def doc_number(path: Path) -> int:
-    return int(path.name[:2])
+    return int(base_name(path)[:2])
 
 
 def prose_lines(text: str):

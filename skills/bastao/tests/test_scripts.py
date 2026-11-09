@@ -15,7 +15,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 SCRIPTS = HERE.parent / "scripts"
 FIXTURE = HERE / "fixtures" / "estante"
-PACK = HERE / "fixtures" / "estante-pack-r3"
+PACK = HERE / "fixtures" / "estante-pack"
 CANARY = "CANARY-ENV-7f3a9"
 
 
@@ -72,6 +72,11 @@ class EstanteTests(unittest.TestCase):
         self.assertEqual(inv["deploy_docs"], ["docs/deploy.md", "docs/incidentes.md"])
         self.assertEqual([s["name"] for s in inv["services"]], ["db", "app", "caddy"])
 
+    def test_inventory_creates_the_pack_folder(self):
+        out = self.tmp / "not-yet" / "passagem" / "inventory.json"
+        self.assertEqual(run("inventory.py", self.repo, "--out", out).returncode, 0)
+        self.assertTrue(out.is_file())
+
     def test_inventory_never_records_values(self):
         text = self.inv_path.read_text(encoding="utf-8") + self.inv_run.stdout
         self.assertNotIn(CANARY, text)
@@ -101,14 +106,42 @@ class EstanteTests(unittest.TestCase):
         self.assertNotIn(CANARY, r.stdout)
         self.assertNotIn("Tq8vR2mLx9pZ4kWc", r.stdout)
 
+    def test_scanner_accepts_a_lowercase_setting_but_not_a_mixed_case_token(self):
+        ok = self.tmp / "settings"
+        ok.mkdir()
+        (ok / "03-rotina.md").write_text("# t\n\nAbrir com charset=utf-8 no fim. Ou encoding=utf-8.\n", encoding="utf-8")
+        r = run("secret_scanner.py", ok, "--inventory", self.inv_path, "--repo", self.repo)
+        self.assertEqual(r.returncode, 0, r.stdout)
+        bad = self.tmp / "settings-bad"
+        bad.mkdir()
+        (bad / "03-rotina.md").write_text("# t\n\nUse x=aB3dE9fG2hJkL1 para entrar.\n", encoding="utf-8")
+        r = run("secret_scanner.py", bad, "--inventory", self.inv_path, "--repo", self.repo)
+        self.assertEqual(r.returncode, 1, r.stdout)
+
     # coverage_check.py
-    def test_coverage_reports_counts_and_known_gaps(self):
-        r = run("coverage_check.py", self.inv_path, PACK / "passation", "--pair", PACK / "passagem")
+    def test_coverage_passes_the_generated_pack(self):
+        r = run("coverage_check.py", self.inv_path, PACK / "passagem", "--pair", PACK / "passation")
+        self.assertEqual(r.returncode, 0, r.stdout)
+        self.assertIn("| 05-custodia-de-acessos.md |", r.stdout)
         self.assertIn("| 05-garde-des-acces.md |", r.stdout)
-        self.assertIn("service caddy", r.stdout)  # round 3 did not name the services
-        self.assertNotIn("not explained", r.stdout)
-        self.assertNotIn("scheduled job", r.stdout)
-        self.assertNotIn("parity", r.stdout)
+        self.assertIn("0 problem(s), 0 warning(s)", r.stdout)
+
+    def test_coverage_names_a_service_missing_from_document_1(self):
+        pack = self.tmp / "no-caddy"
+        shutil.copytree(PACK / "passagem", pack)
+        doc1 = pack / "01-o-que-e.md"
+        doc1.write_text(doc1.read_text(encoding="utf-8").replace("estante-caddy", "o cadeado"), encoding="utf-8")
+        r = run("coverage_check.py", self.inv_path, pack)
+        self.assertIn("service caddy", r.stdout)
+
+    def test_the_fixture_fingerprints_match_its_documents(self):
+        import hashlib
+        text = (PACK / "passagem" / "verification.md").read_text(encoding="utf-8")
+        rows = [ln for ln in text.splitlines() if ln.startswith("| passag") or ln.startswith("| passat")]
+        self.assertEqual(len(rows), 12)
+        for ln in rows:
+            _, name, digest, _ = [c.strip() for c in ln.split("|")]
+            self.assertEqual(hashlib.sha256((PACK / name).read_bytes()).hexdigest(), digest, name)
 
     def test_coverage_requires_secret_in_clear_in_document_6(self):
         pack = self.tmp / "pack"
@@ -124,39 +157,48 @@ class EstanteTests(unittest.TestCase):
         shutil.copytree(PACK / "passagem", pack)
         doc4 = pack / "04-se-quebrar.md"
         text = doc4.read_text(encoding="utf-8")
-        start = text.index("## A impressora não imprime mais")
-        end = text.index("## As famílias não recebem mais os lembretes")
-        doc4.write_text(text[:start] + text[end:], encoding="utf-8")  # two symptoms left
-        r = run("coverage_check.py", self.inv_path, pack)
-        self.assertIn("04-se-quebrar.md: 2 symptom(s), 3 or 4 expected", r.stdout)
-        doc4.write_text(text[:start] + "Outros sintomas: pergunta 5 de 00-perguntas.md.\n\n" + text[end:],
-                        encoding="utf-8")
-        r = run("coverage_check.py", self.inv_path, pack)
-        self.assertIn("04-se-quebrar.md: names 00-perguntas.md, which is not in the pack", r.stdout)
-        (pack / "00-perguntas.md").write_text("# Perguntas\n", encoding="utf-8")
+        start = text.index("## Os lembretes por e-mail não saem")
+        end = text.index("Outros sintomas:")
+        without_third = text[:start] + text[end:]            # two symptoms and the pointer line
+        pointer = "Outros sintomas: pergunta 16 de 00-perguntas.md.\n"
+        doc4.write_text(without_third, encoding="utf-8")
         r = run("coverage_check.py", self.inv_path, pack)
         self.assertNotIn("3 or 4 expected", r.stdout)
-        self.assertNotIn("not in the pack", r.stdout)
         self.assertIn("WARNING 04-se-quebrar.md: 2 symptom(s), the others wait in the questions file", r.stdout)
+        doc4.write_text(without_third.replace(pointer, ""), encoding="utf-8")   # no pointer: a failure
+        r = run("coverage_check.py", self.inv_path, pack)
+        self.assertIn("04-se-quebrar.md: 2 symptom(s), 3 or 4 expected", r.stdout)
+        doc4.write_text(without_third, encoding="utf-8")
+        (pack / "00-perguntas.md").unlink()                                     # pointer to a missing file
+        r = run("coverage_check.py", self.inv_path, pack)
+        self.assertIn("04-se-quebrar.md: names 00-perguntas.md, which is not in the pack", r.stdout)
 
-    def test_scripts_skip_the_questions_file_and_proposals(self):
+    def test_scripts_skip_the_questions_file_and_read_proposals(self):
         pack = self.tmp / "with-proposal"
         shutil.copytree(PACK / "passagem", pack)
         bad = "# Estante: o que é\n\nVale ressaltar que o sistema é robusto — e “seguro”.\n"
-        for name in ("00-perguntas.md", "proposta-01-o-que-e.md", "01-o-que-e.proposta.md"):
-            (pack / name).write_text(bad, encoding="utf-8")
-        r = run("style_check.py", pack, "--max-words", "35", "--max-sentences", "99")
-        self.assertEqual(r.returncode, 0, r.stdout)
+        long_step = ("# Estante: se quebrar\n\n- Verifique se a luz verde da câmera da entrada está acesa e se o cabo "
+                     "de rede está encaixado atrás do aparelho antes de chamar alguém.\n")
+        (pack / "00-perguntas.md").write_text(bad, encoding="utf-8")
+        (pack / "01-o-que-e.proposta.md").write_text(bad, encoding="utf-8")  # not a proposal: wrong name
+        (pack / "proposta-04-se-quebrar.md").write_text(long_step, encoding="utf-8")
+        # style_check reads the proposal as document 4, in Portuguese, and skips the questions file.
+        r = run("style_check.py", pack, "--max-sentences", "99")
+        self.assertIn("proposta-04-se-quebrar.md:3  rule 21  sentence of 26 words, limit 20", r.stdout)
+        self.assertNotIn("00-perguntas", r.stdout)
+        self.assertNotIn("01-o-que-e.proposta", r.stdout)
+        # coverage_check checks the documents; with --merged the proposal stands in for document 4.
         r = run("coverage_check.py", self.inv_path, pack)
-        self.assertIn("| 01-o-que-e.md |", r.stdout)
+        self.assertIn("| 04-se-quebrar.md |", r.stdout)
         self.assertNotIn("proposta", r.stdout)
+        r = run("coverage_check.py", self.inv_path, pack, "--merged")
+        self.assertIn("| proposta-04-se-quebrar.md |", r.stdout)
+        self.assertNotIn("| 04-se-quebrar.md |", r.stdout)
 
     # style_check.py
     def test_style_passes_the_generated_pack(self):
-        # The round 3 pack predates rules 21 and 22 (ASD-STE100): it is checked
-        # with the limits of its time (35 words, no paragraph limit) until it is regenerated.
         for lang in ("passation", "passagem"):
-            r = run("style_check.py", PACK / lang, "--max-words", "35", "--max-sentences", "99")
+            r = run("style_check.py", PACK / lang)
             self.assertEqual(r.returncode, 0, r.stdout)
 
     def test_style_passes_the_templates(self):
@@ -181,6 +223,30 @@ class EstanteTests(unittest.TestCase):
         self.assertIn("rule 22", r.stdout)
         r = run("style_check.py", pt, "--max-sentences", "7")
         self.assertNotIn("rule 22", r.stdout)
+
+    def test_style_flags_jargon_in_the_plain_documents_only(self):
+        d = self.tmp / "jargon"
+        d.mkdir()
+        text = "# Estante: texto\n\nMude o IP da impressora no roteador. Use UTF-8 e o repositório.\n"
+        for name in ("01-o-que-e.md", "04-se-quebrar.md", "06-checklist-de-recepcao.md",
+                     "02-quem-faz-o-que.md", "03-rotina.md", "05-custodia-de-acessos.md"):
+            (d / name).write_text(text, encoding="utf-8")
+        r = run("style_check.py", d)
+        for name in ("01-o-que-e.md", "04-se-quebrar.md", "06-checklist-de-recepcao.md"):
+            self.assertIn(f'{name}:3  rule 31  technical term "IP", use the plain expression', r.stdout)
+            self.assertIn(f'{name}:3  rule 31  technical term "roteador", use the plain expression', r.stdout)
+            self.assertIn(f'{name}:3  rule 31  technical term "UTF-8", use the plain expression', r.stdout)
+        for name in ("02-quem-faz-o-que.md", "03-rotina.md", "05-custodia-de-acessos.md"):
+            self.assertNotIn(name, r.stdout)
+
+    def test_scripts_say_clearly_when_a_folder_is_missing(self):
+        for script, args in (("style_check.py", ["nope-folder"]),
+                             ("secret_scanner.py", ["nope-folder"]),
+                             ("coverage_check.py", [self.inv_path, "nope-folder"])):
+            r = run(script, *args)
+            self.assertEqual(r.returncode, 2, script)
+            self.assertNotIn("Traceback", r.stderr, script)
+            self.assertIn("give an absolute path", r.stderr, script)
 
     def test_style_reads_blocks_not_lines(self):
         d = self.tmp / "blocks"

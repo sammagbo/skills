@@ -1,6 +1,6 @@
 # Bastão — dicionário de campos (`{{chave}}`)
 
-Regras: chaves em inglês, únicas por sentido, iguais nos modelos FR e PT (só o texto ao redor muda). Uma chave usada em linhas repetidas (tabela, lista) tem o mesmo sentido em cada linha. Origem: Q1…Q10 = resposta do usuário (o desenvolvedor que entrega) no arquivo de perguntas, com o número que a pergunta tem em `references/questions.md`; repo = lido do repositório pelo inventário; fixo = constante; auto = calculado na geração; recepção = preenchido no dia da entrega. Nenhum campo recebe valor de segredo, endereço com credencial ou comando com senha.
+Regras: chaves em inglês, únicas por sentido, iguais nos modelos FR e PT (só o texto ao redor muda). Uma chave usada em linhas repetidas (tabela, lista) tem o mesmo sentido em cada linha. Origem: Q1…Q10 = resposta do usuário (o desenvolvedor que entrega) no arquivo de perguntas, com o número que a pergunta tem em `references/questions.md`; repo = lido do repositório pelo inventário; fixo = constante; auto = calculado na geração; recepção = preenchido no dia da entrega: no documento fica uma linha em branco, `________`, para quem assina. Nenhum campo recebe valor de segredo, endereço com credencial ou comando com senha.
 
 ## Globais (vários documentos)
 
@@ -13,6 +13,7 @@ Regras: chaves em inglês, únicas por sentido, iguais nos modelos FR e PT (só 
 | doc_count | Número de documentos da pasta | fixo (6) | 1–6 |
 | corrections_contact | A quem avisar erros ou esquecimentos | Q10 | 1–6 |
 | owner | Dono do sistema (nome e cargo) | Q1 | 1, 2, 4, 5, 6 |
+| owner_decides | O que o dono decide, só o que as respostas listam (por exemplo «as mudanças»); sem resposta, a marca | Q1 | 1 |
 | tech_lead | Referência técnica (nome e cargo) | Q2 / Q6 | 1, 2, 4, 5, 6 |
 | developer_availability | Condições em que o desenvolvedor continua disponível | Q10 | 1, 2, 4 |
 | vault | Lugar de referência onde os segredos ficam guardados | Q2 | 3, 5 |
@@ -73,6 +74,7 @@ Regras: chaves em inglês, únicas por sentido, iguais nos modelos FR e PT (só 
 | Chave | Significado | Origem |
 |---|---|---|
 | blocked_example / fallback_procedure | Exemplo de pessoas bloqueadas e solução de emergência (como continuar sem o sistema) | Q5 / Q6 |
+| notify_who | Quem é avisado quando há pessoas bloqueadas ou informações em jogo; só quem uma resposta nomeia, senão a marca | Q6 | 4 |
 | symptom_N / symptom_N_check / symptom_N_cause / symptom_N_action / symptom_N_fixed_when / symptom_N_who / symptom_N_how | Para N = 1, 2, 3 (4 no máximo): sintoma, verificação sem risco, causa provável, o que fazer sozinho, sinal de que voltou, quem chamar, como | Q5 / Q6 |
 | tech_lead_contact / tech_lead_hours | Contato e horários da referência técnica | Q6 |
 | vendor / vendor_scope / vendor_contact / vendor_hours | Fornecedor ou prestador, para quê, contato, horários | Q9 |

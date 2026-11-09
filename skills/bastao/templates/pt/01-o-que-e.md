@@ -29,8 +29,10 @@ Preparado em {{doc_date}} por {{author}}, para {{readers}} (direção, administr
 
 ## Onde ele roda
 
+<!-- access_mode: um programa instalado nos computadores, um navegador, ou os dois. Escrever só o que o repositório ou uma resposta mostra. -->
+
 - O programa roda em {{server_location}}.
-- O acesso é por {{access_mode}} (um aplicativo instalado nos computadores, um navegador, ou os dois).
+- O acesso é por {{access_mode}}.
 - Para funcionar, ele precisa de {{external_dependencies}}.
 - As informações ficam gravadas em {{storage_plain}} e são copiadas {{backup_frequency}}.
 
@@ -38,13 +40,13 @@ Preparado em {{doc_date}} por {{author}}, para {{readers}} (direção, administr
 
 | Papel | Nome e cargo | O que essa pessoa decide ou faz |
 |---|---|---|
-| Dono do sistema | {{owner}} | Decide mudanças e renovações |
+| Dono do sistema | {{owner}} | Decide {{owner_decides}} |
 | Referência técnica | {{tech_lead}} | Primeira pessoa a chamar quando algo não vai bem |
 | Desenvolvedor de origem | {{author}} | Disponível {{developer_availability}} |
 
 ## O que tem data
 
-<!-- Resposta à pergunta 8. Se não houver nada, escrever "Nenhum prazo conhecido em {{doc_date}}". O documento 5 é a referência dessas datas. -->
+<!-- Resposta à pergunta 8. Se não houver nada, escrever "Nenhum prazo conhecido em {{doc_date}}". O documento 5 é a referência dessas datas. Entram aqui todas as datas que têm uma pessoa e uma consequência, também as dos documentos 2, 3 e 5: a saída do desenvolvedor, o fim da ajuda dele, a revisão anual, os pagamentos mensais, o domínio. Quem paga não é quem cuida: escrever só o que a resposta diz. -->
 
 | Prazo | O quê | Quem cuida | Se for esquecido |
 |---|---|---|---|

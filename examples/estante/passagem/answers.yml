@@ -1,0 +1,137 @@
+q1:
+  answer: "A dona agora e a Marcia Okafor, diretora pedagogica. Ela decide as mudancas. A Paula Reis (coordenacao) e consultada quando for regra da biblioteca. A Joana Lima, bibliotecaria, usa todo dia (manha e tarde) mas nao decide mudanca."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 1"
+  date: "09/11/2026"
+  fields:
+    owner: "Marcia Okafor, diretora pedagógica"
+    owner_decides: "as mudanças"
+    decision_consulted: "Paula Reis, quando for regra da biblioteca"
+    users: "Joana Lima, bibliotecária"
+q2:
+  answer: "A Denise Prado (tecnica de informatica, denise.prado@jacaranda.example.org) tem acesso SSH ao mini-PC com conta propria \"denise\", criada em setembro. As senhas ficam no Bitwarden da escola, organizacao \"Jacaranda TI\". A Marcia e administradora, a Denise ve a colecao \"Estante\". Eu tenho acesso hoje e vou ser removido quando sair. Admin do app: conta \"joana\" e a minha \"lucas\", que precisa ser desativada. Painel da Zebra: sem senha, mas nao sei se alguem mudou. Quem mais usa a conta \"estante\" da maquina, nao lembro."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 2"
+  date: "09/11/2026"
+  fields:
+    person_name: "Denise Prado"
+    person_title: "técnica de informática"
+    person_contact: "denise.prado@jacaranda.example.org"
+    account: "denise (conexão técnica à máquina ESTANTE01, criada em setembro)"
+q3:
+  answer: "Todo dia: backup as 2h30. Seg a sex as 7h: lembretes por e-mail. Toda semana e todo mes: nada. Todo ano em fevereiro: importacao dos alunos, CSV que vem da secretaria, precisa ser UTF-8. No comeco de cada semestre a Joana cadastra os livros novos e imprime as etiquetas. Quem confere o backup: nao sei, nunca combinei isso com ninguem. Caderno de registro: nao sei de nenhum. Quem faz a importacao de fevereiro: nao deixei definido, acho que seria a Denise, mas confirma com a Marcia."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 3"
+  date: "09/11/2026"
+  fields:
+    review_note: "Nada toda semana. Em fevereiro, importação dos alunos. No começo de cada semestre, Joana Lima cadastra os livros novos e imprime as etiquetas."
+q4:
+  answer: "Nao bloqueia a saida do livro. Nao tem portal antifurto, mesmo a escola achando que tem. Nao manda SMS nem WhatsApp, so e-mail. Nao cobra multa: a coluna existe mas foi desativada em 2025 por decisao da direcao. Nao se conecta sozinho ao sistema da secretaria, o CSV e manual. E nao apaga aluno que falta na lista, isso eu nao lembro de ter mexido, confere."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 4"
+  date: "09/11/2026"
+  fields: {}
+q5:
+  answer: "Os tres sao reais. Tem mais um: em junho de 2026 os e-mails de lembrete pararam por uma semana. O provedor de e-mail (MailExemplo) bloqueou a conta porque o cartao da escola nao pagou. Resolveu o Roberto, do financeiro, pagando. Pode acontecer de novo."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 5"
+  date: "09/11/2026"
+  fields:
+    symptom_4: "lembretes por e-mail parados em 06/2026: o MailExemplo bloqueou a conta porque o cartão da escola não pagou; Roberto, do financeiro, pagou"
+q6:
+  answer: "Ordem: 1) Denise. 2) Se for impressora, a loja que vendeu, Etiquetas Exemplo (nao lembro o telefone). Se for internet, o Provedor Exemplo, o contrato e com a secretaria. 3) Eu, por e-mail: lucas.ferreira.dev@example.com, ate 31/01/2027, de graca, so para duvida, sem mexer no servidor. A Denise pode sozinha: reiniciar containers, olhar logs, rodar backup manual, reimprimir etiqueta. Com a Marcia: atualizar versao, criar admin. Nunca sem mim (ate jan/2027): mexer nas migracoes ou restaurar backup."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 6"
+  date: "09/11/2026"
+  fields:
+    tech_lead: "Denise Prado"
+    author_contact: "lucas.ferreira.dev@example.com"
+    developer_availability: "até 31/01/2027, de graça, só para dúvidas, por e-mail, sem mexer no servidor"
+    alone_list: "reiniciar o programa, ver as mensagens do programa, fazer uma cópia agora, reimprimir etiqueta"
+    with_owner_list: "instalar uma nova versão, criar um administrador"
+    never_without_tech_list: "mexer nas mudanças das informações e restaurar uma cópia, sem Lucas Ferreira, até janeiro de 2027"
+q7:
+  answer: "O backup fica em /home/estante/backups, no proprio mini-PC, guarda 30 dias. Acho que a Denise copia as vezes para um HD externo, mas nao sei. Restaurar de verdade: acho que nunca testei, sendo sincero. Criptografia: nao tem."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 7"
+  date: "09/11/2026"
+  fields:
+    backup_location: "/home/estante/backups, no próprio mini-PC"
+    backup_retention: "30 dias"
+q8:
+  answer: "Dominio jacaranda.example.org vence em 14/03/2027, no registrador de dominios. Quem paga e o Roberto do financeiro. MailExemplo: plano mensal no cartao da escola. Certificado: renova automatico. Nobreak: troquei a bateria em 2024, nao sei a validade."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 8"
+  date: "09/11/2026"
+  fields:
+    due_date: "14/03/2027"
+    due_item: "domínio jacaranda.example.org"
+    due_owner: "Roberto, do financeiro, paga"
+q9:
+  answer: "Mini-PC ESTANTE01, nobreak APC, impressora Zebra GK420t, MailExemplo (e-mail), registrador de dominios, Provedor Exemplo (internet). Contatos: Etiquetas Exemplo vendeu a impressora, telefone eu nao tenho. Provedor Exemplo e contrato da secretaria. Roberto cuida do pagamento do dominio e do e-mail. IP fixo da impressora: nao mudei, mas nao sei se alguem mexeu depois."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 9"
+  date: "09/11/2026"
+  fields:
+    external_dependencies: "mini-PC ESTANTE01, nobreak APC, impressora Zebra GK420t, MailExemplo, registrador de domínios, Provedor Exemplo"
+q10:
+  answer: "Leitores: Marcia, Paula, Joana e Denise. Portugues primeiro, para a escola. Frances tambem, porque a mantenedora (associacao franco-brasileira) pede copia em frances. A pasta fica no Google Drive da escola, em Direcao > TI > Estante. Quem atualiza: Denise. Revisao todo ano em fevereiro, junto com a importacao, Denise com a Marcia. Eu sou o Lucas Ferreira, autor do historico. Contato: lucas.ferreira.dev@example.com, ate 31/01/2027, gratis para duvidas, sem mexer no servidor. Saio no fim de novembro de 2026."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 10"
+  date: "09/11/2026"
+  fields:
+    readers: "Marcia Okafor, Paula Reis, Joana Lima e Denise Prado"
+    author: "Lucas Ferreira"
+    update_owner: "Denise Prado"
+    review_period: "fevereiro"
+    review_owner: "Denise Prado, com Marcia Okafor"
+    dossier_location: "Google Drive da escola, em Direção, TI, Estante"
+    languages: "português primeiro, francês também"
+    developer_leaves: "fim de novembro de 2026"
+q11:
+  answer: "Em producao os lembretes saem e as etiquetas imprimem, a Joana usa. A importacao tambem funciona, foi feita em fevereiro. Por que esses arquivos so descrevem, nao sei explicar, nao lembro. Teria que olhar o codigo de novo."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 11"
+  date: "09/11/2026"
+  fields: {}
+q12:
+  answer: "Nao. A coluna de multa existe mas foi desativada em 2025 por decisao da direcao."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta 12"
+  date: "09/11/2026"
+  fields: {}
+c1:
+  answer: "Denise: denise.prado@jacaranda.example.org. Eu: lucas.ferreira.dev@example.com. Marcia, Paula, Joana e Roberto: nao tenho e-mail nem telefone de cabeca, pede para a secretaria."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta C1"
+  date: "09/11/2026"
+  fields:
+    person_contact_denise: "denise.prado@jacaranda.example.org"
+    author_contact: "lucas.ferreira.dev@example.com"
+c2:
+  answer: "Nao sei, nunca combinamos. Acho que a Joana teria que anotar no caderno, mas isso nao esta definido. Pergunta pra ela."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta C2"
+  date: "09/11/2026"
+  fields: {}
+c3:
+  answer: "Nao lembro bem de onde vem o codigo novo, preciso olhar. Quais mudancas ja foram aplicadas: nao sei dizer sem olhar o banco, a Denise ou eu podemos conferir antes de eu sair."
+  answered_by: user
+  confirmed_by: ""
+  source: "00-perguntas.md, pergunta C3"
+  date: "09/11/2026"
+  fields: {}

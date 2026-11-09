@@ -3,7 +3,8 @@
 
 Usage: style_check.py <folder> [--lang fr|pt] [--max-words N] [--max-sentences N]
 
-Checks every 0N-*.md document outside code blocks, comments and inline code,
+Checks every 0N-*.md document and every proposition-0N-* / proposta-0N-* proposal
+outside code blocks, comments and inline code,
 with the rule numbers of references/writing-style.md. Exit 1 with
 "file:line  rule N  detail" when something is flagged, exit 0 otherwise. It
 flags; the agent decides and rewrites, and notes in verification.md any
@@ -19,6 +20,9 @@ replaces every limit). A URL, an e-mail address and a {{field}} count as one
 word; inline code counts as none. A period after a title or a reference
 abbreviation ("M.", "Sr.", "Dr.", "n.", "p.") ends no sentence, nor does a
 mark followed by a lowercase word or a closing quote (« Erreur ! » quand...).
+
+Rule 31 (the skill's own): documents 1, 4 and 6 hold no technical term of the
+jargon lists of writing-style.md; a product name with what it does is for you to judge.
 """
 from __future__ import annotations
 
@@ -28,10 +32,11 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _common import doc_language, doc_number, iter_docs, prose_lines  # noqa: E402
+from _common import doc_language, doc_number, iter_docs, iter_proposals, prose_lines  # noqa: E402
 
 STYLE_FILE = Path(__file__).resolve().parent.parent / "references" / "writing-style.md"
 PROCEDURE_DOCS = (3, 4)
+PLAIN_DOCS = (1, 4, 6)  # no technical term (rule 31)
 PROCEDURE_LIMIT = 20
 DESCRIPTIVE_LIMIT = 25
 PROSE_SENTENCES = 3
@@ -56,14 +61,15 @@ THEMATIC_BREAK = re.compile(r"(-{3,}|\*{3,}|_{3,})")
 
 def load_words() -> dict[str, list[str]]:
     """The flagged phrases, read from the 'Words the checker flags' sections."""
-    out: dict[str, list[str]] = {"fr": [], "pt": []}
+    out: dict[str, list[str]] = {"fr": [], "pt": [], "jargon_fr": [], "jargon_pt": []}
     lang = None
+    sections = {"## Words the checker flags in French": "fr",
+                "## Words the checker flags in Portuguese": "pt",
+                "## Jargon the checker flags in documents 1, 4 and 6, in French": "jargon_fr",
+                "## Jargon the checker flags in documents 1, 4 and 6, in Portuguese": "jargon_pt"}
     for line in STYLE_FILE.read_text(encoding="utf-8").splitlines():
-        if line.startswith("## Words the checker flags in French"):
-            lang = "fr"
-            continue
-        if line.startswith("## Words the checker flags in Portuguese"):
-            lang = "pt"
+        if line in sections:
+            lang = sections[line]
             continue
         if line.startswith("## "):
             lang = None
@@ -155,6 +161,8 @@ def check_file(path: Path, lang: str, words: dict[str, list[str]],
                max_words: int | None = None, max_sentences: int | None = None) -> list[tuple]:
     out = []
     patterns = [(w, re.compile(rf"(?<![\w-]){re.escape(w)}(?![\w-])", re.I)) for w in words[lang]]
+    jargon = ([(w, re.compile(rf"(?<![\w-]){re.escape(w)}(?![\w-])", re.I)) for w in words["jargon_" + lang]]
+              if doc_number(path) in PLAIN_DOCS else [])
     limit = max_words or (PROCEDURE_LIMIT if doc_number(path) in PROCEDURE_DOCS else DESCRIPTIVE_LIMIT)
     text = path.read_text(encoding="utf-8")
     lines = []
@@ -179,6 +187,9 @@ def check_file(path: Path, lang: str, words: dict[str, list[str]],
         for w, pat in patterns:
             if pat.search(line):
                 out.append((no, 7, f'flagged word "{w}"'))
+        for w, pat in jargon:
+            if pat.search(line):
+                out.append((no, 31, f'technical term "{w}", use the plain expression'))
         if RHETORIC[lang].search(line):
             out.append((no, 9, "rhetorical pair"))
     for kind, parts in blocks(lines):
@@ -206,9 +217,13 @@ def main() -> int:
     ap.add_argument("--max-sentences", type=int, default=None,
                     help="one paragraph limit for every block, instead of 3 (6 for items in documents 3 and 4)")
     a = ap.parse_args()
+    if not Path(a.folder).is_dir():
+        print(f"not a folder: {a.folder} (give an absolute path)", file=sys.stderr)
+        return 2
     words = load_words()
     total = 0
-    for path in iter_docs(Path(a.folder)):
+    # The six documents and the proposals: a proposal is the agent's own text, so it is checked too.
+    for path in sorted(iter_docs(Path(a.folder)) + iter_proposals(Path(a.folder)), key=lambda p: p.name):
         lang = a.lang or doc_language(path)
         for no, rule, detail in check_file(path, lang, words, a.max_words, a.max_sentences):
             print(f"{path.name}:{no}  rule {rule}  {detail}")

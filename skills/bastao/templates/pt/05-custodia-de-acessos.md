@@ -5,7 +5,7 @@ Preparado em {{doc_date}} por {{author}}, só para {{owner}} e {{tech_lead}}. N�
 <!-- Este documento não contém nenhuma senha, chave ou token. Ele diz o que existe, onde fica guardado, quem tem acesso, como trocar, e o que acontece se for perdido ou vazar.
      O scanner de segredos recusa a geração se algum valor parecer senha, chave ou token.
      Nenhum endereço com credencial (usuario:senha@…, token numa URL), nenhum comando com senha como argumento ou variável de ambiente. Quando um procedimento exigir um segredo, escrever "(a senha está em {{vault}})".
-     Os nomes dos parâmetros vêm do repositório (arquivos de exemplo, docker-compose, scripts). Se o repositório contiver um valor em claro, nunca reproduzi-lo: registrar como ponto a resolver no documento 6 ("segredo em claro no repositório: {{param_name}}").
+     Os nomes dos parâmetros vêm do repositório (arquivos de exemplo, docker-compose, scripts). Se o repositório contiver um valor escrito sem proteção, nunca reproduzi-lo: registrar como ponto a resolver no documento 6 ("segredo em claro no repositório: {{param_name}}").
      Este documento é a referência para os acessos e suas datas; o documento 2 "Contas e acessos por papel" e o documento 1 "O que tem data" são cópias dele, a corrigir juntos.
      Se o desenvolvedor de origem mantiver algum acesso depois da passagem, ele aparece no inventário com data de fim.
      {{vault}}, {{last_restore_date}}, {{backup_offsite}} e {{backup_encrypted}} ficam com a marca [A CONFIRMAR] até o dono confirmar de viva voz, mesmo que o repositório sugira um valor. Se o desenvolvedor disse o lugar, escrever o lugar seguido da marca: "o Bitwarden da escola [A CONFIRMAR]", nunca a marca sozinha.

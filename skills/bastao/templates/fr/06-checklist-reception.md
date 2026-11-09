@@ -11,7 +11,7 @@ Remis le {{doc_date}} par {{author}} à {{successor}} ({{successor_title}}, {{su
 
 - [ ] Les documents 1 à 4.
 - [ ] Le document 5, reçu par le référent technique, {{tech_lead}}.
-- [ ] Le code source : {{repo_location}}, version {{repo_version}}.
+- [ ] Le programme, tel qu'il est écrit : {{repo_location}}, version {{repo_version}}.
 
 ## J'ai vérifié par moi-même
 
@@ -28,6 +28,8 @@ Remis le {{doc_date}} par {{author}} à {{successor}} ({{successor_title}}, {{su
 - [ ] Je sais où le dossier est gardé ({{dossier_location}}) et qui le met à jour.
 
 ## Ce qui reste à régler avant la signature
+
+<!-- Chaque phrase qui parle du coffre des mots de passe, de la dernière restauration, de la copie hors de la machine ou du chiffrement porte sa marque [À CONFIRMER] dans la phrase, et la réserve de celui qui a répondu (« je crois ») reste. La marque dans les colonnes Qui et Pour quand ne compte pas. Les secrets écrits sans protection : le nom de la variable, suivi de ce que c'est en mots simples. -->
 
 | Point | Qui | Pour quand |
 |---|---|---|

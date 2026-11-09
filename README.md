@@ -33,13 +33,13 @@ Installation :
 
 Exemple complet, sur un dépôt fictif : `examples/estante/`. Extrait du document 4 :
 
-> **Les étiquettes ne sortent pas de l'imprimante**
+> **Les rappels par e-mail ne partent pas (06/2026)**
 >
-> - Vérifiez d'abord, sans risque : l'imprimante Zebra est-elle allumée ? Le PC de la bibliothèque a-t-il reçu une mise à jour de Windows ?
-> - Le plus souvent, ça veut dire : l'adresse réseau de l'imprimante a changé (08/2026).
-> - Ce que vous pouvez faire vous-même : rien. Denise Prado réimprime.
-> - C'est réparé quand : une étiquette sort entière.
-> - Si ça ne suffit pas, appelez Denise Prado, puis Etiquetas Exemplo.
+> - Vérifiez d'abord, sans risque : l'abonnement MailExemplo est-il payé sur la carte de l'école ?
+> - La dernière fois, la cause était : la carte n'a pas payé, MailExemplo a bloqué le compte.
+> - Ce que vous pouvez faire vous-même : seulement la vérification. Demandez le paiement à Roberto, des finances.
+> - C'est réparé quand : les rappels repartent.
+> - Si ça ne suffit pas, appelez Denise Prado.
 
 Essayer : « Prépare le dossier de passation de ce dépôt pour l'équipe informatique du client. » L'agent lit le dépôt, écrit le dossier dans `passation/` et laisse ses questions dans `passation/00-questions.md`. Répondez quand vous voulez ; au passage suivant, il complète le dossier. Avec le plugin (version 0.2), un hook regarde à la fin de chaque réponse de l'agent si un fichier dont le dossier dépend a changé. Si oui, il demande à l'agent de mettre le dossier à jour. Tant que le dossier n'existe pas, il ne fait rien.
 
@@ -72,13 +72,13 @@ Instalação:
 
 Exemplo completo, num repositório fictício: `examples/estante/`. Trecho do documento 4:
 
-> **As etiquetas não saem na impressora**
+> **Os lembretes por e-mail não saem (06/2026)**
 >
-> - Verifique primeiro, sem risco: a impressora Zebra está ligada? O PC da biblioteca recebeu uma atualização do Windows?
-> - Na maioria das vezes, isso quer dizer: o endereço da impressora na rede mudou (08/2026).
-> - O que você pode fazer por conta própria: nada. Denise Prado reimprime.
-> - Está consertado quando: uma etiqueta sai inteira.
-> - Se não resolver, chame Denise Prado, depois a Etiquetas Exemplo.
+> - Verifique primeiro, sem risco: o plano do e-mail MailExemplo está pago no cartão da escola?
+> - Da última vez, a causa foi: o cartão não pagou, e o MailExemplo bloqueou a conta.
+> - O que você pode fazer por conta própria: só a verificação. Peça o pagamento a Roberto, do financeiro.
+> - Está consertado quando: os lembretes voltam a sair.
+> - Se não resolver, chame Denise Prado.
 
 Experimente: "Prepare a pasta de passagem deste repositório para a equipe de TI do cliente." O agente lê o repositório, escreve a pasta em `passagem/` e deixa as perguntas em `passagem/00-perguntas.md`. Responda quando quiser; na rodada seguinte, ele completa a pasta. Com o plugin (versão 0.2), um hook olha no fim de cada resposta do agente se um arquivo de que a pasta depende mudou. Se mudou, pede ao agente que atualize a pasta. Enquanto a pasta não existe, ele não faz nada.
 

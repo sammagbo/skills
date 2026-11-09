@@ -11,7 +11,7 @@ Entregue em {{doc_date}} por {{author}} a {{successor}} ({{successor_title}}, {{
 
 - [ ] Os documentos 1 a 4.
 - [ ] O documento 5, recebido pela referência técnica, {{tech_lead}}.
-- [ ] O código-fonte: {{repo_location}}, versão {{repo_version}}.
+- [ ] O programa, do jeito que está escrito: {{repo_location}}, versão {{repo_version}}.
 
 ## Verifiquei pessoalmente
 
@@ -28,6 +28,8 @@ Entregue em {{doc_date}} por {{author}} a {{successor}} ({{successor_title}}, {{
 - [ ] Sei onde a pasta fica guardada ({{dossier_location}}) e quem a atualiza.
 
 ## O que falta resolver antes da assinatura
+
+<!-- Cada frase que fala do cofre de senhas, da última restauração, da cópia fora da máquina ou da criptografia leva a sua marca [A CONFIRMAR] dentro da frase, e a ressalva de quem respondeu ("acho que") fica. A marca nas colunas Quem e Para quando não vale. Segredos escritos sem proteção: o nome da variável, seguido do que ela é em palavras simples. -->
 
 | Ponto | Quem | Para quando |
 |---|---|---|

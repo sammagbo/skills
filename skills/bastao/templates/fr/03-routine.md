@@ -8,7 +8,7 @@ Chaque geste fait et chaque vérification sont notés dans {{logbook}} : la date
      Chaque geste est écrit pour être exécuté, pas compris : la commande exacte à coller, ou l'écran et le bouton exacts.
      Aucune commande qui modifie quelque chose sans dire d'abord comment vérifier qu'elle a réussi.
      Jamais de mot de passe ni de jeton dans une commande ou une capture d'écran ; aucune adresse contenant un identifiant (utilisateur:motdepasse@…, jeton dans une URL) ; aucune commande avec un mot de passe en argument ou en variable d'environnement. Quand une procédure exige un secret, écrire "(le mot de passe est dans {{vault}})".
-     Si le dépôt contient une valeur en clair (docker-compose, script), ne jamais la reproduire : l'inscrire comme point à régler dans le document 6 ("secret en clair dans le dépôt : {{param_name}}").
+     Si le dépôt contient une valeur écrite sans protection (docker-compose, script), ne jamais la reproduire : l'inscrire comme point à régler dans le document 6 ("mot de passe écrit sans protection dans le code : {{param_name}}", avec ce que c'est, en mots simples).
      Préciser l'heure du serveur ou l'heure locale quand elles diffèrent.
      Ce que le dépôt ne prouve pas et que le propriétaire n'a pas confirmé reste [À CONFIRMER]. Écrire comme une personne (references/writing-style.md). -->
 
@@ -47,19 +47,19 @@ Chaque geste fait et chaque vérification sont notés dans {{logbook}} : la date
 
 ## À l'occasion
 
-<!-- Nouvelle personne à enregistrer, départ d'une personne, changement ou panne d'équipement, nouvelle version du programme, restauration d'une sauvegarde. Les quatre dernières lignes sont fixes. -->
+<!-- Nouvelle personne à enregistrer, départ d'une personne, changement ou panne d'équipement, nouvelle version du programme, restauration d'une sauvegarde. Les quatre dernières lignes sont fixes. Si une réponse limite qui peut installer, revenir en arrière ou restaurer (par exemple seulement le développeur, jusqu'à une date), la limite entre dans ces lignes, au début de la phrase. -->
 
 - {{event}} : {{event_procedure}} ({{event_owner}}).
 - Quelqu'un cité dans le dossier arrive ou part : {{update_owner}} met à jour les documents 2 et 5 le jour même.
 - Un incident nouveau se produit : {{update_owner}} l'ajoute au document 4 et en retire un symptôme disparu. Le document reste sur une page.
-- Installer une nouvelle version, avec l'accord prévu au document 2 (« Qui décide quoi »). D'abord une sauvegarde : {{backup_procedure}}. Ensuite : {{upgrade_procedure}}. Vérifier que ça a marché : {{upgrade_check}}. Si ça ne marche pas, revenir en arrière : {{rollback_procedure}}. Si la nouvelle version a modifié les informations enregistrées, les remettre aussi depuis la sauvegarde.
+- Installer une nouvelle version, avec l'accord prévu au document 2 (« Qui décide quoi »). D'abord une sauvegarde : {{backup_procedure}}. Ensuite : {{upgrade_procedure}}. Vérifier que ça a marché : {{upgrade_check}}. Si ça ne marche pas, revenir en arrière : {{rollback_procedure}}. Si la nouvelle version a modifié les informations enregistrées, ne continuez pas seul : voyez « Restaurer une sauvegarde ».
 - Avant de restaurer une sauvegarde, sauvegarder l'état actuel ({{backup_procedure}}). La restauration remplace toutes les informations actuelles : ce qui a été saisi depuis la sauvegarde restaurée est perdu. Ensuite, restaurer : {{restore_procedure}}. Dernière restauration prouvée le {{last_restore_date}}. <!-- même date que le document 5, "Sauvegardes" -->
 
 ## Les commandes à coller
 
 Cette partie s'adresse au référent technique. Les autres lecteurs peuvent passer.
 
-<!-- Chaque commande est précédée de ce qu'elle fait et suivie de ce qu'on doit voir. Les commandes de vérification d'abord (elles ne modifient rien), la commande qui modifie ensuite, jamais enchaînées sur une seule ligne. -->
+<!-- Chaque commande est précédée de ce qu'elle fait et suivie de ce qu'on doit voir. Les commandes de vérification d'abord (elles ne modifient rien), la commande qui modifie ensuite, jamais enchaînées sur une seule ligne. Chaque bloc commence par le dossier où la commande s'exécute (cd ...) et dit avec quel compte. Une commande n'entre que si ce dont elle a besoin existe d'après les documents 2, 5 et 6 : sans adresse distante, pas de git pull. Procédure de plus de cinq étapes : un bloc par étape, l'avertissement avant la commande. -->
 
 ```bash
 # Vérifier que le programme tourne. Ne modifie rien. On doit voir : {{expected_state}}

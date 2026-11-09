@@ -1,53 +1,53 @@
 # Estante: o que é e o que não faz
 
-Preparado em 30/10/2026 por Lucas Ferreira, para Márcia Okafor, Paula Reis, Joana Lima e Denise Prado.
+Preparado em 09/11/2026 por Lucas Ferreira, para a direção e a equipe de TI.
 
 ## Em uma frase
 
-O Estante serve para registrar os empréstimos da biblioteca. Quem usa: Joana Lima, a bibliotecária.
+Estante serve para registrar empréstimos e devoluções de livros da biblioteca da Escola Jacarandá. Quem usa: Joana Lima, bibliotecária.
 
 ## O que ele faz
 
-- Registra empréstimos e devoluções pelo código de barras. Usado por Joana Lima, todo dia.
-- Manda um e-mail aos responsáveis quando um livro atrasa mais de 3 dias. Sozinho, às 07:00, nos dias úteis.
-- Imprime as etiquetas dos livros novos. Usado por Joana Lima, a cada semestre.
-- Recebe a lista dos alunos. Usado por Denise Prado, em fevereiro.
+- Registra empréstimos e devoluções, com o código de barras do livro e a carteirinha.
+- Manda e-mail de lembrete aos responsáveis, quando um livro passa de 3 dias de atraso. Às 07:00, de segunda a sexta.
+- Imprime a etiqueta dos livros novos.
+
+Lucas Ferreira diz que tudo isso funciona. O texto entregue só o descreve: documento 6.
 
 ## O que ele não faz
 
-- Não impede a saída de um livro: não há portal antifurto, embora a escola ache que tem.
-- Não manda SMS nem WhatsApp, só e-mail.
-- Não calcula multa: ela foi desligada em 2025.
-- Não se liga sozinho ao sistema da secretaria.
+- Não bloqueia a saída do livro. Não tem portal antifurto, mas a escola acha que tem.
+- Não manda SMS nem WhatsApp.
+- Não cobra multa: desativada em 2025, por decisão da direção.
+- Não se liga à secretaria: a lista de alunos é importada à mão.
 
 ## Onde ele roda
 
-- O programa roda no mini-PC ESTANTE01, na sala da coordenação, em três partes: estante-app (o programa), estante-db (os dados) e estante-caddy (o cadeado).
-- O acesso é pelo navegador, em https://estante.jacaranda.example.org.
-- Ele depende da internet, do MailExemplo (e-mail) e da impressora.
-- As informações ficam no mini-PC, copiadas às 02:30.
+- Na máquina ESTANTE01, na sala da coordenação, ligada num nobreak.
+- Três partes: estante-app (o programa da tela), estante-db (as informações) e estante-caddy (o cadeado do endereço).
+- Acesso: navegador, em estante.jacaranda.example.org.
+- As informações são copiadas todo dia às 02:30, na mesma máquina. Cópia fora dela: Lucas Ferreira acha que Denise Prado copia às vezes para um disco externo [A CONFIRMAR].
 
 ## Quem é responsável
 
 | Papel | Nome e cargo | O que essa pessoa decide ou faz |
 |---|---|---|
-| Dono do sistema | Márcia Okafor, diretora pedagógica | Decide mudanças e renovações |
+| Dono do sistema | Marcia Okafor, diretora pedagógica | Decide as mudanças |
 | Referência técnica | Denise Prado, técnica de informática | Primeira pessoa a chamar |
-| Desenvolvedor de origem | Lucas Ferreira | Dúvidas por e-mail, até 31/01/2027 |
+| Desenvolvedor de origem | Lucas Ferreira | Sai em 11/2026. Dúvidas por e-mail até 31/01/2027 |
 
 ## O que tem data
 
 | Prazo | O quê | Quem cuida | Se for esquecido |
 |---|---|---|---|
-| Todo mês | Pagamento do MailExemplo | Roberto, do financeiro | Os lembretes param |
-| 14/03/2027 | Domínio jacaranda.example.org | Roberto, do financeiro | O site deixa de abrir |
-| [A CONFIRMAR] | Bateria do nobreak (de 2024) | [A CONFIRMAR] | O mini-PC desliga na falta de luz |
+| 14/03/2027 | Renovação do domínio | Roberto, do financeiro (paga); quem renova: [A CONFIRMAR] | [A CONFIRMAR] |
+| Todo mês | Plano do e-mail MailExemplo | Roberto, do financeiro (paga) | Lembretes pararam em 06/2026 |
 
 ## As três coisas que nunca se deve fazer
 
-1. Recolocar uma cópia de segurança sem Lucas Ferreira, porque nunca foi testado.
-2. Mudar a forma das informações sem Lucas Ferreira, porque a volta atrás não está escrita.
-3. Carregar a lista dos alunos fora do formato UTF-8, porque isso duplicou 212 alunos.
+1. Desligar a opção que liga o programa com a máquina: em 11/03/2025 o sistema não voltou após uma queda de luz.
+2. Importar alunos sem verificar os acentos: em 19/02/2026 a importação duplicou 212 alunos.
+3. Mudar o endereço da impressora de etiquetas: em 08/2026 ela parou de imprimir.
 
 ---
 Este documento faz parte da pasta de passagem (6 documentos). Erro ou esquecimento? Avise Denise Prado.

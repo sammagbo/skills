@@ -12,34 +12,39 @@ A pack exists when a folder holds both `inventory.json` and `verification.md`. A
 
 ## The questions file
 
-`00-questions.md` (French) or `00-perguntas.md` (Portuguese). Its sections, in this order:
+`00-questions.md` (French) or `00-perguntas.md` (Portuguese). It is written for the developer, who is not a technician of the pack: plain words, no file name or line number inside a question, no "documents 2, 3 and 6". Its sections, in this order:
 
-1. A title, then four lines on how to answer: write after "Réponse :" / "Resposta:", in any order, at any time; never a password, a key or a PIN, only the place where it is kept; pass to the owner what only the owner knows; save the file, and the next run does the rest.
+1. A title, then a short opening in plain words: the answers fill the handover folder; write after "Réponse :" / "Resposta:"; any order, any time; "je ne sais pas" / "não sei" is a good answer; never a password, a key or a PIN, only the place where it is kept; save the file, and the agent uses the answers the next time it works on the folder. The opening also says that the last block is not for the developer: he forwards it, and under each question of that block it names who should answer (the owner or the technical referent, by name when the answers give one).
 2. "Urgent" / "Urgente", only when a hook run met one of the two cases of rule 12. Leave the heading out when it is empty.
-3. "Questions" / "Perguntas": the open questions, the one that fills the most cells first. Each keeps the number it has in `references/questions.md`, so "Question 7" can come first.
-4. "Si vous avez cinq minutes de plus" / "Se tiver cinco minutos a mais": three follow-up questions at most, numbered C1 to C3.
-5. "Répondu" / "Respondidas": the answered questions, with their date, moved here by the skill. Questions 2 and 7, which hold the four fields of rule 3, keep under their answer an empty line "Confirmé par le propriétaire :" / "Confirmado pelo dono:" until the user writes there the owner's name and the date. The user can also write "Correction :" / "Correção:" under any answered question, with the new answer.
+3. "Questions" / "Perguntas": the open questions for the developer, the one that fills the most cells first. Each question has its number, the question (one thing, two at most; a question of `references/questions.md` that asks more is split in two parts, 1a and 1b, which keep the number 1), "Ce que je sais déjà" / "O que já sei" (what the repository showed, in plain words and with no technical term unless the developer used it himself, the file named at the end in parentheses, no line number), "Cela sert à" / "Serve para" (what it unlocks, in words a school secretary uses: "what to do if it breaks", "who does what"), and the empty answer line.
+4. "Si vous avez cinq minutes de plus" / "Se tiver cinco minutos a mais": three follow-up questions at most, C1 to C3.
+5. "Pour le propriétaire ou le référent technique" / "Para o dono ou a referência técnica": the questions the developer cannot answer, which he forwards: what he said he does not know, what nobody decided, and any question about a decision (who checks the backup every day, who updates the folder). A question the developer can answer from what he knows, such as where the new code comes from at install time or where the e-mail password is kept, stays in "Questions" for him. Same layout, with an answer line where the person who answers writes their name.
+6. "Répondu" / "Respondidas": the answered questions, with their date, moved here by the skill.
+
+Numbers. Questions 1 to 10 keep the numbers of `references/questions.md`; follow-ups are C1 to C3. Any other question (what an answer left open, a question for the owner) takes the next free number from 11, never a number already used, and goes to "Questions" or to the block for the owner, never to the follow-up block, which holds C1 to C3 only, and says "suite de la question N" / "continua a pergunta N" when it is the open part of one. A question stands in one block only. A question that is answered in part moves to "Répondu" / "Respondidas" with the developer's answer word for word (only a secret is replaced), never shortened to what the next question did not take; its open part becomes a new question. The line that document 4 gives for the other symptoms names the number of the open question that holds them.
+
+"I do not know" and "nobody decided" fill no field. The fields stay marked, the answer moves to "Respondidas" as the developer's answer, and the question, reworded, goes to the block for the owner or the referent. A document says "Lucas Ferreira ne sait pas" / "Lucas Ferreira não sabe", never that something does not exist or was never agreed, unless an answer says so in those words.
 
 One question, in Portuguese:
 
 ```markdown
 ### Pergunta 7
 
-Existe backup? Onde, com que frequência, e quando foi a última restauração provada?
+Existe backup? Onde fica, com que frequência é feito, e quando foi a última vez que alguém conseguiu recuperar as informações a partir dele?
 
-O repositório mostra: `deploy/backup.sh`, agendado às 02:30 em `deploy/crontab` (linha 3). Nada sobre restauração.
-Libera: documentos 3, 5 e 6.
+O que já sei: um programa copia as informações todo dia às 02:30 (arquivo de tarefas agendadas). Não sei se alguém já testou recuperar uma cópia.
+Serve para: o que fazer se quebrar, quem guarda o quê e a lista de recepção.
 
 Resposta:
 ```
 
-A question the repository fully answered stays, in one line, as a confirmation: "Le dépôt dit : sauvegarde à 02:30 par `deploy/backup.sh`. C'est bien celle-là ?" / "O repositório diz: backup às 02:30 por `deploy/backup.sh`. É esse mesmo?".
+A question the repository fully answered stays, in one line, as a confirmation: "Le dépôt dit : sauvegarde à 02:30. C'est bien celle-là ?" / "O repositório diz: backup às 02:30. É esse mesmo?".
 
 An answer that holds a secret: replace the value with "(retiré)" / "(removido)" and write under it "Réponse retirée le DD/MM/YYYY : elle contenait un mot de passe. Écrivez seulement l'endroit où il est gardé." / "Resposta removida em DD/MM/YYYY: continha uma senha. Escreva só o lugar onde ela fica guardada.".
 
 ## answers.yml
 
-One entry per answered question, under its number. A later run adds entries. It changes an existing entry only for a line the user wrote under that question in "Répondu" / "Respondidas": "Confirmé par le propriétaire" / "Confirmado pelo dono" sets `confirmed_by`; "Correction" / "Correção" moves the old answer to `previous` and writes the new one. "History" notes each change. A value never holds a secret.
+One entry per answered question, under its number. The file exists from the first run as an empty mapping, `{}`. A later run adds entries. It changes an existing entry only for a line the user wrote under that question in "Répondu" / "Respondidas": "Confirmé par le propriétaire" / "Confirmado pelo dono" sets `confirmed_by`; "Correction" / "Correção" moves the old answer to `previous` and writes the new one. "History" notes each change. A value never holds a secret.
 
 ```yaml
 q7:
@@ -54,22 +59,22 @@ q7:
     last_restore_by: "Denise Prado"
 ```
 
-`answered_by` is `user`, or `owner` when the user writes that the owner gave the answer. `confirmed_by` holds the owner's name and the date only when the user writes that the owner confirmed in person; the four fields of rule 3 (`vault`, `last_restore_date`, `backup_offsite`, `backup_encrypted`) keep their marker until it does. In the example, `last_restore_date` stays marked.
+`answer` is the developer's text as he wrote it. A hedged answer ("acho que", "je crois") and "I do not know" fill no field of rule 3: `fields` leaves `vault`, `last_restore_date`, `backup_offsite` and `backup_encrypted` out until `confirmed_by` is set, and the documents write the hedge with the marker. `answered_by` is `user`, or `owner` when the user writes that the owner gave the answer. `confirmed_by` holds the owner's name and the date only when the user writes that the owner confirmed in person; the four fields of rule 3 (`vault`, `last_restore_date`, `backup_offsite`, `backup_encrypted`) keep their marker until it does. In the example, `last_restore_date` stays marked.
 
 ## verification.md
 
-Fixed sections, in this order. Each run that changes the pack rewrites them all except "History", which it extends. A run that changes nothing rewrites only the first lines and adds nothing to "History".
+Fixed sections, in this order, and no other: an extra finding goes under "Contradictions found" or "Still marked". Each run that changes the pack rewrites them all except "History", which it extends. A run that changes nothing rewrites only the first lines and adds nothing to "History".
 
 1. The first lines: "Run: DD/MM/YYYY, commit <short>"; "Status: draft" or "Status: ready for review"; "Second folder: <path>" when there are two languages. These lines change on every run, even one that changes nothing else: the hook compares file times with this file.
-2. "Checks": one line per script and its result; the word and marker counts copied from `coverage_check.py`.
+2. "Checks": one line per script and its result; the word and marker counts copied from the output of `coverage_check.py` after your last edit, never from memory. A run that changes the pack replaces the whole section; it keeps no line from an earlier run.
 3. "Fixed": what this run corrected.
 4. "Still marked": the markers left, per document.
-5. "Still to rewrite": style or coverage flags that this run did not fix: in sections it did not change, in a pack written before the current rules, or in a document edited by hand (marked "hand edit"). The hand-back counts them.
+5. "Still to rewrite": style or coverage flags that this run did not fix: in sections it did not change, in a pack written before the current rules, in a document edited by hand (marked "hand edit"), or because of a proposal that is pending (marked "proposal pending"). A hand edit made in one language only is listed here as a translation to do, and offered in the hand-back; the agent translates it only when the user asks. The hand-back counts every entry.
 6. "Words kept on purpose": flagged words that are the right word in context.
 7. "Words chosen": words picked for things that no list covers (rule 26 of `references/writing-style.md`).
 8. "Contradictions found": both sides, each with its source (file and line, or question and date).
 9. "Fingerprints": a table `| File | SHA-256 |`, one row per document 1 to 6 in each language, the `sha256sum` of the file as you leave it.
-10. "History": a heading per run, `### DD/MM/YYYY, commit <short>`, then three lines: what changed in the repository, what was answered, which documents moved.
+10. "History": a heading per run, `### DD/MM/YYYY, commit <short>`, with no tag after the commit, then three lines: what changed in the repository, what was answered, which documents moved.
 
 ## Fingerprints and hand edits
 
@@ -77,7 +82,7 @@ Before touching a document, compute its SHA-256 and compare it with "Fingerprint
 
 - Same hash: the document is yours to update.
 - Different hash, and nothing that feeds this document changed: someone edited it by hand. Their version is the new baseline. Record its hash and leave it, even when a check flags it: the flags go under "Still to rewrite", marked "hand edit", and wait for the user.
-- Different hash, and something that feeds it changed: do not overwrite it. Write your version beside it as `proposition-<name>.md` (French) or `proposta-<name>.md` (Portuguese), record both hashes, and name it in the hand-back. The user merges. `style_check.py` and `coverage_check.py` skip these files; `secret_scanner.py` reads them. When a later run finds the proposal gone, the document as it stands is the baseline.
+- Different hash, and something that feeds it changed: do not overwrite it. Write your version beside it as `proposition-<name>.md` (French) or `proposta-<name>.md` (Portuguese), record both hashes, and name it in the hand-back. The same document of the other language gets a proposal too, translated from yours, so the two languages stay coherent until the user merges. While proposals are pending, `coverage_check.py --merged` checks the pack as it will be after the merge, and that is the result "Checks" records, with the word counts of the proposals. The user merges. `style_check.py` and `secret_scanner.py` read the proposals; `coverage_check.py` ignores them unless you give it `--merged`, which checks them in place of the documents they sit beside. When a later run finds the proposal gone, the document as it stands is the baseline.
 
 A document you change takes the date of the run in its header (`{{doc_date}}`).
 
@@ -85,11 +90,11 @@ A document you change takes the date of the run in its header (`{{doc_date}}`).
 
 - A new answer in the questions file.
 - In the inventory, without its `git` block: a service, a scheduled job, a variable name, a secret in clear or a deploy document that appeared or disappeared.
-- A file of the successor list changed since the recorded commit, in a commit or in the working tree.
+- A file of the successor list changed since the recorded commit, in a commit or in the working tree (`git diff --name-only <commit>` for tracked files, `git status --short` for new ones).
 
 The successor list: compose and container files (`docker-compose*.yml`, `compose*.yml`, `Dockerfile*`), cron and systemd files, `.env.example` and its variants, deploy, operations, incident and runbook documents, scripts named like backup, import, sync, restore or migrate, Java or Kotlin files with `@Scheduled`, `application*.properties`, and the README.
 
-A new commit is not a change by itself: it only serves to list the changed files (`git diff --name-only <recorded commit>`). The version in document 6 moves only when the user says a version was installed.
+A `.env` file is never a change, even when `git status --short` lists it as new: it is never opened. A new commit is not a change by itself: it only serves to list the changed files (`git diff --name-only <recorded commit>`). The version in document 6 moves only when the user says a version was installed.
 
 ## Hook contract
 

@@ -1,62 +1,68 @@
 # Estante : qui fait quoi
 
-Préparé le 30/10/2026 par Lucas Ferreira, pour Márcia Okafor, Paula Reis, Joana Lima et Denise Prado.
+Préparé le 09/11/2026 par Lucas Ferreira, pour Marcia Okafor, Paula Reis, Joana Lima et Denise Prado.
 
 ## Les personnes
 
 | Nom | Fonction | Rôle dans le système | Joignable par |
 |---|---|---|---|
-| Márcia Okafor | Directrice pédagogique | Propriétaire du système | [À CONFIRMER] |
-| Denise Prado | Technicienne informatique de l'école | Référent technique | denise.prado@jacaranda.example.org, du lundi au mercredi, de 8 h à 12 h |
-| Joana Lima | Bibliothécaire | Opérateur quotidien (bibliothèque) | [À CONFIRMER] |
-| Paula Reis | Coordination | Consultée sur les règles de la bibliothèque | [À CONFIRMER] |
-| Roberto (nom de famille [À CONFIRMER]) | Service financier | Paie le domaine et l'e-mail MailExemplo | [À CONFIRMER] |
-| Lucas Ferreira | Développeur | Développeur d'origine, disponible jusqu'au 31/01/2027, gratuitement, seulement pour des questions, sans toucher au serveur | lucas.ferreira.dev@example.com |
+| Marcia Okafor | Directrice pédagogique | Propriétaire du système | Demander au secrétariat [À CONFIRMER] |
+| Denise Prado | Technicienne informatique | Référent technique | denise.prado@jacaranda.example.org |
+| Joana Lima | Bibliothécaire | Opératrice quotidienne (bibliothèque), matin et après-midi | Demander au secrétariat [À CONFIRMER] |
+| Paula Reis | Coordination | Consultée sur les règles de la bibliothèque | Demander au secrétariat [À CONFIRMER] |
+| Roberto | Finances | S'occupe du paiement du domaine et de l'e-mail | Demander au secrétariat [À CONFIRMER] |
+| Lucas Ferreira | Développeur | Développeur d'origine, disponible par e-mail jusqu'au 31/01/2027, pour des questions seulement, sans toucher à la machine | lucas.ferreira.dev@example.com |
+
+Lucas Ferreira part fin novembre 2026. Il est le seul auteur dans l'historique des changements du programme (git, le registre de chaque changement du texte du programme).
 
 ## Qui décide quoi
 
 | Décision | Qui décide | Qui doit être consulté avant | Qui est prévenu après |
 |---|---|---|---|
-| Changer une règle de fonctionnement | Márcia Okafor | Paula Reis, si c'est une règle de la bibliothèque | [À CONFIRMER] |
-| Donner ou retirer un accès | Márcia Okafor | [À CONFIRMER] | [À CONFIRMER] |
-| Installer une nouvelle version | Márcia Okafor | [À CONFIRMER] | [À CONFIRMER] |
-| Renouveler une licence, un domaine, un contrat | Márcia Okafor | [À CONFIRMER] | [À CONFIRMER] |
-| Arrêter le système, même temporairement | Márcia Okafor | [À CONFIRMER] | [À CONFIRMER] |
+| Changer une règle de fonctionnement | Marcia Okafor | Paula Reis, pour une règle de la bibliothèque | [À CONFIRMER] |
+| Installer une nouvelle version | Demande l'accord de Marcia Okafor | [À CONFIRMER] | [À CONFIRMER] |
+
+Créer un administrateur du programme demande aussi l'accord de Marcia Okafor. Joana Lima ne décide pas des changements.
+
+À définir avec le propriétaire : qui décide de donner ou retirer les autres accès, de renouveler le domaine et d'arrêter le système [À CONFIRMER]. Qui est consulté avant et qui est prévenu après aussi [À CONFIRMER].
 
 ## Qui fait quoi, et quand
 
 | Tâche | Responsable | Suppléant | Fréquence | Si personne ne le fait |
 |---|---|---|---|---|
-| Vérifier le matin qu'Estante s'ouvre | [À CONFIRMER] (décision de Márcia Okafor) | [À CONFIRMER] | Tous les jours | Un problème n'apparaît que quand quelqu'un se plaint. En 06/2026, les rappels se sont arrêtés une semaine. |
-| Payer l'e-mail MailExemplo | Roberto, des finances | [À CONFIRMER] | Chaque mois | Les rappels s'arrêtent |
-| Enregistrer les livres neufs et imprimer les étiquettes | Joana Lima | [À CONFIRMER] | Début de chaque semestre | Les livres neufs n'ont pas de code-barres pour le prêt |
-| Demander au secrétariat le fichier des élèves | [À CONFIRMER] | [À CONFIRMER] | Chaque année, avant février | L'import de février ne peut pas se faire |
-| Importer la liste annuelle des élèves | Denise Prado | [À CONFIRMER] | Chaque année, en février | Les nouveaux élèves n'existent pas dans Estante, et ceux qui sont partis restent actifs |
-| Renouveler le domaine jacaranda.example.org | Roberto, des finances | [À CONFIRMER] | Chaque année, avant le 14/03 | Le site ne s'ouvre plus |
-| Relire le dossier | Denise Prado avec Márcia Okafor | [À CONFIRMER] | Chaque année, en février | Le dossier garde des noms et des dates faux |
+| Vérifier que la sauvegarde des informations du jour existe | [À CONFIRMER] | [À CONFIRMER] | Tous les jours | Le jour reste sans sauvegarde |
+| Enregistrer les livres neufs et imprimer les étiquettes | Joana Lima | [À CONFIRMER] | Au début de chaque semestre | [À CONFIRMER] |
+| Importer la liste des élèves, venue du secrétariat | Denise Prado [À CONFIRMER] | [À CONFIRMER] | Tous les ans, en février | [À CONFIRMER] |
+| Payer l'abonnement e-mail MailExemplo | Roberto | [À CONFIRMER] | Tous les mois | En 06/2026, l'e-mail a été bloqué et les rappels se sont arrêtés une semaine |
+| Payer et renouveler le domaine jacaranda.example.org | Roberto paie ; qui renouvelle [À CONFIRMER] | [À CONFIRMER] | Échéance le 14/03/2027 | [À CONFIRMER] |
+| Relire les six documents du dossier | Denise Prado, avec Marcia Okafor | [À CONFIRMER] | Tous les ans, en février | [À CONFIRMER] |
+
+La sauvegarde des informations se fait toute seule, à 02:30. Lucas Ferreira n'a convenu avec personne de qui la vérifie [À CONFIRMER].
 
 ## Ce que chacun peut faire sans aide, et ce qui demande un accord
 
 | Personne ou rôle | Peut faire sans aide | Avec l'accord du propriétaire | Jamais sans le référent technique ou le développeur |
 |---|---|---|---|
-| Référent technique (Denise Prado) | Redémarrer le programme, lire les messages du programme, faire une sauvegarde tout de suite, réimprimer une étiquette | Installer une nouvelle version, créer un compte administrateur | Jusqu'au 31/01/2027, jamais sans Lucas Ferreira : toucher aux migrations (la façon dont les informations sont rangées) et restaurer une sauvegarde |
+| Denise Prado | Redémarrer le programme (la boîte dans laquelle il tourne), voir les messages du programme, faire une sauvegarde maintenant, réimprimer une étiquette | Installer une nouvelle version, créer un administrateur du programme | Changer la façon de ranger les informations (migrations) et restaurer une sauvegarde, sans en parler d'abord à Lucas Ferreira, jusqu'en janvier 2027. Après cette date : [À CONFIRMER] |
 
-À définir avec Márcia Okafor : ce que Joana Lima peut faire seule, par exemple allumer l'onduleur ou redémarrer le mini-PC [À CONFIRMER].
+Ce que Joana Lima et Marcia Okafor font sans aide : [À CONFIRMER].
 
 ## Comptes et accès par rôle
 
 | Rôle | Compte ou accès | Niveau | Gardé où |
 |---|---|---|---|
-| Propriétaire du système | Bitwarden de l'école, organisation « Jacarandá TI » | Administre le gestionnaire de mots de passe | Bitwarden de l'école [À CONFIRMER] |
-| Référent technique | Compte « denise » sur le mini-PC, créé en 09/2026 | Connexion technique à la machine (SSH) | Collection « Estante » du Bitwarden de l'école [À CONFIRMER] |
-| Opérateur quotidien | Compte « joana » dans Estante | Administrateur de l'application | Bitwarden de l'école [À CONFIRMER] |
-| Développeur d'origine | Compte « estante » sur le mini-PC, compte « lucas » dans Estante, accès au Bitwarden | Tout | À retirer au départ, fin 11/2026 |
+| Denise Prado | Compte denise, sur la machine ESTANTE01, créé en septembre. Connexion technique (SSH) | [À CONFIRMER] | Le Bitwarden de l'école (le programme où les mots de passe sont gardés) [À CONFIRMER] |
+| Denise Prado | Collection Estante du Bitwarden, en lecture seulement [À CONFIRMER] | Lecture | Le Bitwarden de l'école, organisation Jacaranda TI [À CONFIRMER] |
+| Marcia Okafor | Administratrice du Bitwarden de l'école [À CONFIRMER] | Administration | Le Bitwarden de l'école [À CONFIRMER] |
+| Joana Lima | Compte joana, administratrice du programme | Administration du programme | Le Bitwarden de l'école [À CONFIRMER] |
+| Lucas Ferreira | Compte lucas, administrateur du programme. Accès à la machine et au Bitwarden, aujourd'hui [À CONFIRMER] | Administration du programme | Le Bitwarden de l'école [À CONFIRMER] |
+
+Le compte estante de la machine : Lucas Ferreira ne se souvient pas de qui d'autre l'utilise [À CONFIRMER]. Le document 5 est la référence des accès.
 
 ## Quand quelqu'un part
 
-- Si Lucas Ferreira part (fin 11/2026) : transférer la sauvegarde et les rappels, qui tournent sur son compte « estante », vers un compte de l'école [À CONFIRMER]. Changer le compte « lucas » dans Estante, le compte « estante » sur le mini-PC, son accès au Bitwarden et les mots de passe qu'il connaissait (document 5).
-- Si Denise Prado part : transférer le compte « denise » et la collection « Estante » du Bitwarden à [À CONFIRMER], et changer les mots de passe du mini-PC et de la base de données.
-- Si Joana Lima part : transférer les tâches de la bibliothèque à [À CONFIRMER], et changer le compte « joana » dans Estante.
+- Si Lucas Ferreira part (fin novembre 2026) : retirer son accès à la machine et au Bitwarden [À CONFIRMER]. Désactiver le compte lucas du programme. Ce qu'il transfère d'autre, et à qui : [À CONFIRMER].
+- Si un autre rôle part : à définir avec le propriétaire [À CONFIRMER] : ce qu'il faut transférer, à qui, et quels accès changer.
 
 ---
 Ce document fait partie du dossier de passation (6 documents). Une erreur ou un oubli ? Signalez-le à Denise Prado.

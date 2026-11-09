@@ -30,7 +30,7 @@ Preparado em {{doc_date}} por {{author}}, para {{readers}}.
 
 ## Quem faz o quê, e quando
 
-<!-- O detalhe dos gestos está no documento 3 (Rotina). Aqui: só quem, com que frequência, e o que acontece se for esquecido. Ordenar por frequência: diário, semanal, mensal, anual, eventual. -->
+<!-- O detalhe das tarefas está no documento 3 (Rotina). Aqui: só quem, com que frequência, e o que acontece se for esquecido. Ordenar por frequência: diário, semanal, mensal, anual, eventual. -->
 
 | Tarefa | Responsável | Substituto | Frequência | Se ninguém fizer |
 |---|---|---|---|---|

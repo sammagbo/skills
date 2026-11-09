@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 """Bastão step 4: check that a pack covers what the repository revealed.
 
-Usage: coverage_check.py <inventory.json> <folder> [--pair <other_language_folder>]
+Usage: coverage_check.py <inventory.json> <folder> [--pair <other_language_folder>] [--merged]
+
+With --merged, a proposal (proposition-0N-... / proposta-0N-...) stands in for the document
+it sits beside: the check is made on the pack as it will be once the user has merged.
+While proposals are pending, this is the result to record.
 
 Fails (exit 1) when:
 - a variable name from the inventory is not explained in document 5;
@@ -37,8 +41,8 @@ FIXED_DOC4 = re.compile(r"^(avant tout|antes de tudo|qui appeler|quem chamar|apr
 QUESTIONS_FILE = re.compile(r"00-(questions|perguntas)\.md")
 
 
-def docs_by_number(folder: Path) -> dict[int, Path]:
-    return {doc_number(p): p for p in iter_docs(folder)}
+def docs_by_number(folder: Path, merged: bool = False) -> dict[int, Path]:
+    return {doc_number(p): p for p in iter_docs(folder, merged)}
 
 
 def headings(text: str) -> list[str]:
@@ -56,8 +60,8 @@ def shape(text: str) -> dict:
 
 
 def check(inv: dict, folder: Path, problems: list, warnings: list,
-          other: Path | None = None) -> dict[int, str]:
-    docs = docs_by_number(folder)
+          other: Path | None = None, merged: bool = False) -> dict[int, str]:
+    docs = docs_by_number(folder, merged)
     texts = {n: p.read_text(encoding="utf-8") for n, p in docs.items()}
     for n in range(1, 7):
         if n not in docs:
@@ -84,7 +88,7 @@ def check(inv: dict, folder: Path, problems: list, warnings: list,
         compose_count = len(inv.get("compose_files", []))
         for s in inv.get("services", []):
             names = [x for x in (s.get("name"), s.get("container_name")) if x]
-            if not any(re.search(rf"(?<![\w-]){re.escape(x)}(?![\w-])", texts[1]) for x in names):
+            if not any(re.search(rf"(?<![\w-]){re.escape(x)}(?![\w-])", texts[1], re.I) for x in names):
                 msg = f'{docs[1].name}: service {s["name"]} ({s["compose_file"]}) not in "where it runs"'
                 (problems if compose_count == 1 else warnings).append(msg)
     if 6 in texts:
@@ -118,16 +122,22 @@ def main() -> int:
     ap.add_argument("inventory")
     ap.add_argument("folder")
     ap.add_argument("--pair")
+    ap.add_argument("--merged", action="store_true",
+                    help="check the proposals in place of the documents they sit beside")
     a = ap.parse_args()
+    for given in (a.inventory, a.folder, a.pair):
+        if given and not Path(given).exists():
+            print(f"not found: {given} (give an absolute path)", file=sys.stderr)
+            return 2
     inv = json.loads(Path(a.inventory).read_text(encoding="utf-8"))
     problems, warnings = [], []
     first, second = Path(a.folder), Path(a.pair) if a.pair else None
     for folder, other in [(first, second)] + ([(second, first)] if second else []):
-        rows = check(inv, folder, problems, warnings, other)
+        rows = check(inv, folder, problems, warnings, other, a.merged)
         print(f"\n{folder}\n| Document | Words | Markers | Status |\n|---|---|---|---|")
         print("\n".join(rows.values()))
     if a.pair:
-        d1, d2 = docs_by_number(Path(a.folder)), docs_by_number(Path(a.pair))
+        d1, d2 = docs_by_number(Path(a.folder), a.merged), docs_by_number(Path(a.pair), a.merged)
         for n in sorted(set(d1) & set(d2)):
             s1 = shape(d1[n].read_text(encoding="utf-8"))
             s2 = shape(d2[n].read_text(encoding="utf-8"))
