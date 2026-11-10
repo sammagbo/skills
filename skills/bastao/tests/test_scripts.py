@@ -195,6 +195,75 @@ class EstanteTests(unittest.TestCase):
         self.assertIn("| proposta-04-se-quebrar.md |", r.stdout)
         self.assertNotIn("| 04-se-quebrar.md |", r.stdout)
 
+    # stop_hook.py
+    def _hook(self, repo, payload=None, raw=None):
+        data = raw if raw is not None else json.dumps({"cwd": str(repo), **(payload or {})})
+        return subprocess.run([sys.executable, str(SCRIPTS / "stop_hook.py")], input=data,
+                              capture_output=True, text=True)
+
+    def _repo_with_pack(self, name):
+        import os
+        repo = self.tmp / name
+        shutil.copytree(FIXTURE, repo)
+        pack = repo / "passagem"
+        shutil.copytree(PACK / "passagem", pack)
+        (pack / "inventory.json").write_text("{}", encoding="utf-8")
+        old = 1_700_000_000
+        for f in repo.rglob("*"):
+            if f.is_file():
+                os.utime(f, (old, old))
+        os.utime(pack / "verification.md", (old + 1000, old + 1000))
+        return repo, pack, old
+
+    def test_hook_is_silent_without_a_pack_and_on_bad_input(self):
+        r = self._hook(FIXTURE)
+        self.assertEqual((r.returncode, r.stdout), (0, ""))
+        for raw in ("not json", "", "[1, 2]"):
+            r = self._hook(None, raw=raw)
+            self.assertEqual(r.returncode, 0, raw)
+
+    def test_hook_is_silent_when_nothing_is_newer(self):
+        repo, pack, old = self._repo_with_pack("hook-quiet")
+        r = self._hook(repo)
+        self.assertEqual((r.returncode, r.stdout), (0, ""))
+
+    def test_hook_hands_claude_a_line_when_a_file_of_the_pack_changed(self):
+        import os
+        repo, pack, old = self._repo_with_pack("hook-changed")
+        os.utime(repo / "deploy" / "crontab", (old + 2000, old + 2000))
+        r = self._hook(repo)
+        self.assertEqual(r.returncode, 0)
+        out = json.loads(r.stdout)["hookSpecificOutput"]
+        self.assertEqual(out["hookEventName"], "Stop")
+        self.assertTrue(out["additionalContext"].startswith("Bastão hook: repository "))
+        self.assertIn(str(repo), out["additionalContext"])
+        self.assertIn(str(pack), out["additionalContext"])
+        # the same input with stop_hook_active set: never loop
+        r = self._hook(repo, {"stop_hook_active": True})
+        self.assertEqual((r.returncode, r.stdout), (0, ""))
+        # once verification.md is newer than the change, the hook is quiet again
+        os.utime(pack / "verification.md", (old + 3000, old + 3000))
+        r = self._hook(repo)
+        self.assertEqual((r.returncode, r.stdout), (0, ""))
+
+    def test_hook_notices_the_questions_file_and_ignores_the_pack_and_other_files(self):
+        import os
+        repo, pack, old = self._repo_with_pack("hook-questions")
+        os.utime(pack / "01-o-que-e.md", (old + 2000, old + 2000))       # the pack's own document
+        os.utime(repo / "app" / "etiquetas.py", (old + 2000, old + 2000))  # not on the successor list
+        (repo / "passation").mkdir()
+        (repo / "passation" / "01-ce-que-cest.md").write_text("# x\n", encoding="utf-8")  # second language
+        os.utime(repo / "passation" / "01-ce-que-cest.md", (old + 2000, old + 2000))
+        self.assertEqual(self._hook(repo).stdout, "")
+        os.utime(pack / "00-perguntas.md", (old + 2000, old + 2000))
+        self.assertIn("Bastão hook:", self._hook(repo).stdout)
+        # a file of the successor list: an operations document, a backup script, the README
+        os.utime(pack / "00-perguntas.md", (old, old))
+        for rel in ("docs/deploy.md", "scripts/backup.sh", "README.md"):
+            os.utime(repo / rel, (old + 2000, old + 2000))
+            self.assertIn("Bastão hook:", self._hook(repo).stdout, rel)
+            os.utime(repo / rel, (old, old))
+
     # style_check.py
     def test_style_passes_the_generated_pack(self):
         for lang in ("passation", "passagem"):

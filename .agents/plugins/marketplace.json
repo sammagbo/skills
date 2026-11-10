@@ -1,0 +1,14 @@
+{
+  "name": "sammagbo-skills",
+  "interface": {
+    "displayName": "Sammy K. Magbo skills"
+  },
+  "plugins": [
+    {
+      "name": "bastao",
+      "source": { "source": "local", "path": "./" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity"
+    }
+  ]
+}

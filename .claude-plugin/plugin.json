@@ -1,0 +1,13 @@
+{
+  "name": "bastao",
+  "displayName": "Bastão",
+  "description": "Writes and keeps up to date the handover pack for a system handed to a non-technical organization, in French and Portuguese.",
+  "author": {
+    "name": "Sammy K. Magbo",
+    "url": "https://github.com/sammagbo"
+  },
+  "homepage": "https://github.com/sammagbo/skills",
+  "repository": "https://github.com/sammagbo/skills",
+  "license": "Apache-2.0",
+  "keywords": ["handover", "documentation", "passation", "passagem"]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "sammagbo-skills",
+  "description": "Skills for AI coding agents by Sammy K. Magbo",
+  "owner": {
+    "name": "Sammy K. Magbo",
+    "url": "https://github.com/sammagbo"
+  },
+  "plugins": [
+    {
+      "name": "bastao",
+      "source": "./",
+      "description": "Writes and keeps up to date the handover pack for a system handed to a non-technical organization, in French and Portuguese."
+    }
+  ]
+}

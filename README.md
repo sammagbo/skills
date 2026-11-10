@@ -28,7 +28,7 @@ Installation :
 - Avec la CLI skills, pour la plupart des agents : `npx skills@latest add sammagbo/skills`
 - Claude Code, à la main : copier `skills/bastao/` dans `.claude/skills/bastao/` (le projet) ou `~/.claude/skills/bastao/` (tous les projets).
 - Codex : `$skill-installer install https://github.com/sammagbo/skills/tree/main/skills/bastao`
-- Les marketplaces de plugins (Claude Code, Codex, Antigravity) arrivent avec la version 0.2.
+- Claude Code, avec le plugin (il apporte aussi le hook de mise à jour) : `/plugin marketplace add sammagbo/skills`, puis `/plugin install bastao@sammagbo-skills`. Les fichiers du plugin pour Codex sont dans le dépôt (`plugin.json`, `.agents/plugins/marketplace.json`) ; ils n'ont pas encore été essayés dans Codex. Antigravity : par la CLI skills ci-dessus.
 - Les vérifications passent par quatre scripts Python (bibliothèque standard, sans réseau). Pour éviter une demande d'autorisation à chaque vérification, autorisez une fois `python3 */bastao/scripts/*.py` dans votre agent.
 
 Exemple complet, sur un dépôt fictif : `examples/estante/`. Extrait du document 4 :
@@ -41,7 +41,7 @@ Exemple complet, sur un dépôt fictif : `examples/estante/`. Extrait du documen
 > - C'est réparé quand : les rappels repartent.
 > - Si ça ne suffit pas, appelez Denise Prado.
 
-Essayer : « Prépare le dossier de passation de ce dépôt pour l'équipe informatique du client. » L'agent lit le dépôt, écrit le dossier dans `passation/` et laisse ses questions dans `passation/00-questions.md`. Répondez quand vous voulez ; au passage suivant, il complète le dossier. Avec le plugin (version 0.2), un hook regarde à la fin de chaque réponse de l'agent si un fichier dont le dossier dépend a changé. Si oui, il demande à l'agent de mettre le dossier à jour. Tant que le dossier n'existe pas, il ne fait rien.
+Essayer : « Prépare le dossier de passation de ce dépôt pour l'équipe informatique du client. » L'agent lit le dépôt, écrit le dossier dans `passation/` et laisse ses questions dans `passation/00-questions.md`. Répondez quand vous voulez ; au passage suivant, il complète le dossier. Avec le plugin, un hook regarde à la fin de chaque réponse de l'agent si un fichier dont le dossier dépend a changé. Si oui, il demande à l'agent de mettre le dossier à jour. Tant que le dossier n'existe pas, il ne fait rien.
 
 ### Português
 
@@ -67,7 +67,7 @@ Instalação:
 - Com a CLI skills, para a maioria dos agentes: `npx skills@latest add sammagbo/skills`
 - Claude Code, à mão: copiar `skills/bastao/` para `.claude/skills/bastao/` (o projeto) ou `~/.claude/skills/bastao/` (todos os projetos).
 - Codex: `$skill-installer install https://github.com/sammagbo/skills/tree/main/skills/bastao`
-- Os marketplaces de plugins (Claude Code, Codex, Antigravity) chegam com a versão 0.2.
+- Claude Code, com o plugin (ele traz também o hook de atualização): `/plugin marketplace add sammagbo/skills` e depois `/plugin install bastao@sammagbo-skills`. Os arquivos do plugin para o Codex estão no repositório (`plugin.json`, `.agents/plugins/marketplace.json`); ainda não foram experimentados no Codex. Antigravity: pela CLI skills acima.
 - As verificações passam por quatro scripts Python (biblioteca padrão, sem rede). Para evitar um pedido de permissão a cada verificação, autorize uma vez `python3 */bastao/scripts/*.py` no seu agente.
 
 Exemplo completo, num repositório fictício: `examples/estante/`. Trecho do documento 4:
@@ -80,11 +80,15 @@ Exemplo completo, num repositório fictício: `examples/estante/`. Trecho do doc
 > - Está consertado quando: os lembretes voltam a sair.
 > - Se não resolver, chame Denise Prado.
 
-Experimente: "Prepare a pasta de passagem deste repositório para a equipe de TI do cliente." O agente lê o repositório, escreve a pasta em `passagem/` e deixa as perguntas em `passagem/00-perguntas.md`. Responda quando quiser; na rodada seguinte, ele completa a pasta. Com o plugin (versão 0.2), um hook olha no fim de cada resposta do agente se um arquivo de que a pasta depende mudou. Se mudou, pede ao agente que atualize a pasta. Enquanto a pasta não existe, ele não faz nada.
+Experimente: "Prepare a pasta de passagem deste repositório para a equipe de TI do cliente." O agente lê o repositório, escreve a pasta em `passagem/` e deixa as perguntas em `passagem/00-perguntas.md`. Responda quando quiser; na rodada seguinte, ele completa a pasta. Com o plugin, um hook olha no fim de cada resposta do agente se um arquivo de que a pasta depende mudou. Se mudou, pede ao agente que atualize a pasta. Enquanto a pasta não existe, ele não faz nada.
 
 ## Repository layout
 
 ```
+.claude-plugin/     plugin.json and marketplace.json for Claude Code
+.agents/plugins/    marketplace.json for Codex
+plugin.json         plugin manifest for Codex
+hooks/hooks.json    the end-of-turn hook (Claude Code)
 examples/
 └── estante/        a complete pack produced on a fictional repository
 skills/
@@ -93,8 +97,8 @@ skills/
     ├── templates/fr/   six documents in French
     ├── templates/pt/   six documents in Brazilian Portuguese
     ├── references/     questions, pack files, field dictionary, plain language, writing style, successor needs, secret patterns
-    ├── scripts/        inventory, secret scanner, coverage check, style check
-    └── tests/          a fictional repository, a simulated run, unit tests
+    ├── scripts/        inventory, secret scanner, coverage check, style check, stop hook
+    └── tests/          a fictional repository, a pack, unit tests
 ```
 
 ## Contributing
