@@ -14,7 +14,8 @@ Fails (exit 1) when:
   with several, missing services are warnings);
 - a secret found in clear in the repository is not an open point in document 6;
 - a {{field}} or a template comment is left;
-- document 1, 4 or 6 is over 400 words (counted on the text a reader reads:
+- document 1 or 4 is over 400 words, or document 6 over 450 (it holds two parts and the
+  signatures; counted on the text a reader reads:
   no code blocks, no Markdown syntax, no table separators);
 - document 4 has more than 4 symptoms, or fewer than 3 without a line that sends
   the reader to the questions file (00-questions.md or 00-perguntas.md, in this
@@ -35,7 +36,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _common import count_markers, count_words, doc_number, iter_docs  # noqa: E402
 
-WORD_LIMIT = 400
+WORD_LIMIT = {1: 400, 4: 400, 6: 450}  # one page each; document 6 holds two parts and the signatures
 FIXED_DOC4 = re.compile(r"^(avant tout|antes de tudo|qui appeler|quem chamar|après|depois|"
                         r"ce qu'il ne faut jamais|o que nunca|à ne jamais|nunca)", re.I)
 QUESTIONS_FILE = re.compile(r"00-(questions|perguntas)\.md")
@@ -110,9 +111,9 @@ def check(inv: dict, folder: Path, problems: list, warnings: list,
     for n, t in sorted(texts.items()):
         w = count_words(t)
         status = "ok"
-        if n in (1, 4, 6) and w > WORD_LIMIT:
-            status = f"over {WORD_LIMIT}"
-            problems.append(f"{docs[n].name}: {w} words, limit {WORD_LIMIT}")
+        if n in WORD_LIMIT and w > WORD_LIMIT[n]:
+            status = f"over {WORD_LIMIT[n]}"
+            problems.append(f"{docs[n].name}: {w} words, limit {WORD_LIMIT[n]}")
         rows[n] = f"| {docs[n].name} | {w} | {count_markers(t)} | {status} |"
     return rows
 

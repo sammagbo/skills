@@ -17,7 +17,7 @@ Limites connues de cet exemple :
 - Dans les documents 2, 3 et 5 en portugais, la skill a écrit « cópia » là où la table des mots approuvés demande « backup ».
 - Trois questions du fichier de questions en posent plus de deux à la fois.
 - Les documents 4 et 6 sont à 400 mots en français : la limite et les lignes fixes des modèles se gênent.
-- Le document 6 est écrit pour celui qui reçoit ; la propriétaire n'y a pas d'action à elle. C'est un défaut du modèle, pas de l'exemple.
+- Le document 6 a été réécrit à la main d'après le nouveau modèle (une partie pour la propriétaire, une pour la référente technique), à partir des seules réponses et des autres documents ; il n'est pas issu d'un passage de la skill.
 
 ## Português
 
@@ -36,4 +36,4 @@ Limites conhecidos deste exemplo:
 - Nos documentos 2, 3 e 5 em português, a skill escreveu "cópia" onde a tabela de palavras aprovadas pede "backup".
 - Três perguntas do arquivo de perguntas fazem mais de duas coisas de uma vez.
 - Os documentos 4 e 6 estão em 400 palavras no francês: o limite e as linhas fixas dos modelos se atrapalham.
-- O documento 6 é escrito para quem recebe; a dona não tem uma ação própria nele. É um defeito do modelo, não do exemplo.
+- O documento 6 foi reescrito à mão a partir do modelo novo (uma parte para a dona, uma para a referência técnica), só com as respostas e os outros documentos; ele não saiu de uma rodada da skill.

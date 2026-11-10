@@ -19,7 +19,7 @@ Les six documents :
 3. Routine : ce qui se fait tout seul, tous les jours, toutes les semaines, tous les ans.
 4. Si ça casse (une page, lue sous stress).
 5. Garde des accès : où sont les secrets, qui a la clé, jamais les secrets eux-mêmes.
-6. Checklist de réception, signée par la personne qui reçoit.
+6. Checklist de réception : une partie pour le propriétaire, une pour le référent technique, trois signatures.
 
 Ce que la skill ne fait jamais : lire ou recopier un mot de passe, une clé ou un jeton ; inventer ce que le dépôt ne prouve pas (elle écrit [À CONFIRMER]) ; envoyer quoi que ce soit à un service ; écrire dans vos systèmes.
 
@@ -58,7 +58,7 @@ Os seis documentos:
 3. Rotina: o que acontece sozinho, todo dia, toda semana, todo ano.
 4. Se quebrar (uma página, lida sob estresse).
 5. Custódia de acessos: onde estão os segredos, quem tem a chave, nunca os segredos em si.
-6. Checklist de recepção, assinada por quem recebe.
+6. Checklist de recepção: uma parte para o dono, uma para a referência técnica, três assinaturas.
 
 O que a skill nunca faz: ler ou copiar uma senha, uma chave ou um token; inventar o que o repositório não prova (ela escreve [A CONFIRMAR]); mandar qualquer coisa para um serviço; escrever nos seus sistemas.
 

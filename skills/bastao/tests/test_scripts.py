@@ -134,6 +134,23 @@ class EstanteTests(unittest.TestCase):
         r = run("coverage_check.py", self.inv_path, pack)
         self.assertIn("service caddy", r.stdout)
 
+    def test_document_6_may_run_to_450_words_the_others_stop_at_400(self):
+        pack = self.tmp / "limits"
+        shutil.copytree(PACK / "passagem", pack)
+        doc6, doc4 = pack / "06-checklist-de-recepcao.md", pack / "04-se-quebrar.md"
+        base6, base4 = doc6.read_text(encoding="utf-8"), doc4.read_text(encoding="utf-8")
+        words = " ".join(["palavra"] * 40) + "\n"
+        doc6.write_text(base6 + "\n" + words, encoding="utf-8")          # 399 + 40: over 400, under 450
+        r = run("coverage_check.py", self.inv_path, pack)
+        self.assertNotIn("06-checklist-de-recepcao.md: ", r.stdout.replace("| 06-checklist-de-recepcao.md |", ""))
+        doc6.write_text(base6 + "\n" + words * 2, encoding="utf-8")      # 399 + 80: over 450
+        r = run("coverage_check.py", self.inv_path, pack)
+        self.assertIn("06-checklist-de-recepcao.md: 479 words, limit 450", r.stdout)
+        doc6.write_text(base6, encoding="utf-8")
+        doc4.write_text(base4 + "\n" + words, encoding="utf-8")          # document 4: 392 + 40 > 400
+        r = run("coverage_check.py", self.inv_path, pack)
+        self.assertIn("04-se-quebrar.md: 432 words, limit 400", r.stdout)
+
     def test_the_fixture_fingerprints_match_its_documents(self):
         import hashlib
         text = (PACK / "passagem" / "verification.md").read_text(encoding="utf-8")
@@ -269,6 +286,30 @@ class EstanteTests(unittest.TestCase):
         for lang in ("passation", "passagem"):
             r = run("style_check.py", PACK / lang)
             self.assertEqual(r.returncode, 0, r.stdout)
+
+    def test_templates_keep_one_shape_and_the_same_fields_in_both_languages(self):
+        import re
+        sys.path.insert(0, str(SCRIPTS))
+        from coverage_check import shape
+        from _common import iter_docs, doc_number
+        root = HERE.parent / "templates"
+        fr = {doc_number(p): p for p in iter_docs(root / "fr")}
+        pt = {doc_number(p): p for p in iter_docs(root / "pt")}
+        self.assertEqual(sorted(fr), [1, 2, 3, 4, 5, 6])
+        for n in fr:
+            a, b = fr[n].read_text(encoding="utf-8"), pt[n].read_text(encoding="utf-8")
+            self.assertEqual(shape(a), shape(b), f"document {n}")
+            self.assertEqual(sorted(re.findall(r"\{\{\s*(\w+)", a)), sorted(re.findall(r"\{\{\s*(\w+)", b)), f"document {n}")
+
+    def test_document_6_has_a_part_for_the_owner_a_part_for_the_referent_and_three_signatures(self):
+        for lang, name, owner, referent in (("pt", "06-checklist-de-recepcao.md", "## O dono confirma", "## A referência técnica verifica"),
+                                            ("fr", "06-checklist-reception.md", "## Le propriétaire confirme", "## Le référent technique vérifie")):
+            text = (HERE.parent / "templates" / lang / name).read_text(encoding="utf-8")
+            self.assertIn(owner, text)
+            self.assertIn(referent, text)
+            self.assertNotIn("{{successor", text)
+            sign = text[text.index("## Signatures") if lang == "fr" else text.index("## Assinaturas"):]
+            self.assertEqual(sum(1 for ln in sign.splitlines() if "{{" in ln and ln.startswith("|")), 3)
 
     def test_style_passes_the_templates(self):
         for lang in ("fr", "pt"):

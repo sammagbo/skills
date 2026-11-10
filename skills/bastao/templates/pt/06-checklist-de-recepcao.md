@@ -1,37 +1,37 @@
 # {{system_name}}: checklist de recepção
 
-Entregue em {{doc_date}} por {{author}} a {{successor}} ({{successor_title}}, {{successor_role}}).
+Preparado em {{doc_date}} por {{author}} para o dono, {{owner}}, e a referência técnica, {{tech_lead}}.
 
-<!-- Uma página. Para ser preenchido pelo sucessor, não pelo desenvolvedor. Cada caixa marcada é algo que ele viu ou fez ele mesmo, não algo que lhe disseram.
-     Uma caixa não marcada não é falha: é um ponto a resolver antes da assinatura, listado embaixo com nome e data.
+<!-- Uma página. Duas pessoas recebem, cada uma com a sua parte: o dono confirma o que decide e o que sabe; a referência técnica verifica o que mexe no sistema. Cada pessoa marca só o que viu ou fez ela mesma, não o que lhe disseram. O desenvolvedor não preenche nada, só assina.
+     Uma caixa não marcada não é falha: é um ponto a resolver antes da assinatura, listado embaixo com quem decide e para quando.
      Nada é provocado no sistema em produção para marcar uma caixa.
-     Na exportação em PDF: duas linhas de altura para cada linha de assinatura. Escrever como uma pessoa, na primeira pessoa, sem forma de gênero (references/writing-style.md). -->
+     Cada linha vale para a pessoa da sua parte: sem dono, sem referência técnica ou sem resposta para um campo, a marca, nunca uma frase sobre outra pessoa. Uma caixa diz o que a pessoa fez, nunca um fato sobre quem mais tem o quê. A disponibilidade do desenvolvedor guarda o limite que as respostas dão (só dúvidas, sem mexer na máquina). repo_location é o lugar do código: pasta e máquina. A versão instalada só é marcada se o documento 3 dá um jeito de lê-la sem provocar nada; senão a caixa fica em branco e a tabela diz isso. Entram na tabela, com quem decide quando uma resposta o dá: quem faz a verificação diária, quem retira os acessos do desenvolvedor e quando, e cada ponto em aberto de que uma caixa depende.
+     Na exportação em PDF: duas linhas de altura para cada linha de assinatura. Escrever como uma pessoa, na primeira pessoa de quem marca, sem forma de gênero (references/writing-style.md). -->
 
-## Recebi e li
+## O dono confirma
 
-- [ ] Os documentos 1 a 4.
-- [ ] O documento 5, recebido pela referência técnica, {{tech_lead}}.
-- [ ] O programa, do jeito que está escrito: {{repo_location}}, versão {{repo_version}}.
+- [ ] Li os documentos 1, 2 e 4 e sei o que o sistema não faz.
+- [ ] Sei as três coisas que nunca se deve fazer, quem decide o quê, quem chamar e os prazos do próximo ano.
+- [ ] Recebi o documento 5 e não o repassei.
+- [ ] Concordo que {{update_owner}} atualiza esta pasta.
+- [ ] Conheço a disponibilidade de {{author}} ({{developer_availability}}) e a saída dos acessos dele ({{access_change_deadline}}).
 
-## Verifiquei pessoalmente
+## A referência técnica verifica
 
-- [ ] O programa mostra a versão {{installed_version}}, instalada em {{installed_date}}, a mesma do código recebido.
-- [ ] Consigo entrar em {{main_access}} com a minha conta, não a do desenvolvedor.
-- [ ] Tenho acesso aos segredos do meu papel (documento 2) sem tê-los recebido por mensagem.
-- [ ] Os acessos pessoais do desenvolvedor foram retirados ou trocados, menos os que o documento 5 deixa com ele, com data.
-- [ ] Fiz a verificação diária do documento 3 e obtive: {{expected_result}}.
-- [ ] Vi uma cópia recente das informações, de {{backup_seen_date}}, e sei quem sabe recolocá-la no lugar.
-- [ ] Percorri em simulação, com {{author}}, um incidente do documento 4 ({{drill_incident}}), sem provocar nada, e os contatos de "Quem chamar" atenderam.
-- [ ] Conheço as três coisas que nunca se deve fazer.
-- [ ] Sei quais prazos vencem nos próximos doze meses e quem cuida deles.
-- [ ] Sei quem chamar, em que ordem, e até onde posso ir por conta própria.
-- [ ] Sei onde a pasta fica guardada ({{dossier_location}}) e quem a atualiza.
+- [ ] Li os documentos 1 a 5 e recebi o programa: {{repo_location}}, versão {{repo_version}}.
+- [ ] O programa instalado é da versão {{installed_version}}.
+- [ ] Entro em {{main_access}} com a minha conta e tenho as senhas do meu papel.
+- [ ] Fiz a verificação diária do documento 3. Esperado: {{expected_result}}. Vi: ________.
+- [ ] Vi uma cópia recente das informações, de {{backup_seen_date}}.
+- [ ] Percorri com {{author}} um incidente do documento 4 ({{drill_incident}}), sem provocar nada.
 
 ## O que falta resolver antes da assinatura
 
-<!-- Cada frase que fala do cofre de senhas, da última restauração, da cópia fora da máquina ou da criptografia leva a sua marca [A CONFIRMAR] dentro da frase, e a ressalva de quem respondeu ("acho que") fica. A marca nas colunas Quem e Para quando não vale. Segredos escritos sem proteção: o nome da variável, seguido do que ela é em palavras simples. -->
+<!-- Cada frase que fala do cofre de senhas, da última restauração, da cópia fora da máquina ou da criptografia leva a sua marca [A CONFIRMAR] dentro da frase, e a ressalva de quem respondeu ("acho que") fica. A marca nas colunas Quem decide e Para quando não vale. Segredos escritos sem proteção: o nome da variável, seguido do que ela é em palavras simples. Quem decide e Para quando: o nome e a data que uma resposta dá; senão, uma linha em branco, ________, para preencher no dia. -->
 
-| Ponto | Quem | Para quando |
+Cada ponto leva um nome e uma data antes da assinatura.
+
+| Ponto | Quem decide | Para quando |
 |---|---|---|
 | {{open_point}} | {{open_point_owner}} | {{open_point_due}} |
 
@@ -40,9 +40,10 @@ Entregue em {{doc_date}} por {{author}} a {{successor}} ({{successor_title}}, {{
 | | Nome | Data | Assinatura |
 |---|---|---|---|
 | Entregue por | {{author}} | | |
-| Recebido por | {{successor}} | | |
-| Referência técnica | {{tech_lead}} | | |
 | Dono do sistema | {{owner}} | | |
+| Referência técnica | {{tech_lead}} | | |
+
+{{author}} assina que entregou; os outros dois assinam a sua parte.
 
 ---
 Este documento faz parte da pasta de passagem ({{doc_count}} documentos). Erro ou esquecimento? Avise {{corrections_contact}}.

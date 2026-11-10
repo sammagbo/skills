@@ -15,15 +15,15 @@ Regras: chaves em inglês, únicas por sentido, iguais nos modelos FR e PT (só 
 | owner | Dono do sistema (nome e cargo) | Q1 | 1, 2, 4, 5, 6 |
 | owner_decides | O que o dono decide, só o que as respostas listam (por exemplo «as mudanças»); sem resposta, a marca | Q1 | 1 |
 | tech_lead | Referência técnica (nome e cargo) | Q2 / Q6 | 1, 2, 4, 5, 6 |
-| developer_availability | Condições em que o desenvolvedor continua disponível | Q10 | 1, 2, 4 |
+| developer_availability | Condições em que o desenvolvedor continua disponível | Q10 | 1, 2, 4, 6 |
 | vault | Lugar de referência onde os segredos ficam guardados | Q2 | 3, 5 |
 | logbook | Caderno de registro de rotina e incidentes | Q3 / Q5 | 3, 4 |
-| repo_location | Onde está o código-fonte | repo (git remote) | 5, 6 |
+| repo_location | Onde está o código: pasta e máquina (por exemplo /home/estante/estante, na máquina ESTANTE01); o endereço remoto só se o git tem um | repo / Q2 | 5, 6 |
 | repo_version | Versão ou commit entregue | repo (git) | 6 |
 | param_name | Nome de um parâmetro sensível (nunca o valor) | repo | 3 (comentário), 5 |
 | backup_frequency | Frequência do backup | Q7 / repo | 1, 5 |
 | last_restore_date | Data da última restauração provada | Q7 | 3, 5 |
-| update_owner | Quem mantém a pasta atualizada | Q10 | 3 |
+| update_owner | Quem mantém a pasta atualizada | Q10 | 3, 6 |
 
 ## Documento 1 — o que é e o que não faz
 
@@ -84,7 +84,7 @@ Regras: chaves em inglês, únicas por sentido, iguais nos modelos FR e PT (só 
 
 | Chave | Significado | Origem |
 |---|---|---|
-| access_change_deadline | Prazo para trocar acessos quando alguém sai | Q2 |
+| access_change_deadline | Prazo para trocar acessos quando alguém sai; para o desenvolvedor, a data da saída dele (Q10) se nenhuma resposta dá outro prazo (documentos 5 e 6) | Q2 |
 | equipment_type | Tipo de equipamento (terminal, câmera, leitor) | Q9 / repo |
 | access_use / access_holder / access_deputy / access_place | Para cada linha fixa do inventário: para que serve, quem detém, substituto, onde fica guardado | Q2 |
 | access_change_procedure / access_loss_recovery | Para cada linha: como trocar; o que acontece e o que fazer se for perdido ou vazar | Q2 |
@@ -97,11 +97,10 @@ Regras: chaves em inglês, únicas por sentido, iguais nos modelos FR e PT (só 
 
 | Chave | Significado | Origem |
 |---|---|---|
-| successor / successor_title / successor_role | Quem recebe, cargo, papel no sistema | Q10 |
-| installed_version / installed_date | Versão instalada e data | repo / máquina |
-| main_access | Acesso principal que o sucessor usa | Q2 |
+| installed_version | Versão instalada na máquina; só a que uma resposta ou a referência técnica dá, nunca a do repositório | recepção |
+| main_access | Acesso principal que a referência técnica usa, só o nome, sem artigo nem preposição (por exemplo ESTANTE01) | Q2 |
 | expected_result | Resultado esperado da verificação diária (documento 3) | repo |
 | backup_seen_date | Data do backup visto na recepção | recepção |
 | drill_incident | Incidente do documento 4 percorrido em simulação | recepção |
 | dossier_location | Onde a pasta fica guardada | Q10 |
-| open_point / open_point_owner / open_point_due | Ponto a resolver antes da assinatura, quem, para quando (linha repetida) | recepção |
+| open_point / open_point_owner / open_point_due | Ponto a resolver antes da assinatura, quem decide, para quando (linha repetida); o nome e a data só se uma resposta os dá, senão uma linha em branco | recepção |

@@ -1,37 +1,37 @@
 # {{system_name}} : checklist de réception
 
-Remis le {{doc_date}} par {{author}} à {{successor}} ({{successor_title}}, {{successor_role}}).
+Préparé le {{doc_date}} par {{author}} pour le propriétaire, {{owner}}, et le référent technique, {{tech_lead}}.
 
-<!-- Une page. À remplir par le successeur, pas par le développeur. Chaque case cochée est une chose qu'il a vue ou faite lui-même, pas une chose qu'on lui a dite.
-     Une case non cochée n'est pas un échec : c'est un point à régler avant la signature, à lister en bas avec un nom et une date.
+<!-- Une page. Deux personnes reçoivent, chacune avec sa partie : le propriétaire confirme ce qu'il décide et ce qu'il sait ; le référent technique vérifie ce qui touche au système. Chaque personne coche seulement ce qu'elle a vu ou fait elle-même, pas ce qu'on lui a dit. Le développeur ne remplit rien, il signe.
+     Une case non cochée n'est pas un échec : c'est un point à régler avant la signature, à lister en bas avec qui décide et pour quand.
      Rien n'est provoqué sur le système en production pour cocher une case.
-     À l'export PDF : deux lignes de hauteur pour chaque ligne de signature. Écrire comme une personne, à la première personne, sans forme genrée (references/writing-style.md). -->
+     Chaque ligne vaut pour la personne de sa partie : sans propriétaire, sans référent technique ou sans réponse pour un champ, la marque, jamais une phrase sur une autre personne. Une case dit ce que la personne a fait, jamais un fait sur qui d'autre a quoi. La disponibilité du développeur garde la limite que les réponses donnent (seulement des questions, sans toucher à la machine). repo_location est le lieu du code : dossier et machine. La version installée n'est cochée que si le document 3 donne un moyen de la lire sans rien provoquer ; sinon la case reste vide et le tableau le dit. Entrent dans le tableau, avec qui décide quand une réponse le donne : qui fait la vérification quotidienne, qui retire les accès du développeur et quand, et chaque point ouvert dont une case dépend.
+     À l'export PDF : deux lignes de hauteur pour chaque ligne de signature. Écrire comme une personne, à la première personne de celui qui coche, sans forme genrée (references/writing-style.md). -->
 
-## J'ai reçu et lu
+## Le propriétaire confirme
 
-- [ ] Les documents 1 à 4.
-- [ ] Le document 5, reçu par le référent technique, {{tech_lead}}.
-- [ ] Le programme, tel qu'il est écrit : {{repo_location}}, version {{repo_version}}.
+- [ ] J'ai lu les documents 1, 2 et 4 et je sais ce que le système ne fait pas.
+- [ ] Je sais les trois choses à ne jamais faire, qui décide quoi, qui appeler et les échéances de l'année.
+- [ ] J'ai reçu le document 5 et je ne l'ai pas transmis.
+- [ ] Je suis d'accord que {{update_owner}} met ce dossier à jour.
+- [ ] Je connais la disponibilité de {{author}} ({{developer_availability}}) et la sortie de ses accès ({{access_change_deadline}}).
 
-## J'ai vérifié par moi-même
+## Le référent technique vérifie
 
-- [ ] Le programme affiche la version {{installed_version}}, installée le {{installed_date}}, celle du code reçu.
-- [ ] Je peux me connecter à {{main_access}} avec mon compte, pas celui du développeur.
-- [ ] J'ai accès aux secrets de mon rôle (document 2) sans les avoir reçus par message.
-- [ ] Les accès personnels du développeur sont retirés ou changés, sauf ceux que le document 5 lui laisse, avec une date.
-- [ ] J'ai fait la vérification quotidienne du document 3 et obtenu : {{expected_result}}.
-- [ ] J'ai vu une copie récente des informations, du {{backup_seen_date}}, et je sais qui sait la remettre en place.
-- [ ] J'ai parcouru à blanc, avec {{author}}, un incident du document 4 ({{drill_incident}}), sans rien provoquer, et les contacts de « Qui appeler » ont répondu.
-- [ ] Je connais les trois choses à ne jamais faire.
-- [ ] Je sais quelles échéances tombent dans les douze prochains mois et qui s'en occupe.
-- [ ] Je sais qui appeler, dans quel ordre, et jusqu'où je peux aller sans aide.
-- [ ] Je sais où le dossier est gardé ({{dossier_location}}) et qui le met à jour.
+- [ ] J'ai lu les documents 1 à 5 et reçu le programme : {{repo_location}}, version {{repo_version}}.
+- [ ] Le programme installé est en version {{installed_version}}.
+- [ ] Je me connecte à {{main_access}} avec mon compte et j'ai les mots de passe de mon rôle.
+- [ ] J'ai fait la vérification quotidienne du document 3. Attendu : {{expected_result}}. Vu : ________.
+- [ ] J'ai vu une copie récente des informations, du {{backup_seen_date}}.
+- [ ] J'ai parcouru avec {{author}} un incident du document 4 ({{drill_incident}}), sans rien provoquer.
 
 ## Ce qui reste à régler avant la signature
 
-<!-- Chaque phrase qui parle du coffre des mots de passe, de la dernière restauration, de la copie hors de la machine ou du chiffrement porte sa marque [À CONFIRMER] dans la phrase, et la réserve de celui qui a répondu (« je crois ») reste. La marque dans les colonnes Qui et Pour quand ne compte pas. Les secrets écrits sans protection : le nom de la variable, suivi de ce que c'est en mots simples. -->
+<!-- Chaque phrase qui parle du coffre des mots de passe, de la dernière restauration, de la copie hors de la machine ou du chiffrement porte sa marque [À CONFIRMER] dans la phrase, et la réserve de celui qui a répondu (« je crois ») reste. La marque dans les colonnes Qui décide et Pour quand ne compte pas. Les secrets écrits sans protection : le nom de la variable, suivi de ce que c'est en mots simples. Qui décide et Pour quand : le nom et la date qu'une réponse donne ; sinon, une ligne vide, ________, à remplir le jour même. -->
 
-| Point | Qui | Pour quand |
+Chaque point reçoit un nom et une date avant la signature.
+
+| Point | Qui décide | Pour quand |
 |---|---|---|
 | {{open_point}} | {{open_point_owner}} | {{open_point_due}} |
 
@@ -40,9 +40,10 @@ Remis le {{doc_date}} par {{author}} à {{successor}} ({{successor_title}}, {{su
 | | Nom | Date | Signature |
 |---|---|---|---|
 | Remis par | {{author}} | | |
-| Reçu par | {{successor}} | | |
-| Référent technique | {{tech_lead}} | | |
 | Propriétaire du système | {{owner}} | | |
+| Référent technique | {{tech_lead}} | | |
+
+{{author}} signe qu'il a remis ; les deux autres signent leur partie.
 
 ---
 Ce document fait partie du dossier de passation ({{doc_count}} documents). Une erreur ou un oubli ? Signalez-le à {{corrections_contact}}.

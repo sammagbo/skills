@@ -19,7 +19,7 @@ The people who read these documents are a school secretary, a director, an IT te
 13. No hedging stacks ("pourrait potentiellement", "poderia eventualmente"). Say what is known; mark what is not.
 14. No announcements ("Voyons maintenant", "Dans cette section", "Vamos ver agora"), no "challenges and outlook" paragraphs, no upbeat closing line ("Bonne continuation !", "Sucesso!").
 15. No chatbot residue: "j'espère que cela vous aide", "n'hésitez pas", "espero ter ajudado", "fique à vontade".
-16. Active voice when the doer matters. Procedures in document 3 use the infinitive; document 4 uses the imperative with "vous" / "você"; document 6 is in the first person without gendered forms ("par moi-même", "sans aide", "por conta própria").
+16. Active voice when the doer matters. Procedures in document 3 use the infinitive; document 4 uses the imperative with "vous" / "você"; document 6 is in the first person of whoever ticks the box, without gendered forms ("par moi-même", "sans aide", "por conta própria").
 17. Rhythm: a short sentence after a long one, one idea per line in lists. The limits per sentence and per paragraph are rules 21 and 22.
 18. Specifics over adjectives: names, dates, numbers, screens, buttons. "Le voyant vert de la caméra de l'entrée", not "l'équipement concerné". "A luz verde da câmera da entrada", not "o equipamento em questão".
 19. Dates as DD/MM/YYYY. Times with the zone when server time and local time differ.

@@ -9,7 +9,7 @@ Second folder: passation
 - inventory.py: executado de novo. Sem diferença no inventário (sem o bloco git): inventory.json mantido, inventory.new.json apagado.
 - Arquivos da lista do sucessor: `git diff --name-only 1e3f9c2` não lista nenhum arquivo rastreado; `git status --short` lista só deploy/.env (não aberto, já existia na primeira rodada) e a pasta da passagem. A mudança que disparou esta rodada é o conjunto de respostas novas em 00-perguntas.md.
 - secret_scanner.py: 0 findings, em passagem e em passation.
-- coverage_check.py (passagem, com --pair passation): 0 problemas, 0 avisos. Palavras (documentos 1, 4 e 6): português 399, 392, 377; francês 400, 400, 397. Marcas [A CONFIRMAR]: 3, 38, 27, 7, 44, 9; [À CONFIRMER]: 3, 38, 27, 7, 44, 9.
+- coverage_check.py (passagem, com --pair passation): 0 problemas, 0 avisos. Palavras (documentos 1, 4 e 6): português 399, 392, 399; francês 400, 400, 421 (o documento 6 tem limite de 450). Marcas [A CONFIRMAR]: 3, 38, 27, 7, 44, 8; [À CONFIRMER]: 3, 38, 27, 7, 44, 8.
 - style_check.py: 0 flags, em passagem e em passation.
 - Marcas dos quatro campos da regra 3 (cofre, última restauração, cópia fora da máquina, criptografia): conferidas dentro da frase, nos documentos 1, 2, 3, 5 e 6, nas duas línguas.
 - Leitura final como leitor (checklist de references/writing-style.md): feita nos documentos mudados. Nenhuma linha reescrita depois do script.
@@ -24,7 +24,7 @@ Second folder: passation
 
 ## Still marked
 
-- Documento 1: 3. Documento 2: 38. Documento 3: 27. Documento 4: 7. Documento 5: 44. Documento 6: 9 (nas duas línguas).
+- Documento 1: 3. Documento 2: 38. Documento 3: 27. Documento 4: 7. Documento 5: 44. Documento 6: 8 (nas duas línguas).
 - Sem resposta ainda (perguntas 13 a 28): quem confere a cópia, confirmação da Marcia Okafor sobre cofre, última restauração, cópia fora da máquina e criptografia, conta estante e senha do painel da Zebra, telefones dos fornecedores e contatos das pessoas, solução de emergência, quem importa em fevereiro, caderno de registro, decisões restantes, quem mexe nas migrações e restaura cópias depois de janeiro de 2027, quem renova o domínio e validade da bateria do nobreak, endereço da impressora, quem recebe a pasta e quem abre o Drive.
 
 ## Still to rewrite
@@ -67,13 +67,13 @@ Nenhum.
 | passagem/03-rotina.md | 4446c04b8b497228a57a5b36fb6fc172f550f60026d6f1f04a040604a43a4036 |
 | passagem/04-se-quebrar.md | 2f0dc54f58da695d222d5a8f72d27ceff2c1ec321c5f716b2f6161a26e9b66db |
 | passagem/05-custodia-de-acessos.md | 5959330c066777d88b75d63b67502c52e3a25217d371a728d40f90b9292e9213 |
-| passagem/06-checklist-de-recepcao.md | 9394984f697a5dc47ef7b6cc9523056018e1e8baf1ccbb753e84295c45662f4f |
+| passagem/06-checklist-de-recepcao.md | 381b425a67f1eb4d81228295f8f2d66594be0e46f29b0792fe4b1106054aee5d |
 | passation/01-ce-que-cest.md | 22a6863867ac1c2223ebb69ada63297dc9d02f9b7d8015b7ad6a6a984dc11af0 |
 | passation/02-qui-fait-quoi.md | c3f78d7bde3feaa1b3f91d7a6ba095eac002986e73538a90f417a36f15a250d4 |
 | passation/03-routine.md | 5aae4473421e2e027fe3706d82f390379f7efbdbd91fe620b285c8516d9142cd |
 | passation/04-si-ca-casse.md | fad6d01d1b6d4b31a6dbba402a8d95007e2a96ca42efec1cf7664d95ef017b46 |
 | passation/05-garde-des-acces.md | 81d65399874c7a7a14385f053176b6b9a36cc5b493e7475d12205be8e14d1fec |
-| passation/06-checklist-reception.md | f7c28a5b0d8e6c8f3aa67f89a030df40500d13107cedc2a0f2d3cc8411f37ed4 |
+| passation/06-checklist-reception.md | 1ea9183a329e29c13909d455d9a10c3386c91cb6274c60f334a8b9f31ba012d1 |
 
 ## History
 
@@ -94,3 +94,9 @@ Documentos 1 a 6 mudaram nas duas línguas; 00-perguntas.md e answers.yml reescr
 Correções em 26 linhas, nas duas línguas: versão instalada do programa (documento 6), vencimento do domínio sem frequência inventada (documentos 2 e 3), aviso de que o texto entregue só conta as linhas na importação (documento 3), francês "dédoublé", "paie" e uma frase sem verbo, português "conferir", "Operador" e "administradora".
 Nenhuma resposta nova. Marcas: documento 3 e documento 6 com uma marca a mais cada, nas duas línguas.
 Impressões digitais recalculadas sobre os arquivos corrigidos.
+
+### 09/11/2026, documento 6 reescrito à mão com o modelo novo
+
+O modelo do documento 6 mudou: duas partes, uma para o dono e outra para a referência técnica, e três assinaturas. Os documentos 6 das duas línguas foram refeitos à mão a partir dele, só com o que as respostas e os outros documentos já diziam, e corrigidos depois de uma leitura independente: caixas que afirmavam um fato (quem tem o documento 5, acessos já retirados) viraram ações ou linhas da tabela.
+A pergunta 10 não pede quem recebe: a linha "Recebido por" saiu, porque quem recebe é o dono e a referência técnica. Documento 6: 399 palavras em português e 421 em francês; 8 marcas em cada língua.
+Impressões digitais recalculadas.
